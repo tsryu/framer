@@ -1,0 +1,32 @@
+@header-height: 50px;
+.site-header{
+	background-color: #000;
+	margin-bottom: 120px;
+	.hidden-xs{
+		.nav{
+			overflow: hidden;
+			margin: 0;
+			>li{
+				float: left;margin-left: 77px;
+			}
+			a{
+				color:#fff;
+				font-weight: 600;
+				font-size: 15px;
+				.transition(all .2s ease-in-out);
+				&:hover{
+					color:#00AAFF
+				}
+			}
+			.current-menu-item a{color:#666}
+		}
+		&.gnb{
+			padding-top: 22px;
+			padding-bottom: 21px;
+		}
+		.site-title{
+			width: 12px;
+			float: left;
+		}
+	}
+}

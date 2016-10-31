@@ -1,0 +1,62 @@
+// @import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+// @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+// @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+// @font-face {
+//   font-family:'NanumBarunGothic';
+//   font-style:normal;
+//   font-weight:normal;
+//   src:url('../fonts/NanumBarunGothic.eot');
+//   src:local(※), 
+//     url('../fonts/NanumBarunGothic.woff') format('woff'), 
+//     url('../fonts/NanumBarunGothic.ttf') format('truetype');
+// }
+// 데스크탑 (웹폰트)
+@web-font-family:
+  "Roboto", "Apple SD Gothic Neo",
+  '맑은 고딕', "Malgun Gothic",
+  '나눔고딕', "nanumgothic",
+  "Helvetica Neue", Helvetica, Arial,
+  "Trebuchet MS",
+  sans-serif;
+
+@web-font-family-serif:
+  Georgia, "Times New Roman", Times,
+  '나눔명조', "nanummyeongjo",
+  serif;
+
+// 모바일 (기본)
+@font-family-sans-serif:
+  "Roboto", "Apple SD Gothic Neo",
+  '맑은 고딕', "Malgun Gothic",
+  "Helvetica Neue", Helvetica, Arial,
+  "Trebuchet MS",
+  sans-serif;
+
+@font-family-serif:
+  Georgia, "Times New Roman", Times,
+  serif;
+
+// font-weight: @bold;
+strong,
+dt, kbd kbd,
+label, .label {
+  &:extend(.strong);
+}
+
+// font-weight: @normal;
+.fwn,
+.btn-link,
+.radio label,  .checkbox label,
+.radio-inline, .checkbox-inline,
+.input-group-addon,
+.dropdown-menu > li > a,
+.tooltip, .popover {
+  &:extend(.normal);
+}
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  small, .small {
+    &:extend(.normal);
+  }
+}

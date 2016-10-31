@@ -1,0 +1,75 @@
+.site-content{
+	.code-embed-wrapper code[class*="language-"]{
+		font-family:inherit;
+	}
+	.code-embed-wrapper pre[class*="language-"]{
+		background-color: #fff;
+		padding: 0 25px 0 30px;
+		border-radius: 4px;
+	    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+	    margin-bottom: 30px;
+	    position: relative;
+	    overflow-x: auto;
+	    font-family: inherit;
+	    .font-size(13);
+	    line-height: 21px;
+	    *{
+	    	line-height: inherit;
+	    }
+	    &.line-numbers code{
+	    	padding-left: 80px;
+	    	padding-top: 25px;
+	    	padding-bottom: 25px;
+	    }
+	}
+	.code-embed-wrapper  .code-embed-infos,
+	.code-embed-infos,
+	.code-embed-wrapper{
+		border: 0;
+		background: #fff;
+		padding: 0;
+		margin: 0;
+	}
+	.code-embed-wrapper .code-embed-infos{
+		display: none;
+	}
+	.code-embed-wrapper pre + .code-embed-infos span{
+		border: 0;
+	}
+	.code-embed-wrapper .line-numbers .line-numbers-rows{
+    	background: rgba(0, 0, 0, 0.01);
+    	border-right: 1px solid rgba(0, 0, 0, 0.1);
+    	width: 50px;
+    	height: 100%;
+    	padding-top: 25px;
+    	padding-bottom: 25px;
+		color:#ccc;
+		.font-size(11);
+		line-height: 21px;
+		*{
+			line-height:inherit;
+		}
+		>span:before{
+			padding-right: 20px;
+		}
+	}
+	.token.atrule, .token.attr-value, .token.keyword, .token.class-name{
+		color:#EEBA00
+	}
+	.token.property, .token.tag, .token.boolean, .token.constant, .token.symbol, .token.deleted{
+		color:#000;
+	}
+	.token.number{
+
+		color:#9B80FF
+	}
+	.token.function{
+		color:#00AAFF;
+	}
+	.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted{
+		color:#75DE00;
+	}
+	.comment{
+		color:#bbb;
+	}
+}

@@ -1,0 +1,7 @@
+node_modules
+assets
+css
+dist
+js/*script*.js
+js/modernizr.min.js
+*.log

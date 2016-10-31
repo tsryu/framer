@@ -1,0 +1,44 @@
+// 페이지 헤더
+.page-header {
+	position: relative;
+	margin: 0;
+	padding-top: 28px;
+	height: 99px;
+}
+.page-title { 
+	margin: 0; 
+	color: @text-dark;
+	.font-size(30);
+}
+
+.breadcrumbs {
+	position: absolute;
+	bottom: 18px;
+	right: 0;
+	span {
+		color: #5e5e5e;
+	  .font-size(11);
+	  vertical-align: middle;
+
+		&:before {
+			display: inline-block;
+			margin: 0 7px;
+			content: ">";
+			width: 5px;
+			height: 9px;
+		}
+
+		&:first-child {
+			&:before {content: none;}
+		}
+	}
+
+	.home {
+		display: inline-block;
+		text-indent: -9999px;
+		width: 12px;
+		height: 11px;
+		// background: url(../images/breadcrumb-ico-home.png) 0 0 no-repeat;
+		vertical-align: text-top;
+	}
+}

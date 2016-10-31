@@ -1,0 +1,90 @@
+// 글꼴: 크기
+.10px()  { .font-size(10) }
+.11px()  { .font-size(11) }
+.12px()  { .font-size(12) }
+.13px()  { .font-size(13) }
+.14px()  { .font-size(14) }
+.15px()  { .font-size(15) }
+.16px()  { .font-size(16) }
+.18px()  { .font-size(18) }
+
+// 글꼴: 세리프
+.serif(@breakpoint: @tablet) {
+	font-family: @font-family-serif;
+	@media (min-width: @breakpoint) {
+		font-family: @web-font-family-serif;
+	}
+}
+
+// 링크: 링크의 색상과 링크에 마우스오버했을 때의 색상
+.link(@color;@value:10%) when not(iscolor(@value)) {
+	@hover: darken(@color, @value);
+	&                { color: @color }
+	&:hover, &:focus { color: @hover }
+}
+.link(@color;@value) when (iscolor(@value)) {
+	@hover: @value;
+	&                { color: @color }
+	&:hover, &:focus { color: @hover }
+}
+
+// 테두리: 1px solid를 기본으로 선언
+.border(@color:@border) when (iscolor(@color)) {
+	border: 1px solid @color;
+}
+.border(@color) when (@color = 0) {
+	border: 0;
+}
+
+// 테두리 및 그림자 효과 제거
+.no-border() {
+	&, &:hover, &:focus { .border(0) }
+}
+.no-radius() {
+	-webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+}
+.no-shadow() {
+	.box-shadow(none);
+}
+.no-underline() {
+	&, a {
+		&, &:hover, &:focus { text-decoration: none }
+	}
+}
+.no-outline() {
+	&,
+	&:active,
+	&.active {
+		&:focus,
+		&.focus { outline: 0 }
+	}
+}
+
+// Showing and Hiding
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.show { display: block !important; }
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+.invisible { visibility: hidden; }
+
+
+// 수직 가운데 정렬
+.vertical-align(@wrapper-height; @element-height) {
+  margin-top: ((@wrapper-height - @element-height) / 2);
+  margin-bottom: ((@wrapper-height - @element-height) / 2);
+}

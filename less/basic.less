@@ -1,0 +1,25 @@
+// 컨테이너
+::selection {
+    background: #00AAFF;
+    color: #FFF;
+}
+.container {
+	.container-fixed(@grid-gutter-width);
+	.clearfix();
+	position: relative;
+
+	@media (min-width: @screen-sm-min) {
+		width: @container-sm;
+	}
+}
+
+// 메인
+.site-main {
+	
+}
+
+// 검색 폼
+.search-form {
+	label         { display: block }
+	.search-field { }
+}

@@ -1,0 +1,66 @@
+// 필터: 블러
+.blur(@blur:3px) {
+  -webkit-filter: blur(@blur);
+     -moz-filter: blur(@blur);
+      -ms-filter: blur(@blur);
+       -o-filter: blur(@blur);
+          filter: blur(@blur);
+          filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='@blur');
+}
+
+// Selection
+.selection(@background) when (isnumber(@background)) {
+  @color:inherit;
+  @cursor:text;
+  ::selection      { color: @color; background-color: darken(#FFF, @background); background-color: fade(#000, @background); cursor: @cursor; }
+  ::-moz-selection { color: @color; background-color: darken(#FFF, @background); background-color: fade(#000, @background); cursor: @cursor; }
+}
+.selection(@background) when not (isnumber(@background)) {
+  @color:white;
+  @cursor:text;
+  ::selection      { color: @color; background-color: @background; cursor: @cursor; }
+  ::-moz-selection { color: @color; background-color: @background; cursor: @cursor; }
+}
+
+// 텍스트
+// .text-overflow-line-clamp(@line:3) {
+//   overflow: hidden;
+//   display: -webkit-box;
+//   text-overflow: ellipsis;
+//   -webkit-line-clamp: @line;
+//   -webkit-box-orient: vertical;
+//   word-wrap:break-word;
+// }
+
+.text-overflow(@lines, @lineHeight) {
+  @maxhValue : ( @lines * @lineHeight );
+  max-height: ~"@{maxhValue}em";
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
+  word-break: keep-all;
+}
+
+// 컬럼
+.columns(@colwidth: 250px, @colcount: 0, @colgap: 50px, @columnRuleColor: #EEE, @columnRuleStyle: solid, @columnRuleWidth: 1px) {
+  -webkit-column-width:      @colwidth;
+  -webkit-column-count:      @colcount;
+  -webkit-column-gap:        @colgap;
+  -webkit-column-rule-color: @columnRuleColor;
+  -webkit-column-rule-style: @columnRuleStyle;
+  -webkit-column-rule-width: @columnRuleWidth;
+     -moz-column-width:      @colwidth;
+     -moz-column-count:      @colcount;
+     -moz-column-gap:        @colgap;
+     -moz-column-rule-color: @columnRuleColor;
+     -moz-column-rule-style: @columnRuleStyle;
+     -moz-column-rule-width: @columnRuleWidth;
+          column-width:      @colwidth;
+          column-count:      @colcount;
+          column-gap:        @colgap;
+          column-rule-color: @columnRuleColor;
+          column-rule-style: @columnRuleStyle;
+          column-rule-width: @columnRuleWidth;
+}

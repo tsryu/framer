@@ -1,0 +1,45 @@
+//사이드바가 있는 문서
+.page-id-8 {
+	
+	// 서브 컨텐츠 영역
+	.site-content {
+		position: relative;
+		min-height: 1px;
+		float: right;
+		width: 75%;
+		.page-header{
+			display: none;
+		}
+	}
+
+}
+.site-sidebar{
+	width: 25%;
+	float: left;
+	.anchor-link{
+		margin: 0;
+		li{
+			margin:0 0 8px;
+			a{
+				.transition(color 0.2s ease);
+			    .font-size(15);
+			    font-weight: 400;
+			    letter-spacing: 0.4px;
+			    &.active{
+			    	color:#bbb;
+			    }
+			}
+		}
+	}
+}
+
+.search {
+	
+	// 서브 컨텐츠 영역
+	.site-content {
+		position: relative;
+		min-height: 1px;
+		padding-bottom: 90px;
+		border-top: 1px solid #e1e1e1;
+	}
+}

@@ -1,0 +1,29 @@
+/* Project stylesheet | slowalk */
+// html
+html { overflow-y: @html-overflow-y }
+
+// body
+body {
+	font-weight: @normal;
+
+	//== 선택 영역
+	.selection(@body-selection);
+	.user-select(@body-user-select);
+
+	//== 글꼴 (데스크톱에서만 웹폰트 사용)
+	@media (min-width: @web-font-breakpoint) {
+		font-family: @web-font-family;
+	}
+}
+
+// 선택 영역
+@divisions: ~"header, footer, section, article, aside, div";
+@{divisions} { .user-select(@div-user-select) }
+
+// 제목
+h1 { font-weight: @font-weight-h1 }
+h2 { font-weight: @font-weight-h2 }
+h3 { font-weight: @font-weight-h3 }
+
+// 이미지
+embed, iframe, object, video { max-width: 100% }
