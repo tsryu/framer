@@ -69,7 +69,7 @@ slowalk_after_content();
 
 	if ( $query_sub->have_posts() ) : 
 		while ( $query_sub->have_posts() ) : $query_sub->the_post(); ?>
-				<li><a class="section-title-link" href="/get-started#<?php $post_slug=$post->post_name; echo $post_slug?>"><?php the_title();?></a></li>
+				<li><a class="section-title-link" href="#<?php $post_slug=$post->post_name; echo $post_slug?>"><?php the_title();?></a></li>
 			<?php
 		endwhile;
 	else :

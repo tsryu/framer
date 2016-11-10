@@ -40,7 +40,7 @@ module.exports = function (grunt) {
     concat: {
       core: {
         src: [
-          // 'assets/slick-carousel/slick/slick.js',
+          'bower_components/jquery-ui/jquery-ui.js',
           '<%= jshint.core.src %>'
         ],
         dest: 'dist/js/script.js'

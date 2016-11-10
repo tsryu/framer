@@ -42,7 +42,16 @@
 
 
 	$(document).ready(function() {
-
+		//
+		$(".site-sidebar .anchor-link li a").click(function (event) {
+			event.preventDefault();
+			var elementClick = $(this).attr("href");
+			var destination = $(elementClick).offset().top;
+			$("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1400, 'easeOutQuint', function() {
+			  window.location.hash = elementClick;
+			});
+			return false;
+	    })
 		// 모바일 메뉴 토글
 		$('.navbar-toggle').click(function(e) {
 			e.preventDefault();
