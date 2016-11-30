@@ -40,7 +40,8 @@ module.exports = function (grunt) {
     concat: {
       core: {
         src: [
-          'bower_components/jquery-ui/jquery-ui.js',
+          'bower_components/angular/angular.js',
+          'js/app.js',
           '<%= jshint.core.src %>'
         ],
         dest: 'dist/js/script.js'
@@ -136,12 +137,12 @@ module.exports = function (grunt) {
     watch: {
       less: {
         files: ['less/**/*.less'],
-        tasks: 'build',
+        tasks: 'css',
         options: { livereload: true }
       },
       js: {
-        files: '<%= jshint.core.src %>',
-        tasks: 'build'
+        files: 'js/*.js',
+        tasks: 'js'
       },
       deploy: {
         options: { spawn: false },
@@ -178,13 +179,15 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-css',  ['test-css', 'autoprefixer', 'csscomb', 'csslint', 'cssmin']);
 
   // Register tasks: devlopment
-  grunt.registerTask('js',        ['test-js', 'ftp-deploy']);
-  grunt.registerTask('css',       ['test-css', 'ftp-deploy']);
+  // grunt.registerTask('js',        ['test-js', 'ftp-deploy:build']);
+  grunt.registerTask('js',        ['dist-js', 'ftp-deploy:build']);
+  // grunt.registerTask('css',       ['test-css', 'ftp-deploy:build']);
+  grunt.registerTask('css',       ['dist-css', 'ftp-deploy:build']);
   grunt.registerTask('dev',       ['test-js', 'test-css']);
   grunt.registerTask('default',   ['dev']);
 
   // Register tasks: production
   grunt.registerTask('build-js',  ['dist-js', 'modernizr']);
   grunt.registerTask('build-css', ['dist-css']);
-  grunt.registerTask('build',     ['clean', 'dist-js', 'dist-css', 'modernizr', 'ftp-deploy']);
+  grunt.registerTask('build',     ['clean', 'dist-js', 'dist-css', 'modernizr', 'ftp-deploy:build']);
 };

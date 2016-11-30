@@ -4,4 +4,6 @@ css
 dist
 js/*script*.js
 js/modernizr.min.js
+sftp-config.json
+.ftppass
 *.log

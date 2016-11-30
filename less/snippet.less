@@ -4,7 +4,8 @@
 	}
 	.code-embed-wrapper pre[class*="language-"]{
 		background-color: #fff;
-		padding: 0 25px 0 30px;
+		// padding: 0 25px 0 30px;
+		padding: 0;
 		border-radius: 4px;
 	    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 	    margin-bottom: 30px;
@@ -17,6 +18,7 @@
 	    	line-height: inherit;
 	    }
 	    &.line-numbers code{
+	    	position: static;
 	    	padding-left: 80px;
 	    	padding-top: 25px;
 	    	padding-bottom: 25px;
@@ -72,5 +74,12 @@
 	}
 	.comment{
 		color:#bbb;
+	}
+	.code-thumbnail{
+		margin: 0;
+		@media (min-width: @screen-sm-min) {
+			float: right;
+			width: 37.03703703703704%;
+		}
 	}
 }

@@ -42,7 +42,6 @@
 
 
 	$(document).ready(function() {
-		//
 		$(".site-sidebar .anchor-link li a").click(function (event) {
 			event.preventDefault();
 			var elementClick = $(this).attr("href");
