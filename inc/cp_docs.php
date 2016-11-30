@@ -42,6 +42,15 @@ function docs_create() {
   );
 }
 
+//rest api 등록
+add_action( 'init', 'add_docs_to_json_api', 30 );
+function add_docs_to_json_api(){
+
+    global $wp_post_types;
+    $wp_post_types['docs']->show_in_rest = true;
+    $wp_post_types['docs']->rest_base = 'docs';
+    $wp_post_types['docs']->rest_controller_class = 'WP_REST_Posts_Controller';
+}
 
 // taxonomy 추가 - docs_type
 

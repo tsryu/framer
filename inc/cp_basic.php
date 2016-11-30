@@ -42,6 +42,15 @@ function get_started_create() {
   );
 }
 
+//rest api 등록
+add_action( 'init', 'add_get_started_to_json_api', 30 );
+function add_get_started_to_json_api(){
+
+    global $wp_post_types;
+    $wp_post_types['get_started']->show_in_rest = true;
+    $wp_post_types['get_started']->rest_base = 'get_started';
+    $wp_post_types['get_started']->rest_controller_class = 'WP_REST_Posts_Controller';
+}
 
 // taxonomy 추가 - get_started_type
 
