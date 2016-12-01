@@ -9,6 +9,7 @@
     "modernizr": "2.8.3",
     "html5shiv": "3.7.2",
     "respond": "1.4.2",
-    "angular": "^1.5.9"
+    "angular": "^1.5.9",
+    "angular-sanitize": "^1.5.9"
   }
 }

@@ -41,6 +41,7 @@ module.exports = function (grunt) {
       core: {
         src: [
           'bower_components/angular/angular.js',
+          'bower_components/angular-sanitize/angular-sanitize.js',
           'js/app.js',
           '<%= jshint.core.src %>'
         ],

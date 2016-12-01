@@ -1,6 +1,8 @@
 <?php
 get_header();
-slowalk_before_content(); ?>
+?>
+<div ng-controller="getStarted">
+<?php slowalk_before_content(); ?>
 
 <?php
 while ( have_posts() ) : the_post();
@@ -9,33 +11,34 @@ while ( have_posts() ) : the_post();
 
 	slowalk_page_header(); ?>
 
-	<div class="page-content" ng-controller="getStarted">
-	  <?php 
-			// $args_main = array (
-			// 	'post_type'             => 'get_started',
-			// 	'posts_per_page'        => '-1',
-			// 	'order'					=> 'DESC'
-			// );
+	<div class="page-content">
+		<?php
+			$args_main = array (
+				'post_type'             => 'get_started',
+				'posts_per_page'        => '-1',
+				'order'					=> 'DESC'
+			);
+ 
+			$query_main = new WP_Query( $args_main );
+ 
+			if ( $query_main->have_posts() ) : 
+				while ( $query_main->have_posts() ) : $query_main->the_post(); ?>
+					<section id="<?php $post_slug=$post->post_name; echo $post_slug?>" class="section">
+						<h1 class="section-title"><?php the_title();?></h1>
+						<?php the_content();?>
+						<?php slowalk_edit_post_link( true ); ?>
+					</section>
+					<?php
+				endwhile;
+			else :
+				echo '<div class="empty">준비중입니다.</div>';
+			endif; 
+			wp_reset_query();?>
 
-			// $query_main = new WP_Query( $args_main );
-
-			// if ( $query_main->have_posts() ) : 
-			// 	while ( $query_main->have_posts() ) : $query_main->the_post(); ?>
-			 		<!--section id="<?php $post_slug=$post->post_name; echo $post_slug?>" class="section">
-			 			<h1 class="section-title"><?php the_title();?></h1>
-			 			<?php the_content();?>
-			 			<?php slowalk_edit_post_link( true ); ?>
-			 		</section-->
-			 		<?php
-			// 	endwhile;
-			// else :
-			// 	echo '<div class="empty">준비중입니다.</div>';
-			// endif; 
-			// wp_reset_query();
-		?>
-		<section ng-repeat="post in posts" id="" class="section">
+		<section ng-repeat="post in posts | reverse" id="{{post.slug}}" class="section" ng-bind-html-unsafe="getContent(post)">
 			<h1 class="section-title">{{post.title.rendered}}</h1>
-			{{post.content}}
+			<div class="section-content" ng-bind-html="post.content.rendered | html"></div>
+			<div class="edit-link text-right"><a class="post-edit-link" href="/wp-admin/post.php?post={{post.id}}&amp;action=edit">편집</a></div>
 		</section>
 	</div>
 	<?php 
@@ -49,32 +52,9 @@ slowalk_after_content();
 ?>
 <aside class="site-sidebar">
 	<ul class="anchor-link">
-  <?php 
-	$args_sub = array (
-		'post_type'             => 'get_started',
-		'posts_per_page'        => '-1',
-		'order'					=> 'DESC',
-		// 'tax_query' => array(
-		// 	array(
-		// 		'taxonomy' => 'mainbanner_area',
-		// 		'field' => 'slug',
-		// 		'terms' => 'main'
-		// 	)
-		// )
-	);
-
-	$query_sub = new WP_Query( $args_sub );
-
-	if ( $query_sub->have_posts() ) : 
-		while ( $query_sub->have_posts() ) : $query_sub->the_post(); ?>
-				<li><a class="section-title-link" href="#<?php $post_slug=$post->post_name; echo $post_slug?>"><?php the_title();?></a></li>
-			<?php
-		endwhile;
-	else :
-		echo '<div class="empty">준비중입니다.</div>';
-	endif; 
-	wp_reset_query();?>
+		<li ng-repeat="post in posts | reverse"><a class="section-title-link" href="#{{post.slug}}">{{post.title.rendered}}</a></li>
 	</ul>
 </aside>
+</div>
 <?php
 get_footer();
