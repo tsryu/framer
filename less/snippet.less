@@ -16,13 +16,29 @@
 	    line-height: 21px;
 	    *{
 	    	line-height: inherit;
+	    	font-family: inherit;
 	    }
 	    &.line-numbers code{
+	    	display: block;
 	    	position: static;
 	    	padding-left: 80px;
 	    	padding-top: 25px;
 	    	padding-bottom: 25px;
+	    	padding-right: 0;
 	    	letter-spacing: 1px;
+			margin: 0;
+			font-size:inherit;
+			background: transparent;
+			-moz-tab-size:4;
+			-o-tab-size:4;
+			tab-size:4;
+			word-wrap:normal;
+			word-break:normal;
+			word-spacing: normal;
+			white-space: pre;
+			text-align: left;
+			direction: ltr;
+			color:@black;
 	    }
 	}
 	.code-embed-wrapper  .code-embed-infos,
@@ -40,6 +56,11 @@
 		border: 0;
 	}
 	.code-embed-wrapper .line-numbers .line-numbers-rows{
+		position: absolute;
+		pointer-events: none;
+		top: 0;
+		left: 0;
+		letter-spacing: -1px;
     	background: rgba(0, 0, 0, 0.01);
     	border-right: 1px solid rgba(0, 0, 0, 0.1);
     	width: 50px;
@@ -49,11 +70,19 @@
 		color:#ccc;
 		.font-size(11);
 		line-height: 21px;
+		.user-select(none);
 		*{
 			line-height:inherit;
 		}
-		>span:before{
-			padding-right: 20px;
+		>span{
+			counter-increment: linenumber;
+			&:before{
+				padding-right: 20px;
+				content: counter(linenumber);
+				color: #999;
+				display: block;
+				text-align: right;
+			}
 		}
 	}
 	.token.atrule, .token.attr-value, .token.keyword, .token.class-name{

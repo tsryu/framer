@@ -24,7 +24,8 @@ module.exports = function (grunt) {
 
     jshint: {
       options: {
-        jshintrc: 'js/.jshintrc'
+        jshintrc: 'js/.jshintrc',
+        reporterOutput:"",
       },
       grunt: {
         options: {
@@ -43,6 +44,7 @@ module.exports = function (grunt) {
           'bower_components/angular/angular.js',
           'bower_components/angular-sanitize/angular-sanitize.js',
           'js/app.js',
+          'js/prism.js',
           '<%= jshint.core.src %>'
         ],
         dest: 'dist/js/script.js'

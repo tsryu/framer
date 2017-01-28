@@ -12,5 +12,5 @@ require get_template_directory() . '/inc/_admin.php';
 require get_template_directory() . '/inc/_project.php';
 require get_template_directory() . '/inc/cp_docs.php';
 require get_template_directory() . '/inc/cp_basic.php';
-// require get_template_directory() . '/inc/set_main.php';
+require get_template_directory() . '/inc/set_head.php';
 // require get_template_directory() . '/inc/set_footer.php';
