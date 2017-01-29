@@ -42,15 +42,19 @@
 
 
 	$(document).ready(function() {
+		//앵커 스크롤 애니메이션
 		$(".site-sidebar .anchor-link li a").live('click', function (event) {
 			event.preventDefault();
 			var elementClick = $(this).attr("href");
 			var destination = $(elementClick).offset().top;
-			$("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1400, 'easeOutQuint', function() {
+			$("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1400, 'swing', function() {
 			  window.location.hash = elementClick;
 			});
 			return false;
 	    })
+		//스크롤 현위치 표시
+	
+
 		// 모바일 메뉴 토글
 		$('.navbar-toggle').click(function(e) {
 			e.preventDefault();

@@ -73,7 +73,6 @@
 	        },
 	        link: function(scope, element, attrs, controller, transclude) {
 	            scope.$watch('source', function() {
-	            	console.log('3');
 	            	$('pre').wrap('<div class="code-embed-wrapper">').addClass('line-numbers code-embed-pre');
 	            	$('code').addClass('language-coffeescript code-embed-code');
 	            	var target = element[0].getElementsByTagName('pre');
