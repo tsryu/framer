@@ -72,20 +72,23 @@
 	          source: '@'
 	        },
 	        link: function(scope, element, attrs, controller, transclude) {
-	            scope.$watch('source', function(v) {
-	              	element.find("code").html(v);
-	              	Prism.highlightElement(element.find("code")[0]);
+	            scope.$watch('source', function() {
+	            	console.log('3');
+	            	$('pre').wrap('<div class="code-embed-wrapper">').addClass('line-numbers code-embed-pre');
+	            	$('code').addClass('language-coffeescript code-embed-code');
+	            	var target = element[0].getElementsByTagName('pre');
+	            	if(target.length){
+		            	for(var i = 0; i < target.length; i++){
+		            		var code = target[i].getElementsByTagName('code')[0];
+		            		var pureCode = code.innerHTML.replace(/^\s+/,"");
+		            		code.innerHTML = pureCode;
+		            		Prism.highlightElement(code);
+		            	}
+	            	}
+	              	
 	            });
 	            
-	            transclude(function(clone) {
-	              if (clone.html() !== undefined) {
-	              	//코드 앞 여백 삭제 후 넣어준다
-	                element.find("code").html((clone.html()).replace(/^\s+/,""));
-	                $compile(element.contents())(scope.$parent);
-	              }
-	            });
-	        },
-	        template: "<div class='code-embed-wrapper'><pre class='code-embed-pre line-numbers language-coffeescript' data-start='1' data-line-offset='0' style='conunter-reset: linenumber 0;'><code class='code-embed-code language-coffeescript'></code></pre></div>"
+	        }
 	    };
 	}]);
 } )( jQuery );

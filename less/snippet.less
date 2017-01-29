@@ -12,13 +12,13 @@
 	    position: relative;
 	    overflow-x: auto;
 	    font-family: inherit;
-	    .font-size(13);
-	    line-height: 21px;
+	    line-height: 0;
 	    *{
-	    	line-height: inherit;
 	    	font-family: inherit;
 	    }
 	    &.line-numbers code{
+	    	.font-size(13);
+	    	line-height: 21px;
 	    	display: block;
 	    	position: static;
 	    	padding-left: 80px;
@@ -40,6 +40,13 @@
 			direction: ltr;
 			color:@black;
 	    }
+	    figure{
+			margin: 0;
+			@media (min-width: @screen-sm-min) {
+				float: right;
+				width: 37.03703703703704%;
+			}
+		}
 	}
 	.code-embed-wrapper  .code-embed-infos,
 	.code-embed-infos,
@@ -103,12 +110,5 @@
 	}
 	.comment{
 		color:#bbb;
-	}
-	.code-thumbnail{
-		margin: 0;
-		@media (min-width: @screen-sm-min) {
-			float: right;
-			width: 37.03703703703704%;
-		}
 	}
 }
