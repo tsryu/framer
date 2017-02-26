@@ -1,6 +1,6 @@
 .site-content{
 	.code-embed-wrapper code[class*="language-"]{
-		font-family:inherit;
+		font-family: @code-font-family;
 	}
 	.code-embed-wrapper pre[class*="language-"]{
 		background-color: #fff;
@@ -11,10 +11,11 @@
 	    margin-bottom: 30px;
 	    position: relative;
 	    overflow-x: auto;
-	    font-family: inherit;
+	    font-family:  @code-font-family;
 	    line-height: 0;
 	    *{
-	    	font-family: inherit;
+	    	font-family:  @code-font-family;
+	    	letter-spacing: 0;
 	    }
 	    &.line-numbers code{
 	    	.font-size(13);

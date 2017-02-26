@@ -47,7 +47,7 @@
 			event.preventDefault();
 			var elementClick = $(this).attr("href");
 			var destination = $(elementClick).offset().top;
-			$("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 1400, 'swing', function() {
+			$("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 200, 'swing', function() {
 			  window.location.hash = elementClick;
 			});
 			return false;

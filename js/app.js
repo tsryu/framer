@@ -73,13 +73,13 @@
 	        },
 	        link: function(scope, element, attrs, controller, transclude) {
 	            scope.$watch('source', function() {
-	            	$('pre').wrap('<div class="code-embed-wrapper">').addClass('line-numbers code-embed-pre');
-	            	$('code').addClass('language-coffeescript code-embed-code');
 	            	var target = element[0].getElementsByTagName('pre');
+	            	$('pre code').addClass('language-coffeescript code-embed-code');
 	            	if(target.length){
 		            	for(var i = 0; i < target.length; i++){
 		            		var code = target[i].getElementsByTagName('code')[0];
 		            		var pureCode = code.innerHTML.replace(/^\s+/,"");
+		            		$(target[i]).wrap('<div class="code-embed-wrapper">').addClass('line-numbers code-embed-pre');
 		            		code.innerHTML = pureCode;
 		            		Prism.highlightElement(code);
 		            	}
