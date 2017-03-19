@@ -1,0 +1,49 @@
+<h2>이벤트는 주로 사용자의 인터랙션을 통해, 레이어에 일어나는 것 입니다. 이벤트를 통해, 여러분은 인터랙션으로 레이어를 애니메이션을 줄 수 있습니다. 우리는 간단한 탭, 스와이프부터 다중 터치 모션까지 다양한 이벤트를 사용할 수 있습니다.</h2>
+<p>프레이머는 수많은 이벤트를 가지고 있는데요. 그 중에서 가장 친숙한 것은 <code>onTap</code>(클릭 혹은 터치 시 발생), <code>onScroll</code>(스크롤 시 발생)과 비슷한 이벤트일겁니다. 이벤트는 애니메이션이나, 스테이트 바꾸기, 페이지 변환 등 다양한 방법으로 작동시킬 수 있습니다. 만약 여러분이 더 복잡한 인터랙션을 추구한다면, 다중터치 모션이나 <code>onEdgeSwipe</code>와 <code>onPinch</code>를 사용해보세요.</p>
+<pre>
+<code>
+layerA.onTap ->
+    ...
+layerA.onScroll ->
+    ...
+layerA.onSwipe ->
+    ...
+layerA.onAnimationEnd ->
+    ...
+</code>
+</pre>
+<p>이벤트에서 가장 흔한 방식은 <code>onTap</code>(클릭이나 터치)으로 한 세트의 스테이트를 토글하는 방식입니다.</p>
+<pre>
+<code>
+#states를 tap으로 토글하기
+settings.onTap ->
+    settings.stateCycle()
+</code>
+</pre>
+<h3>예시: 애니메이션 연계하기</h3>
+<p>이벤트는 애니메이션 연속시켜서 발생 시킬 수 있습니다. 예를 들어, 여러분은 <code>AnimationEndevent</code>를 이용하여, 어떤 애니메이션이 끝 날때 새로운 애니메이션을 시작시킬 수 있습니다.</p>
+<pre>
+<code>
+# 애니메이션 이벤트
+layerA.onAnimationStart ->
+    ...
+layerA.onAnimationEnd ->
+    ...
+</code>
+</pre>
+<p>아래 예시는 연동한 애니메이션인데요. 모든 애니메이션은 <code>AnimationEnd</code>(애니메이션이 끝날 때 작동되는 이벤트) 이벤트가 있습니다. 그래서 아래처럼 써주면 무한으로 반복되는 것이죠.</p>
+<pre>
+<figure><img src="/wp-content/uploads/anim-chain@2x.gif" alt="anim-chain@2x" width="600" height="600" class="alignnone size-full wp-image-44" /></figure>
+<code>
+layerA.animate
+    x: 80
+    options:
+        curve: "ease"
+ 
+layerA.onAnimationEnd ->
+    layerA.animate
+        x: 0
+        options:
+            curve: "ease"
+</code>
+</pre>
