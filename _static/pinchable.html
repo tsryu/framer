@@ -1,0 +1,55 @@
+<h2>핀치(두 손가락을 벌리는 제스처)가 가능한 레이어는 두손가락으로 확대나 회전이 가능합니다. 이 다중터치 제스처는 사진앱에서 확대하거나, 지도앱에서 길을 찾는데 사용됩니다.</h2>
+<p>Mac 용 Framer에서는 Alt 키를 누른 상태에서 커서를 움직여 두 번째 커서를 이용할 수 있습니다. 이렇게하면 멀티 터치 제스처를 에뮬레이션 할 수 있습니다. 드래그 가능한 레이어와 마찬가지로 <code>pinchable.enabled</code>를 <code>true</code>로 설정하여 활성화 할 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+</code>
+</pre>
+<p>핀치 가능 레이어는 <code>scale</code>(크기)과 <code>rotate</code>(회전) 속성을 가지고 있으며, 디폴트로 활성화되어 있습니다. scale을 비활성화하면 레이어는 핀치로 rotate만 할 수 있으며, 반대의 경우도 마찬가지입니다.</p>
+<pre>
+<code>
+# 핀치로 크기 조정하는 것을 비활성화
+layerA.pinchable.scale = false
+ 
+# 핀치로 회전시키는 것을 비활성화
+layerA.pinchable.rotate = false
+</code>
+</pre>
+<h3>핀치 이벤트</h3>
+<p>세 가지 기본적인 핀치 이벤트는 <code>onPinch</code>, <code>onPinchStart</code> 및 <code>onPinchEnd</code>입니다. 우선 <code>onPinchEnd</code>부터 살펴 보겠습니다. 핀치는 레이어의 실제 크기 및 회전 속성을 조정합니다. 따라서 <code>onPinchEnd</code>로 핀치 후에 이러한 속성을 다시 기본값으로 되돌릴 수 있습니다.</p>
+<pre>
+<figure><img src="http://framer.dothome.co.kr/wp-content/uploads/pinchable@2x.gif" alt="pinchable@2x" /></figure>
+<code>
+# 핀치 가능하게 설정
+layerA.pinchable.enabled = true
+ 
+# 핀치가 끝나면 복구되도록 설정
+layerA.onPinchEnd ->
+    layerA.animate
+        scale: 1
+        rotation: 0
+        options:
+            curve: Spring(damping: 0.5)
+            time: 0.5
+</code>
+</pre>
+<h3>패닝</h3>
+<p>드래그와 핀치를 모두 사용하면 패닝도 가능합니다. 패닝은 멀티 터치로 드래그하는 것입니다. <code>onPan</code> 이벤트로 팬을 감지 할 수 있습니다.</p>
+<pre>
+<figure><img src="http://framer.dothome.co.kr/wp-content/uploads/panning@2x.gif" alt="panning@2x" /></figure>
+<code>
+# 패닝 가능하게 설정
+layerA.draggable.enabled = true
+layerA.pinchable.enabled = true
+ 
+# 패닝이 끝나면 복구되도록 설정
+layerA.onDragEnd ->
+    layerA.animate
+        scale: 1
+        rotation: 0
+        options:
+            curve: Spring(damping: 0.5)
+            time: 0.5
+</code>
+</pre>

@@ -1,0 +1,104 @@
+<h2>PageComponent를 사용하면 여러 개의 정적 화면을 하나의 인터랙션이 가능한 프로토 타입으로 만들 수 있습니다. 그것은 여러분이 인터랙션 경험에 집중할 수 있도록 모든 계산을 처리합니다.</h2>
+<p>PageComponent를 사용하면 모든 방향으로 레이어간에 쉽게 스 와이프 할 수 있습니다. 이것은 <a href="/get-started#scroll">ScrollComponent</a>를 기반으로합니다.</p>
+<pre>
+<figure><img src="/wp-content/uploads/pages-first.gif" alt="pages-first" /></figure>
+<code>
+# PageComponent 만들기
+page = new PageComponent
+ 
+# 페이지 레이어 만들기
+layerA = new Layer
+    parent: page.content
+ 
+layerB = new Layer
+    x: 110
+    parent: page.content
+</code>
+</pre>
+<h3>페이지 더하기</h3>
+<p>page.addPage ()를 사용하여 새 페이지를 추가 할 수 있습니다. 레이어를 가져 와서 오른쪽에 배치합니다. 물론 하단에도 페이지를 추가 할 수도 있습니다.</p>
+<pre>
+<figure><img src="/wp-content/uploads/pages-vertical.gif" alt="pages-vertical" /></figure>
+<code>
+# PageComponent 만들기
+page = new PageComponent
+ 
+# 레이어 만들기 
+layerA = new Layer
+layerB = new Layer
+ 
+# layerA를 우측에 더하기
+# layerB를 하단에 더하기
+page.addPage(layerA)
+page.addPage(layerB, "bottom")
+</code>
+</pre>
+<p>여러분은 for-loop(반복문)을 사용하여 설정된 양의 페이지를 자동으로 생성 할 수 있습니다. 아래 예제는 10 개의 새 레이어를 만들고 각 레이어를 page.content 내에 배치합니다. 마지막으로 <code>index</code> 변수에 105를 곱하여 x 속성을 설정합니다.</p>
+<pre>
+<code>
+# PageComponent 만들기
+page = new PageComponent
+    scrollVertical: false
+ 
+# 레이어 10개 만들기 
+for index in [0...10]
+    layer = new Layer
+        parent: page.content
+        size: 200
+        x: 210 * index
+</code>
+</pre>
+<h3>감싸기</h3>
+<p>가져온 레이어에 페이지네이션을 추가하려면 <code>PageComponent.wrap()</code>을 사용하여 PageComponent로 감싸주세요</p>
+<pre>
+<code>
+# Sketch Import 스케치에서 가져오기
+sketch = Framer.Importer.load("imported/pages@1x")
+ 
+# 가져온(imported) 콘텐츠를 감싸주기 
+page = PageComponent.wrap(sketch.content)
+</code>
+</pre>
+<h3>순서 지정 및 정렬</h3>
+<p><code>change : currentPage</code> 이벤트를 사용하여 페이지 스위치를 감지 할 수 있습니다. 이것은 페이지 인디케이터 같은 것을 디자인 할 때 정말 유용합니다.</p>
+<pre>
+<figure><img src="/wp-content/uploads/pages-current.gif" alt="pages-current" /></figure>
+<code>
+# 페이지 전환 이벤트 
+page.on "change:currentPage", ->
+    page.previousPage.animate
+        opacity: 0.2
+        scale: 0.8
+ 
+    page.currentPage.animate
+        opacity: 1
+        scale: 1
+</code>
+</pre>
+<p>꼭 첫 페이지에서 시작하고 싶지 않을수도 있는데요. 애니메이션을 주거나, 혹은 없이 자동으로 다른 페이지로 이동할 수 있습니다.</p>
+<pre>
+<code>
+# pageThree 레이어로 이동하기
+page.snapToPage(pageThree)
+ 
+# 커스터마지이한 애니메이션으로 이동하기
+page.snapToPage(pageTwo, true, curve: "spring(200,25,0)")
+</code>
+</pre>
+<h3>페이지 번호</h3>
+<p>가로 또는 세로로 측정 된 페이지 인덱스를 추적 할 수 있습니다. 인덱스는 페이지 번호에서 1을 뺀 것입니다. 이것은 인덱스가 항상 1 대신 0에서 시작 함을 의미합니다. 위에서 언급한 많은 속성 및 방식을 다시 짚고 넘어가려면, 페이지 인디케이터 <a href="http://share.framerjs.com/x0li6cnk4pc4/" target="_blank">예제</a>를 보십시오.</p>
+<pre>
+<figure><img src="/wp-content/uploads/pages-index.gif" alt="pages-index" /></figure>
+<code>
+page.on "change:currentPage", ->
+    for layer in indicators
+        layer.animate
+            opacity: 0.5
+ 
+    current = page.currentPage
+    i = page.horizontalPageIndex(current)
+ 
+    indicators[i].animate
+        opacity: 1
+</code>
+</pre>

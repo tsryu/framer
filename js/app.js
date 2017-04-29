@@ -23,8 +23,9 @@
 	  
 	  function getPosts(type) {
 	  	type = typeof type !== 'undefined' ? type : 'posts';
-	    return ($http.get(url+type)
+	    return ($http.get(url+type+'?per_page=100')
 	    .then(handleSuccess, handleError));
+	    console.log();
 	  }
 
 	  
@@ -53,7 +54,6 @@
 	//wp query
 	// myApp.controller('MainCtrl', function ($scope, wpFactory) {
 	myApp.controller('getStarted', ['$scope', 'wpFactory', function ($scope, wpFactory) {
-
 		$scope.posts = [];
 		wpFactory.getPosts('get_started').then(function (succ) {
 			$scope.posts = succ;

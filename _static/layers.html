@@ -1,0 +1,140 @@
+<h2>만약 여러분이 디자인 툴을 써보셨다면, 레이어의 개념이 익숙하실 겁니다. 레이어는 이미지, 비디오, 오디오, 텍스트 등 여러가지 콘텐츠를 포함할 수 있는데요. 만약 레이어가 포함하는 콘텐츠가 없다면 간단한 도형입니다.</h2>
+<h3>속성</h3>
+레이어는 다양한 속성을 가지고 있습니다. 속성은 위치, 형태, 심지어 인터랙션까지도 정의할 수 있습니다. 모든 레이어는 기본 속성을 가지고 있는데요. 아무 속성을 정의하지 않았다면, 높이 넓이 200*200, 투명한 회색의 정사각형이 나타날 것입니다.
+
+이 모든 기본 속성들은 새로 써서 변경(override)할 수 있습니다. 예를 들어,  배경을 파란색으로 바꾸거나, 선명한(solid) 흰색으로 바꿀 수 있습니다.
+<pre>
+<figure><img src="http://framer.dothome.co.kr/wp-content/uploads/layer-new.png" alt="layer-new" width="300" height="300" class="alignnone size-full wp-image-34" /></figure>
+<code>
+# 배경 레이어
+bg = new BackgroundLayer
+    backgroundColor: "#28affa"
+ 
+# 레이어 만들기 
+layerA = new Layer
+    x: 0
+    y: 0
+    width: 200
+    height: 200
+    backgroundColor: "#fff"
+</code>
+</pre>
+레이어는 다양한 시각적 속성을 가질 수 있습니다. 여러분은 레이어를 왜곡, 크기 변경, 숨기기 등 여러 가지를 할 수 있습니다. 레이어를 정의한 후에도, 아래 예시처럼 레이어의 속성을 변경(override)할 수 있습니다.
+
+<pre>
+<code>
+# 미리 정의된 속성 변경하기(override)
+layerB.borderRadius = 4
+layerB.rotation = 45
+layerB.opacity = 0.5
+layerB.scale = 0.5
+</code>
+</pre>
+
+레이어 잘 활용하는 방법은 프레이머 스튜디오의 <strong>자동코드</strong>를 쓰는 것입니다. 여러분이 만든 모든 레이어 앞에는 수정아이콘이 있습니다. 이걸 클릭하면 속성패널을 열 수 있는데요. 여러분은 여기서 레이어의 속성을 직접 조절할 수 있습니다. 모든 레이어 속성들을 확인하려면, <a href="/docs>"개발문서</a>를 확인해보세요.
+
+<h3>위치</h3>
+레이어는 x와 y 속성으로 위치를 잡을 수 있습니다. 이 값들은 캔버스의 좌측상단 모퉁이 기준으로 떨어진 거리입니다.
+<pre>
+<code>
+# layerA의 위치
+layerA.x = 200
+layerA.y = 200
+</code>
+</pre>
+레이어는 동적인 값으로 위치를 줄 수 있는데요. 만약 여러분이 한 레이어를 다른 레이어 가운데로 위치시키고 싶다면. 일일히 그 레이어의 위치를 계산할 필요없이, <code>midX</code>와 <code>midY</code> 속성을 쓰면 됩니다. 더 많은 위치 속성은 <a href="/docs">개발문서</a>에서 확인하실 수 있습니다. 
+<pre>
+<figure><img src="http://framer.dothome.co.kr/wp-content/uploads/layer-mid@2x.png" alt="layer-mid@2x" width="600" height="600" class="alignnone size-full wp-image-35" /></figure>
+<code>
+layerA = new Layer
+    x: 200
+    y: 200
+ 
+layerB = new Layer
+    opacity: 0.5
+ 
+# layerA에 중앙에 위치 시키기 
+layerB.x = layerA.midX
+layerB.y = layerA.midY
+</code>
+</pre>
+레이어는 부모레이어 기준으로, <code>Align</code> 속성을 통해 위치시킬 수 있습니다. 레이어는 수직 혹은 수평 중앙만 위치시킬 수도 있는데요. 아래 있는 Align속성을 참고하세요.
+<ul>
+<li>Align.left (x)</li>
+<li>Align.right (x)</li>
+<li>Align.top (y)</li>
+<li>Align.bottom (y)</li>
+<li>Align.center (x and y)</li>
+</ul>
+<pre>
+<figure><img src="http://framer.dothome.co.kr/wp-content/uploads/layer-align@2x.png" alt="layer-align@2x" width="600" height="600" class="alignnone size-full wp-image-36" /></figure>
+<code>
+# 부모 레이어
+layerA = new Layer
+    width: 400
+    height: 400
+ 
+# 우측하단 코너에 정렬하기
+layerB = new Layer
+    parent: layerA
+    x: Align.right
+    y: Align.bottom
+</code>
+</pre>
+<h3>위계</h3>
+레이어는 그룹지을 수 있습니다. 다른 레이어 안에 위치한 레이어는 <code>child</code> 레이어라고 합니다. 그리고 그 레이어를 감싸고 있는 레이어는 <code>parent</code> 레이어라고 하지요. 레이어는 parent 레이어로 부터 투명도나 포지션 속성을 상속 받을 수 있습니다. 
+<pre>
+<code>
+# 위계를 정하는 두가지 방식
+layerB.parent = layerA
+layerA.addChild(layerB)
+</code>
+</pre>
+만약 여러분이 레이어를 다른 레이어 앞에 위치시키고 싶다면, <code>placeBefore</code>라는 메소드를 쓸 수 있습니다. 반대로 뒤에 위치시키고 싶다면 <code>placeBehind</code>를 쓰세요.
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+ 
+# layerB를 맨 위에 배치하기
+layerB.placeBefore(layerA)
+</code>
+</pre>
+<h3>레이어 타입</h3>
+레이어는 배경, 이미지, 비디오, 텍스트 등등 무엇이든 될 수 있습니다. 예를 들어, 이미지를 더할 때는, 여러분은 프로젝트폴더 안에 경로를 맞춰 써주면 됩니다.
+<pre>
+<code>
+# 이미지
+layerA = new Layer
+    image: "images/sea.png" #프로젝트 폴더 기준으로 경로를 검색합니다.
+ 
+# 비디오
+layerA = new Layer
+    video: "fish.mp4"
+ 
+# 텍스트
+layerA = new Layer
+    html: "Hello!"
+</code>
+</pre>
+<h3>텍스트 레이어</h3>
+<p>텍스트 레이어에는 고유한 스타일 속성이 있습니다. 너비와 높이는 텍스트와 스타일에 따라 자동으로 계산되고 설정됩니다.</p>
+<pre>
+<code>
+# 텍스트 레이어 만들기
+title = new TextLayer
+    text: "Hello!"
+</code>
+</pre>
+<p>대부분의 텍스트 스타일 속성은 CSS와 비슷한데요. 이러한 속성은 <a href="/docs">개발문서</a>에서 자세하게 볼 수 있습니다.</p>
+<pre>
+<code>
+# 텍스트 레이어 만들기
+title = new TextLayer
+    text: "Hello!"
+    fontSize: 64
+    fontWeight: 600
+    x: Align.center
+    y: Align.center"
+</code>
+</pre>

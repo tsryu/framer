@@ -1,0 +1,56 @@
+<h2>스테이트는 레이어의 다른 상태를 정의합니다. 레이어는 각기 다른 속성값을 가진 스테이트를 가지고 있을 수 있습니다. 그리고 스테이트는 애니메이션을 써서 순환시킬 수도 있습니다.</h2>
+<h3>스테이트 추가하기</h3>
+스테이트를 애니메이션을 관리하는 다른 방법이라고 생각하면 이해가 쉬울겁니다. 스테이트를 더해서, 그것을 가지고 애니메이션을 주거나 순환(cycle) 시키는 것이죠.
+아래 예제를 보시면, layerA의 기본상태로 오퍼시티를 1로 줬습니다. 그 다음 ‘fade’ 라는 이름으로, 새로운 스테이트를 정의했는데요. 이 ‘fade’ 스테이트는 오퍼시티를 0으로 줬습니다.
+
+<pre>
+<code>
+# 디폴트상태 정의
+layerA = new Layer
+    opacity: 1
+# "fade"라는 새로운 스테이트 정의
+layerA.states.fade =
+    opacity: 0
+</code>
+</pre>
+
+위에는 속성을 정의하기만 했는데요. layerA 속성을 “fade” 스테이트의 속성으로 바꾸려면, layerA를 ‘fade’ 스테이트로 변환시키는 코드를 더 써줘야 합니다.
+
+<pre>
+<code>
+# layerA를 ‘fade’ state로 애니메이션 주기
+layerA.animate("fade")
+
+# layerA를 애니메이션 없이 ‘fade’ 스테이트로 바꿔주기
+layerA.stateSwitch("fade")
+</code>
+</pre>
+
+<h3>스테이트 순환시키기</h3>
+스테이트는 stateCycle()를 이용해서 순환 시킬 수 있는데요.레이어로 애니메이션 거는 것 처럼, 스테이트에 애니메이션 옵션을 설정할 수 있습니다.
+
+<pre>
+<figure><img src="http://framer.dothome.co.kr/wp-content/uploads/states-switch@2x.gif" alt="states-switch2x" width="600" height="600" class="alignnone size-full wp-image-27" /></figure>
+<code>
+# 스테이트에 애니메이션 옵션 설정해주기
+layerA.states.rotate =
+    rotation: 0
+    animationOptions:
+        time: 1
+        curve: "ease"
+ 
+# layerA을 탭 했을 때, 스테이트 순환시켜주기
+layerA.onTap ->
+    layerA.stateCycle()
+</code>
+</pre>
+
+<h3>스테이트 변경하기</h3>
+스테이트 속성을 변경(Override)하려면, 똑같은 이름으로 새로운 스테이트를 정의해주세요.
+<pre>
+<code>
+# states 속성 변경하기
+layerA.states.rotate =
+    rotation: 180
+</code>
+</pre>

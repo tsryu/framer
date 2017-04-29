@@ -1,0 +1,52 @@
+<h2>슬라이더를 사용하여 진행 상황을 표시하고 볼륨을 변경하고 사진을 조정하고 가격 범위 등을 정의 할 수 있습니다. SliderComponent를 사용하면 처음부터  시작하지 않고, 쉽게 디자인을 적용할 수 있습니다.</h2>
+<p>SliderComponent는 slider, knob, fill 총 3 가지의 레이어로 구성됩니다. slider는 슬라이더의 트랙입니다. knob는 슬라이더의 <code>value</code>을 변경하는 데 사용됩니다. <code>fill</code>은 현재 값을 나타냅니다. 다른 레이어와 마찬가지로이 레이어의 모양을 변경할 수 있습니다.</p>
+<p>SliderComponent에는 몇 가지 고유 한 속성이 있습니다.</p>
+<ul>
+   <li>min (최솟값)</li>
+   <li>max (최댓값)</li>
+   <li>value (기본값)</li>
+   <li>knobSize (노브의 넓이와 높이)</li>
+</ul>
+<pre>
+<figure><img src="/wp-content/uploads/slider@2x.png" alt="slider@2x"  /></figure>
+<code>
+# 슬라이더 만들기
+slider = new SliderComponent
+    min: 0
+    max: 100
+    value: 50
+    knobSize: 40
+ 
+# fill 색상을 커스터마이즈하기
+slider.fill.backgroundColor = "#fff"
+</code>
+</pre>
+<p>slider는 단순히 프레이머 레이어이며, 모든 시각적 속성을 변경할 수 있음을 의미합니다. fill 및 knob 레이어에도 동일한 작업이 수행됩니다.</p>
+<pre>
+<code>
+# slider 커스터마이즈하기
+slider.backgroundColor = "#DDD"
+ 
+# fill 커스터마이즈하기
+slider.fill.backgroundColor = "#00AAFF"
+ 
+# knob 커스터마이즈하기
+slider.knob.shadowY = 2
+</code>
+</pre>
+<h3>값 변경하기</h3>
+<p><code>onValueChange</code> 함수를 사용하면 값이 변경되는 것을 감지하고, 변경되는 값을 가져올 수 있습니다.</p>
+<pre>
+<figure><img src="/wp-content/uploads/slider-value@2x.gif" alt="slider-value@2x" /></figure>
+<code>
+# 슬라이더 만들기
+slider = new SliderComponent
+    min: 0
+    max: 100
+    value: 50
+ 
+# 변경되는 값 가져오기
+slider.onValueChange ->
+    print slider.value
+</code>
+</pre>
