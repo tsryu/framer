@@ -60,6 +60,14 @@
 		}, function error(err) {
 			console.log('Errror: ', err);
 		});
+	}]);	
+	myApp.controller('docs', ['$scope', 'wpFactory', function ($scope, wpFactory) {
+		$scope.posts = [];
+		wpFactory.getPosts('docs').then(function (succ) {
+			$scope.posts = succ;
+		}, function error(err) {
+			console.log('Errror: ', err);
+		});
 	}]);
 
 	//디렉티브
