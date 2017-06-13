@@ -1,0 +1,107 @@
+<p>Align(정렬)을 사용하면 부모 레이어 기준으로 엘리먼트를 쉽게 배치할 수 있습니다. Align을 사용하여 부모 레이어의 위, 아래, 왼쪽, 오른쪽 또는 가운데에 레이어를 배치할 수 있습니다. 상태나, 애니메이션에서 레이어 속성으로 사용할 수 있습니다.</p>
+<pre>
+<code>
+# 가운데에 위치하는 레이어 만들기 
+layerA = new Layer
+    x: Align.center
+    y: Align.center
+ 
+# 오른쪽 아래에 정렬한 레이어 만들기 
+layerA.states =
+    stateA:
+        x: Align.right
+        y: Align.bottom
+    stateB:
+        x: Align.left
+        y: Align.top
+ 
+layerA.onTap -> layerA.stateCycle()
+</code>
+</pre>
+<p>Align은 당신이 위치시키고 싶은 위치의 x 좌표, y 좌표의 정확한 값을 동적으로 계산합니다. 따라서 오른쪽 아래에 레이어를 놓는 상태가 있다면  화면의 크기를 조정하더라도 Align은 유지됩니다.</p>
+<p>여러분은 또한 offsets를 선택으로 사용할 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: Align.center(-100) # 중심 기준으로 왼쪽으로 100px에 위치
+    y: Align.top(100) # 상단으로부터 100px 위치
+</code>
+</pre>
+<p>left과 right는 x 속성에서만 작동하고, top과 bottom은 y 속성에서만 작동합니다. center는 x, y 속성 모두 사용할 수 있습니다. Align은 직접 코드를 편집하기 쉬우므로 <a href="#layer.center"></a>>layer.center()</a>보다 유연합니다.</p>
+<h3 id="align.bottom">align.bottom(<span class="param">offset</span>)</h3>
+<p>레이어를 부모 레이어의 맨 아래에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Bottom은 y 레이어 속성에서만 작동합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
+<h4>인수</h4>
+<ol>
+	<li><code>offset</code> — 숫자 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+    y: Align.bottom
+ 
+layerB = new Layer
+    y: Align.bottom(-100) # 아래서부터 100px 위치
+</code>
+</pre>
+<h3 id="align.center">align.center(<span class="param">offset</span>)</h3>
+<p>레이어를 부모 레이어의 가운데에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
+<h4>인수</h4>
+<ol>
+	<li><code>offset</code> — 숫자 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+    x: Align.center
+    y: Align.center
+ 
+layerB = new Layer
+    x: Align.center(+100)
+    y: Align.center(-100)
+</code>
+</pre>
+<h3 id="align.left">align.left(<span class="param">offset</span>)</h3>
+<p>레이어를 부모 레이어의 맨 왼쪽에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Left는 x 레이어 속성에서만 작동합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
+<h4>인수</h4>
+<ol>
+	<li><code>offset</code> — 숫자 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+    x: Align.left
+ 
+layerB = new Layer
+    x: Align.left(100) # 왼쪽에서 부터 100px 위치 
+</code>
+</pre>
+<h3 id="align.right">align.right(<span class="param">offset</span>)</h3>
+<p>레이어를 부모 레이어의 맨 오른쪽에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Right는 x 레이어 속성에서만 작동합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>	
+<h4>인수</h4>
+<ol>
+	<li><code>offset</code> — 숫자 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+    x: Align.right
+ 
+layerB = new Layer
+    x: Align.right(-100) # 오른쪽에서 부터 100px 위치 
+</code>
+</pre>
+<h3 id="align.top">align.top(<span class="param">offset</span>)</h3>
+<p>레이어를 부모 레이어의 맨 위에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Top은 y 레이어 속성에서만 작동합니다. 스테이트 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
+<h4>인수</h4>
+<ol>
+	<li><code>offset</code> — 숫자 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+    y: Align.top
+ 
+layerB = new Layer
+    y: Align.top(100) # 위에서 부터 100px 위치
+</code>
+</pre>
