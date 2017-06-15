@@ -1,0 +1,234 @@
+Color
+<p>Color 객체는 색상을 정의, 감지, 수정 및 혼합하는 데 사용할 수 있습니다. 색상은 문자열 값 또는 객체를 사용하여 정의 할 수 있습니다. 모든 색상은 r, g, b, h, s, l 및 a 값을 사용하여 Color 객체로 변환됩니다.</p>
+<pre>
+<code>
+bg = new BackgroundLayer
+        backgroundColor: "#28affa"
+     
+    print bg.backgroundColor
+    # <Color "#28affa">
+</code>
+</pre>
+
+
+
+Supported color models: CSS Names, HEX, RGB, RGBA, HSL and HSLA.
+지원하는 색상 단위: CSS 색상이름, HEX, RGB, RGBA, HSL and HSLA.
+ 
+# Multiple ways to define the same color: 여러가지 방법으로 하나의 색상을 정의하는 예시
+blue = new Color("blue")
+blue = new Color("#28AFFA")
+blue = new Color("rgb(255, 0, 102)")
+blue = new Color("rgba(255, 0, 102, 1)")
+blue = new Color("hsl(201, 95, 57)")
+blue = new Color("hsla(201, 95, 57, 1)")
+
+
+
+You can also create new Color objects and pass in strings, or objects:
+새로운 Color 객체를 만들고 문자열이나 객체를 전달할 수도 있습니다.
+# Define a color with a HEX string 16 진수 문자열로 색상을 정의
+bg = new BackgroundLayer
+    backgroundColor: new Color("#fff")
+ 
+# Define a color with an RGB object RGB 객체로 색상 정의
+layerA = new Layer
+    backgroundColor: new Color(r: 255, g: 255, b: 255)
+ 
+# Define a color with an HSL object HSL 객체로 색상 정의
+layerB = new Layer
+    backgroundColor: new Color(h: 360, s: 1, l: 1, a: 1)
+
+
+
+Color Models 색상 모델
+You can animate the background color, text color and shadow color of a layer. By default, color transitions use HUSL. With the colorModel property, you can specify in which model to animate. We support rgb, hsl and husl.레이어의 배경색, 텍스트 색상 및 그림자 색상을 애니메이션으로 만들 수 있습니다. 기본적으로 색 변환에는 HUSL이 사용됩니다. colorModel 속성을 사용하여 애니메이션을 적용 할 모델을 지정할 수 있습니다. 프레이머는 rgb, hsl 및 husl을 지원합니다.
+bg = new BackgroundLayer
+    backgroundColor: "blue"
+ 
+# Animate in RGB RGB로 애니메이션 주기 
+bg.animate
+    backgroundColor: "red"
+    options:
+        colorModel: "rgb"
+
+
+
+color.lighten(amount)
+Add white and return a lightened color. 흰색을 추가하고 밝게 된 색상을 반환합니다.
+Arguments 인수
+amount — A number, from 0 to 100. Set to 10 by default. 숫자는 0부터 100까지 쓸 수 있습니다.  기본으로 10으로 설정됩니다.
+# Create a new color, lighten it 새 색상 만들고 밝게하기
+blue = new Color("#28affa").lighten(20)
+ 
+layerA = new Layer
+    backgroundColor: blue
+
+
+
+color.darken(amount)
+Add black and return a darkened color. 검은 색을 추가하고 어두운 색을 반환합니다.
+Arguments
+amount — A number, from 0 to 100. Set to 10 by default. 숫자는 0부터 100까지 쓸 수 있습니다. 기본으로 10으로 설정됩니다.
+# Create a new color, darken it 새 색상을 만들고 어둡게 만들기
+blue = new Color("#28affa").darken(20)
+ 
+layerA = new Layer
+    backgroundColor: blue
+
+
+
+color.saturate(amount)
+Increase the saturation of a color. 색상의 채도를 높일 수 있습니다.
+Arguments 인수
+amount — A number, from 0 to 100. Set to 10 by default. 숫자는 0부터 100까지 쓸 수 있습니다. 기본으로 10으로 설정됩니다.
+# Create a new Color, saturate it 새 색상을 만들고, 채도를 올리기
+blue = new Color("#877DD7").saturate(100)
+ 
+layerA = new Layer
+    backgroundColor: blue
+
+
+
+color.desaturate(amount)
+Decrease the saturation of a color. 색상의 채도를 낮출 수 있습니다.
+Arguments 인수
+amount — A number, from 0 to 100. Set to 10 by default. 숫자는 0부터 100까지 쓸 수 있습니다. 기본으로 10으로 설정됩니다.
+# Create a new Color, desaturate it 새 색상을 만들고, 채도를 낮추기
+blue = new Color("#28affa").desaturate(25)
+ 
+layerA = new Layer
+    backgroundColor: blue
+
+
+
+color.grayscale()
+Return a fully desaturated color. 완전히 채도가 떨어지는 색을 반환합니다.
+# Create a new Color 새로운 색상 만들기
+yellow = new Color("yellow")
+ 
+# Convert it to gray 무채색으로 변환하기
+gray = yellow.grayscale()
+ 
+layerA = new Layer
+    backgroundColor: gray
+
+
+
+color.gray(amount, alpha)
+Generates a transparent white background. 투명한 흰색 배경을 생성합니다.
+Arguments 인수
+amount — A number representing the amount of white. 흰색의 양을 나타내는 숫자.
+alpha — A number representing the alpha. (Optional) 투명도를 나타내는 숫자.(선택적)
+layer = new Layer
+layer.backgroundColor = Color.gray(0.5)
+
+
+
+color.alpha(amount)
+Increase the alpha value, also known as opacity, of the color. 색상의 알파(오퍼시티) 값을 늘립니다.
+Arguments 인수
+amount — A number, from 0 to 1. Set to 1 by default 숫자는 0부터 1까지 쓸 수 있습니다. (소수점 사용 가능) 기본으로 1로 설정됩니다.
+# Create a new Color, increase the opacity 새 색상을 만들고 오퍼시티 주기
+blue = new Color("#28affa").alpha(.5)
+ 
+layerA = new Layer
+    backgroundColor: blue
+
+
+
+Color.mix(colorA, colorB, fraction, limit, model)
+Blend two colors together, optionally based on user input. The fraction defines the distribution between the two colors, and is set to 0.5 by default. 사용자 가 입력한 두 가지 색상을 혼합합니다. fraction는 두 색상 사이의 분포를 정의하며 기본적으로 0.5로 설정됩니다.
+Arguments
+colorA — A color, the first one 첫 번째 색상
+colorB— A color, the second one 두 번째 색상
+fraction — A number, from 0 to 1. (Optional) 색상 혼합 비율
+limit — A boolean, set to false by default. (Optional) true 혹은 false로 입력, 기본 false로 되어있습니다. 색상의 범위 제한 여부 (선택적) 
+model — A string, the color model used to mix. (Optional) 문자열로 입력, 색상을 혼합하는 색상 모델 선택
+# Mix red with yellow 
+orange = Color.mix("red", "yellow", 0.5)
+
+
+
+The limit defines if the color can transition beyond its range. This is applicable when transitioning between colors, using Utils.modulate. Below, the limit is set to true, so the transition cannot extend beyond the second color. limit는 색상이 범위를 벗어날 수 있는지 정의합니다. 이것은 Utils.modulate를 사용하여 색상 사이를 전환 할 때 적용 할 수 있습니다. 아래에서 limit는 true로 설정되어 전환을 두 번 이상 할 수 없습니다.
+# Create new Layer 레이어 만들기
+layerA = new Layer
+    backgroundColor: "red"
+ 
+# Enable dragging 드래그 가능하게 설정
+layerA.draggable.enabled = true
+ 
+# On move, transition its color to yellow 레이어 이동 시, 레이어를 노란색으로 변경
+layerA.on Events.Move, (offset) ->
+ 
+    # Map the dragging distance to a number between 0 and 1  드래그 거리를 0에서 1사이로 측정
+    fraction = Utils.modulate(offset.x, [0, Screen.width], [0,1], true)
+ 
+    # Mix the colors, enable the limit, transition in HUSL  색상 혼합, limit를 true로 서정, HUSL로 색상 혼합
+    layerA.backgroundColor =
+        Color.mix("red", "yellow", fraction, true, "husl")
+
+
+
+Color.random()
+Returns a Color instance with a random color value set. 랜덤으로 색상을 리턴합니다.
+random = Color.random()
+
+
+
+Color.isColor(value)
+Checks if the value is a valid color object or color string. Returns true or false.
+값이 유효한 색상 객체 또는 색상 문자열인지 확인합니다. true 또는 false를 리턴합니다.
+Arguments 인수
+value — An object or string, representing a color 색상을 나타내는 객체 또는 문자열
+print Color.isColor(new Color "red") # true 
+print Color.isColor("red") # true 
+
+
+
+Color.isColorObject(value)
+Checks if the value is a valid color object. Returns true or false. 값이 유효한 색상 객체인지 확인합니다. true 또는 false를 리턴합니다.
+Arguments
+value — An object, representing a color 색을 나타내는 객체
+print Color.isColorObject(new Color "red") # true 
+print Color.isColorObject("red") # false 
+
+
+
+Color.isColorString(value)
+Checks if the value is a color string. Returns true or false. 값이 색상 문자열인지 확인합니다. true 또는 false를 리턴합니다.
+Arguments
+value — A string, representing a color 색을 나타내는 문자열
+print Color.isColorString("red") # true 
+print Color.isColorString("#28affa") # true 
+
+
+
+Color.toHexString()
+Returns the hexadecimal string representation of a color. 색상을 16 진수 문자열로 반환합니다.
+Arguments
+value — An object or string, representing a color  색을 나타내는 객체 혹은 문자열
+ 
+blue = new Color("blue")
+print blue.toHexString() # "#0000ff" 
+
+
+
+Color.toRgbString()
+Returns the RGB string representation of a color. 색상을 RGB 문자열로 반환합니다.
+Arguments 인수
+value — An object or string, representing a color 색을 나타내는 객체 혹은 문자열
+blue = new Color("blue")
+print blue.toRgbString() # "rgb(0, 0, 255)" 
+
+
+
+Color.toHslString()
+Returns the HSL string representation of a color. 색상을 HSL 문자열로 반환합니다.
+Arguments 인수
+value — An object or string, representing a color 색을 나타내는 객체 혹은 문자열
+blue = new Color("blue")
+print blue.toHslString() # "hsl(240, 100%, 50%)" 
+ 
+ 
+ 
