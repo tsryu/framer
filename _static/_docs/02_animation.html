@@ -1,0 +1,252 @@
+<p>애니메이션 객체는 레이어 대상의 애니메이션을 관리합니다. 이것은 레이어의 <a href="#layer.animationOptions">애니메이션 함수</a>로도 만들어집니다. 애니메이션 객체는 즉시 시작되지 않으므로 start()를 실행해야 합니다.</p>
+<p><a href="#layer.animationOptions">애니메이션 옵션</a>을 사용하면 커브, 타이밍, 딜레이 등을 정의할 수 있습니다. 레이어는 동시에 여러 애니메이션을 실행할 수 있습니다. 여러 개의 애니메이션이 같은 레이어 속성에 영향을 주는 경우, 마지막 정의된 애니메이션만 실행됩니다.</p>
+<h4>속성</h4>
+<ol>
+	<li><code>layer</code> — 레이어 객체, 대상 레이어</li>
+	<li><code>properties</code> 또는 <code>state</code> — 애니메이션 속성 또는 스테이트 객체의 대상 값을 가진 객체입니다.</li>
+	<li><code>options</code> — 커브, 시간 등과 같은 모든 애니메이션 옵션을 가진 객체입니다. (선택)</li>
+</ol>
+<h4>예시: 레이어와 속성</h4>
+<p>예시를 보면,  layerA에 대한 새로운 애니메이션을 만듭니다. 애니메이션을 시작하면 수평으로 0에서 100으로 이동합니다. 우리는 선택해서 사용할 수 있는 많은 인수를 생략했다는 점을 유의하세요. 기본으로 애니메이션은 ease 커브로 1초가 걸릴 것입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+# 레이어를 오른쪽으로 애니메이션 주기
+animationA = new Animation layerA,
+    x: 100
+ 
+animationA.start()
+</code>
+</pre>
+<h4>예시: 레이어와 상태</h4>
+<p>레이어 속성 대신 레이어 상태를 사용해서 레이어에 애니메이션을 적용합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.states.stateA =
+    x: 100
+ 
+# 레이어를 오른쪽으로 애니메이션 주기
+animationB = new Animation layerA,
+    layerA.states.stateA
+ 
+animationB.start()
+</code>
+</pre>
+<h4>예시: 여러 속성 및 시간</h4>
+<p>한 번에 여러 속성을 애니메이션으로 만들 수 있습니다. 아래 예시는 <code>x</code> 및 <code>opacity</code> 속성에 애니메이션을 적용하고 지속 시간은 5초로 설정했습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 한 번에 여러 속성을 5초 동안 애니메이션 주기
+animationC = new Animation layerA,
+    x: 100
+    opacity: 0.5
+    options:
+        time: 5
+ 
+animationC.start()
+</code>
+</pre>
+<h4>예시: 반복과 딜레이</h4>
+<p><code>repeat</code>을 사용하면 속성의 마지막 값이 시작 위치로 바로 리셋됩니다. 아래의 예시는 반복마다 2초의 딜레이를 줬습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 애니메이션 5번 반복하고, 딜레이는 2초씩 주기
+animationD = new Animation layerA,
+    x: 100
+    options:
+        repeat: 5
+        delay: 2
+ 
+animationD.start()
+</code>
+</pre>
+<h3 id="animation.curves">Animation Curves</h3>
+<ol>
+	<li><code>Bezier.linear</code> — 일정한 속도</li>
+	<li><code>Bezier.ease</code> — Ease 커브</li>
+	<li><code>Bezier.easeIn</code> — Ease-in 커브</li>
+	<li><code>Bezier.easeOut</code> — Ease-out 커브</li>
+	<li><code>Bezier.easeInOut</code> — Ease-in-out 커브</li>
+	<li><code>Spring</code> — 제동이 있는 Spring 커브</li>
+</ol>
+<h4>예시: 베지어 커브</h4>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 베지어 커브로 애니메이션 주기
+animationA = new Animation layerA,
+    x: 100
+    opacity: 0.5
+    options:
+        curve: Bezier(0.25, 0.1, 0.25, 1)
+</code>
+</pre>
+<h4>예시: 스프링 커브</h4>
+<p>기본 스프링커브는 <code>time</code> 속성과 함께 사용할 수 있습니다.</p>
+<ol>
+	<li>damping — 스프링의 바운스</li>
+	<li>mass — 애니메이션 레이어의 질량 (선택)</li>
+	<li>velocity — 시작할 때의 속도 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 스프링 커브로 애니메이션 주기
+animationA = new Animation layerA,
+    x: 100
+    options:
+        curve: Spring(damping: 0.5)
+        time: 0.5
+</code>
+</pre>
+<h4>예시: 클래식 스프링 커브</h4>
+<p>클래식 스프링은 <code>time</code> 속성을 사용할 수 없습니다.</p>
+<ol>
+	<li><code>tension</code> — 스프링의 강도</li>
+	<li><code>friction</code> — 스프링의 마찰</li>
+	<li><code>velocity</code> — 시작할 때의 속도 (선택)</li>
+	<li><code>tolerance</code> - 애니메이션 종료 전 최소 임계 값 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 스프링 커브로 애니메이션 주기
+animationA = new Animation layerA,
+    x: 100
+    options:
+        curve: Spring(tension: 250, friction: 25)
+</code>
+</pre>
+<h3 id="animation.properties">Animatable Properties (애니메이션 줄 수 있는 속성)</h3>
+<p>숫자로 된 레이어 속성과 색상만 애니메이션을 줄 수 있습니다.</p>
+<ul>
+    <li>x, y, z</li>
+    <li>minX, midX, maxX</li>
+    <li>minY, midY, maxY</li>
+    <li>width, height</li>
+    <li>opacity</li>
+    <li>rotation, rotationX, rotationY, rotationZ</li>
+    <li>scale scaleX, scaleY, scaleZ</li>
+    <li>originX, originY, perspective</li>
+    <li>scrollX, scrollY</li>
+    <li>borderRadius, borderWidth</li>
+    <li>shadowX, shadowY, shadowBlur, shadowSpread</li>
+    <li>blur, brightness, saturate</li>
+    <li>hueRotate, contrast, invert, grayscale, sepia</li>
+</ul>
+<h4>다중 속성</h4>
+<p>한 레이어에 여러 애니메이션을 줄 수 있습니다. 단, 같은 속성을 대상으로 하면 안됩니다. 만약 여러분이 한 레이어의 x 속성에 대해 두 개의 애니메이션을 주는 경우, 첫 번째 애니메이션은 취소됩니다.</p>
+<h4>퍼포먼스</h4>
+<p>거의 모든 속성은 GPU 가속 덕분에 부드럽게 애니메이트 할 수 있습니다. 그러나 일부 속성은 CPU도 사용해서 렌더링할 때 더 많은 메모리가 소모됩니다.</p>
+<ul>
+    <li>width</li>
+    <li>height</li>
+    <li>scrollX</li>
+    <li>scrollY</li>
+    <li>borderRadius</li>
+    <li>borderWidth</li>
+</ul>
+<h3 id="animation.start">animation.start()</h3>
+<p>애니메이션을 시작합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+animationA = new Animation layerA,
+    x: 100
+ 
+# 시작 코드를 써주지 않는 이상, 아무것도 움직이지 않습니다.
+animationA.start()
+</code>
+</pre>
+<h3 id="animation.stop">animation.stop()</h3>
+<p>애니메이션을 정지합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+animationA = new Animation layerA,
+    x: 100
+ 
+animationA.start()
+ 
+# 애니메이션을 정지합니다.
+animationA.stop()
+</code>
+</pre>
+<h3 id="animation.reverse">animation.reverse()</h3>
+<p>모든 역방향 값을 사용하여 새 애니메이션을 만듭니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+animationA = new Animation layerA,
+    x: 100
+ 
+animationB = animationA.reverse()
+ 
+# 두 애니메이션을 교대로 반복
+animationA.on Events.AnimationEnd, animationB.start
+animationB.on Events.AnimationEnd, animationA.start
+ 
+animationA.start()
+</code>
+</pre>
+<h3 id="animation.reset">animation.reset()</h3>
+<p>레이어를 기본 상태로 리셋합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+animationA = new Animation layerA,
+    x: 100
+ 
+animationA.start()
+ 
+# 애니메이션 종료지점에서 애니메이션 리셋하기
+animationA.on Events.AnimationEnd, ->
+    animationA.reset()
+</code>
+</pre>
+<h3 id="animation.restart">animation.restart()</h3>
+<p>레이어를 기본 상태로 리셋하고 애니메이션을 다시 시작합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+animationA = new Animation layerA,
+    x: 100
+ 
+animationA.start()
+ 
+# 애니메이션 종료지점에서 애니메이션을 다시 시작
+animationA.on Events.AnimationEnd, ->
+    animationA.restart()
+</code>
+</pre>
+<h3 id="animation.finish">animation.finish()</h3>
+<p>활성화된 애니메이션을 정지하고 종료지점으로 이동시킵니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+animationA = new Animation layerA,
+    x: 100,
+    time: 3
+ 
+animationA.start()
+ 
+# 1 초 딜레이 후 애니메이션 완료
+Utils.delay 1, ->
+    animationA.finish()
+</code>
+</pre>
