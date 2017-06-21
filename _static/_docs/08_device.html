@@ -1,0 +1,314 @@
+<p>DeviceComponent는 iPhone, iPad 또는 Android와 같은 기기를 에뮬레이션합니다. 기기와 내용의 크기를 변경하고 방향(가로 보기, 세로 보기)을 조정할 수 있습니다. 기기를 설정이 끝나면 화면에 렌더링됩니다. 프레이머 미리보기는 미러 기능을 사용한 미리보기와 일치합니다. 즉, 프레이머 프리뷰로 아이폰을 보고 있다면, 미러 기능으로 실제 아이폰에서 봤을 때는 전체 화면으로 똑같이 나타납니다.</p>
+<p>크기변경 및 기기방향 속성에는 Framer.Device 접두사가 붙습니다.</p>
+<pre>
+<code>
+Framer.Device.contentScale = 0.5
+Framer.Device.orientation = 90    
+</code>
+</pre>
+<p>기기는 모음으로 이해하면 쉽습니다. 따라서 쉽게 속성을 추가하거나 커스터마이즈 할 수 있습니다. Github에서 전체 소스를 찾을 수 있는데요. 다음은 몇 가지 일반적인 예입니다.</p>
+<pre>
+<code>
+# 흐린 배경 이미지 설정
+Framer.Device.background.image = "photo.jpg"
+Framer.Device.background.blur = 10
+ 
+# 현재 기기의 화면 크기 가져오기
+print Framer.Device.screen.width  # Output: 640 
+print Framer.Device.screen.height # Output: 480    
+</code>
+</pre>
+<p>화면에 맞게 보기는 콘텐츠를 픽셀이 맞지 않게 렌더링하여 화면 비율을 유지할 수도 있습니다. 하지만 50%, 100% 등 기타 단위로 볼 때 콘텐츠가 항상 픽셀에 맞춰 보여집니다. 브라우저에서 지원하는 경우, 기기 이미지가 JPEG2000으로 압축되어 이미지 크기가 줄어듭니다.</p>
+<p>기기 위치를 변경하려면 일반 레이어와 마찬가지로 화면 및 기기의 x 및 y 값을 변경하세요.</p>
+<pre>
+<code>
+# 기기 위치 설정
+Framer.Device.screen.x = 50
+Framer.Device.x = 50
+ 
+# 현재 기기 위치에서 변경
+Framer.Device.screen.x += 50
+Framer.Device.x += 50    
+</code>
+</pre>
+<h3 id="device.customize">Device.customize(<span class="param">deviceType, screenWidth, screenHeight, deviceImage, deviceImageWidth, deviceImageHeight, devicePixelRatio</span>)</h3>
+<p>여러분이 원하는 이미지와 크기로 새로운 기기를 정의해보세요. 기기가 스마트폰 또는 태블릿 인 경우, 유형을 지정해서 미리보기하면 기기 이미지가 표시되지 않도록 할 수 있습니다.</p>
+<pre>
+<code>
+# 커스터마이즈한 기기를 정의
+Framer.Device.customize
+    deviceType: Framer.Device.Type.Tablet
+    screenWidth: 720
+    screenHeight: 1024
+    deviceImage: "http://f.cl.ly/items/001L0v3c1f120t0p2z24/custom.png"
+    deviceImageWidth: 800
+    deviceImageHeight: 1214
+    
+</code>
+</pre>
+<h3 id="device.deviceType">Device.deviceType <span>&lt;string&gt;</span></h3>
+<p>렌더링할 기기 유형입니다. 아래 설명은 사용 가능한 옵션입니다.</p>
+<h4>전체화면</h4>
+<p>전체화면으로 렌더링합니다.</p>
+<pre>
+<code>
+Framer.Device.deviceType = "fullscreen"
+</code>
+</pre>
+<h4>Apple Watch 38mm</h4>
+<p>사용가능한 애플워치 38mm 기기 색상 </p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-watch-38mm-black-steel-black-closed"
+Framer.Device.deviceType = "apple-watch-38mm-gold-midnight-blue-closed"
+Framer.Device.deviceType = "apple-watch-38mm-rose-gold-lavender-closed"
+
+Framer.Device.deviceType = "apple-watch-38mm-sport-aluminum-blue-closed"
+Framer.Device.deviceType = "apple-watch-38mm-sport-aluminum-fog-closed"
+Framer.Device.deviceType = "apple-watch-38mm-sport-aluminum-green-closed"
+Framer.Device.deviceType = "apple-watch-38mm-sport-aluminum-red-closed"
+Framer.Device.deviceType = "apple-watch-38mm-sport-aluminum-walnut-closed"
+Framer.Device.deviceType = "apple-watch-38mm-sport-aluminum-white-closed"
+Framer.Device.deviceType = "apple-watch-38mm-sport-space-gray-black-closed"
+</code>
+</pre>
+<h4>Apple Watch 42mm</h4>
+<p>사용가능한 애플워치 42mm 기기 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-watch-42mm-black-steel-black-closed"
+Framer.Device.deviceType = "apple-watch-42mm-gold-midnight-blue-closed"
+Framer.Device.deviceType = "apple-watch-42mm-rose-gold-lavender-closed"
+ 
+Framer.Device.deviceType = "apple-watch-42mm-sport-aluminum-blue-closed"
+Framer.Device.deviceType = "apple-watch-42mm-sport-aluminum-fog-closed"
+Framer.Device.deviceType = "apple-watch-42mm-sport-aluminum-green-closed"
+Framer.Device.deviceType = "apple-watch-42mm-sport-aluminum-red-closed"
+Framer.Device.deviceType = "apple-watch-42mm-sport-aluminum-walnut-closed"
+Framer.Device.deviceType = "apple-watch-42mm-sport-aluminum-white-closed"
+Framer.Device.deviceType = "apple-watch-42mm-sport-space-gray-black-closed"
+</code>
+</pre>
+<h4>iPhone 6s</h4>
+<p>사용가능한 아이폰 6s 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-iphone-6s-gold"
+Framer.Device.deviceType = "apple-iphone-6s-rose-gold"
+Framer.Device.deviceType = "apple-iphone-6s-silver"
+Framer.Device.deviceType = "apple-iphone-6s-space-gray"    
+</code>
+</pre>
+<h4>iPhone 6+</h4>
+<p>사용가능한 아이폰 6+ 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-iphone-6s-plus-gold"
+Framer.Device.deviceType = "apple-iphone-6s-plus-rose-gold"
+Framer.Device.deviceType = "apple-iphone-6s-plus-silver"
+Framer.Device.deviceType = "apple-iphone-6s-plus-space-gray"
+</code>
+</pre>
+<h4>iPhone 5s</h4>
+<p>사용가능한 아이폰 5s 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-iphone-5s-gold"
+Framer.Device.deviceType = "apple-iphone-5s-silver"
+Framer.Device.deviceType = "apple-iphone-5s-space-gray"    
+</code>
+</pre> 
+<h4>iPhone 5c</h4>
+<p>사용가능한 아이폰 5c 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-iphone-5c-blue"
+Framer.Device.deviceType = "apple-iphone-5c-green"
+Framer.Device.deviceType = "apple-iphone-5c-red"
+Framer.Device.deviceType = "apple-iphone-5c-white"
+Framer.Device.deviceType = "apple-iphone-5c-yellow"
+</code>
+</pre>
+<h4>Nexus</h4>
+<p>모든 구글 넥서스 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "google-nexus-4"
+Framer.Device.deviceType = "google-nexus-5x"
+Framer.Device.deviceType = "google-nexus-6p"
+Framer.Device.deviceType = "google-nexus-9"
+</code>
+</pre>
+<h4>HTC One A9</h4>
+<p>모든 구글 넥서스 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "htc-one-a9-black"
+Framer.Device.deviceType = "htc-one-a9-white"
+</code>
+</pre> 
+<h4>HTC One M8</h4>
+<p>모든 HTC One M8 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "htc-one-m8-black"
+Framer.Device.deviceType = "htc-one-m8-gold"
+Framer.Device.deviceType = "htc-one-m8-silver"
+</code>
+</pre>
+<h4>Microsoft Lumia 950</h4>
+<p>모든 마이크로소프트 루미아 950 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "microsoft-lumia-950-black"
+Framer.Device.deviceType = "microsoft-lumia-950-white"
+</code>
+</pre>
+<h4>Samsung Note 5</h4>
+<p>모든 삼성 노트 5 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "samsung-galaxy-note-5-black"
+Framer.Device.deviceType = "samsung-galaxy-note-5-gold"
+Framer.Device.deviceType = "samsung-galaxy-note-5-pink"
+Framer.Device.deviceType = "samsung-galaxy-note-5-silver-titanium"
+Framer.Device.deviceType = "samsung-galaxy-note-5-white"
+</code>
+</pre>
+<h4>iPad Mini</h4>
+<p>사용가능한 아이패드 미니 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-ipad-mini-4-silver"
+Framer.Device.deviceType = "apple-ipad-mini-4-gold"
+Framer.Device.deviceType = "apple-ipad-mini-4-space-gray"
+</code>
+</pre>
+<h4>iPad Air</h4>    
+<p>사용가능한 아이패드 에어 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-ipad-air-2-silver"
+Framer.Device.deviceType = "apple-ipad-air-2-gold"
+Framer.Device.deviceType = "apple-ipad-air-2-space-gray"    
+</code>
+</pre>
+<h4>iPad Pro</h4>
+<p>사용가능한 아이패드 프로 색상</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-ipad-pro-silver"
+Framer.Device.deviceType = "apple-ipad-pro-gold"
+Framer.Device.deviceType = "apple-ipad-pro-space-gray"    
+</code>
+</pre>
+<h4>Apple iMac</h4>
+<p>아이맥 데스크톱 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-imac"    
+</code>
+</pre>
+<h4>Apple MacBook</h4>
+<p>사용가능한 애플 맥북 랩톱 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "apple-macbook"
+Framer.Device.deviceType = "apple-macbook-air"
+Framer.Device.deviceType = "apple-macbook-pro"    
+</code>
+</pre>
+<h4>Dell XPS</h4>
+<p>델  XPS 랩톱 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "dell-xps"    
+</code>
+</pre>
+<h4>Sony TV</h4>
+<p>소니 W850C TV 기기</p>
+<pre>
+<code>
+Framer.Device.deviceType = "sony-w85Oc"    
+</code>
+</pre>
+<h3 id="device.fullscreen">Device.fullScreen <span>&lt;boolean&gt;</span></h3>
+<p>deviceType과 상관없이 전체 화면을 렌더링하도록 설정합니다. true 또는 false로 설정하세요.</p>
+<pre>
+<code>
+# 기기를 전체화면으로 렌더링하기
+Framer.Device.fullScreen = true    
+</code>
+</pre>
+<h3 id="device.deviceScale">Device.deviceScale <span>&lt;number / string&gt;</span></h3>
+<p>기기의 크기를 정의합니다. 지원되는 크기 변경 범위는 0.5 ~ 1배입니다.</p>
+<pre>
+<code>
+Framer.Device.deviceScale = 0.5    
+</code>
+</pre>
+<h3>Device.setDeviceScale(scale, animate)</h3>
+<p>기기의 크기와 변경 시 애니메이션 (true 또는 false)을 지정할 수 있습니다. 지원되는 크기 변경 범위는 0.5 ~ 1배입니다.</p>
+<pre>
+<code>
+# 기기 크기와 애니메이션 설정
+Framer.Device.setDeviceScale(0.5, true)
+</code>
+</pre>
+<h3>Device.contentScale <number></h3>
+<p>커스터마이즈한 기기까지 포함한 콘텐츠의 크기. 지원되는 크기 변경 범위는 0.5 ~ 1배입니다.</p>
+<pre>
+<code>
+# 콘텐츠 크기 설정
+Framer.Device.contentScale = 0.5    
+</code>
+</pre>
+<h3>Device.setContentScale(scale, animate)</h3>
+<p>콘텐츠의 크기와 변경 시 애니메이션 (true 또는 false)을 지정할 수 있습니다. 지원되는 크기 변경 범위는 0.5 ~ 1배입니다.</p>
+<pre>
+<code>
+# 콘텐츠 크기와 애니메이션 설정
+Framer.Device.setContentScale(0.5, true)
+</code>
+</pre>
+<h3>Device.orientation <number></h3>
+<p>기기의 방향. 지원되는 방향 값은 0과 90 (세로 - 포트레이트, 가로 - 랜드스케이프)입니다.</p>
+<pre>
+<code>
+Framer.Device.orientation = 90    
+</code>
+</pre>
+<h3>Device.setOrientation(orientation, animate)</h3>
+<p>기기의 방향 및 변경 시 애니메이션 (true 또는 false)을 설정합니다. 지원되는 방향 값은 0과 90 (세로 및 가로 방향)입니다.</p>
+<pre>
+<code>
+# 기기방향과 애니메이션 설정
+Framer.Device.setOrientation(90, true)    
+</code>
+</pre>
+<h3 id="device.orientationName">Device.orientationName <string></h3>
+<p>기기 방향을 이름으로 설정하십시오. 유효한 옵션은 "portrait"와  "landscape"입니다. 세로와 가로 값은 기기 방향을 각각 0과 90으로 설정하는 것과 같습니다.</p>
+<pre>
+<code>
+# 기기 방향을 세로, 아니면 가로로 설정
+Framer.Device.orientationName = "landscape"
+Framer.Device.orientationName = "portrait"
+</code>
+</pre>
+<h3 id="device.rotateLeft">Device.rotateLeft()</h3>
+<p>기기를 왼쪽(반시계방향)으로 돌립니다.</p>
+<pre>
+<code>
+Framer.Device.rotateLeft()    
+</code>
+</pre>
+<h3 id="device.rotateRight">Device.rotateRight()</h3>
+<p>기기를 오른쪽(시계방향)으로 돌립니다.</p>
+<pre>
+<code>
+Framer.Device.rotateRight()    
+</code>
+</pre>
+
+ 
+ 

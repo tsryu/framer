@@ -1,0 +1,39 @@
+<p><code>Framer.Defaults</code>를 사용하면 레이어 및 애니메이션을 만들 때 기본 속성을 미리 설정할 수 있습니다. 예를 들어, 모든 새 레이어는 연한 파란색 배경색을 가지고 있는데요. 여기에 기본 색상을 재정의(override)할 수 있습니다.</p>
+<pre>
+<code>
+# 레이어의 기본 배경색을 재정의 
+Framer.Defaults.Layer.backgroundColor = "red"
+ 
+# 레이어의 기본 라운드 값을 재정의
+Framer.Defaults.Layer.borderRadius = 10
+ 
+layerA = new Layer
+ 
+print layerA.backgroundColor
+# 결과물 : red
+ 
+print layerA.borderRadius
+# 결과물: 10    
+</code>
+</pre>
+<p>다음은 애니메이션 커브에 기본값을 설정하는 예제입니다. animationOptions 속성을 사용하거나 상태를 재정의하지 않는 한, 상태를 바꿔줄 때도 사용할 수 있습니다.</p>
+<pre>
+<code>
+# 모든 애니메이션에 대한 기본 애니메이션 옵션 재정의
+Framer.Defaults.Animation =
+    curve: Spring(damping: 0.75)
+ 
+# 레이어의 기본 라운드 값을 재정의
+Framer.Defaults.Layer.borderRadius = 10
+ 
+layerA = new Layer
+ 
+layerA.animate
+    x: 100
+ 
+# 이제 애니메이션은 스프링 커브를 기본으로 사용합니다.
+</code>
+</pre>
+
+ 
+ 

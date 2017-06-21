@@ -1,0 +1,1093 @@
+<p>이벤트는 감지하는 기능입니다. 터치 또는 클릭과 같은 사용자 인터랙션으로 애니메이션을 시작할 수 있습니다. 거의 모든 객체는 프레이머에서 이벤트를 지원하지만, 주로 레이어에 사용합니다.</p>
+<p>이벤트가 호출될 때 첫 번째 인수는 이벤트 정보입니다. 이벤트에 따라 마우스 위치, 마우스 변위값 등을 포함 할 수 있습니다. 두 번째 인수는 항상 이벤트가 발생한 레이어입니다.</p>
+<p>이벤트를 감지할 때, on 함수를 사용할 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.name = "Layer A"
+ 
+layerA.on Events.Click, (event, layer) ->
+    print "Clicked", layer.name
+ 
+# 결과: “Clicked”, “Layer A”    
+</code>
+</pre>
+<p>이벤트 감지를 중지하려면 off 함수를 사용할 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.name = "Layer A"
+ 
+clickHandler = (event, layer) ->
+    print "Clicked", layer.name
+ 
+layerA.on(Events.Click, clickHandler)
+layerA.off(Events.Click, clickHandler)
+</code>
+</pre>
+<h3 id="events.tap">Tap Events</h3>
+<p>탭 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 감지합니다.</p>
+<ol>
+    <li><code>Events.Tap</code> — 레이어를 탭했을 때</li>
+    <li><code>Events.SingleTap</code> — 한번 탭했을 때(바로 위 탭과 같습니다.)</li>
+    <li><code>Events.DoubleTap</code> — 빠르게 레이어를 두 번 탭했을 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Tap, (event) ->
+    print "Tap"
+</code>
+</pre>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.DoubleTap, (event) ->
+    print "Double tap"    
+</code>
+</pre>
+<h4>Tap 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.Tap 단축코드
+layerA.onTap ->
+    print "Tap"
+ 
+# Events.SingleTap 단축코드
+layerA.onSingleTap ->
+    print "Single tap"
+ 
+# Events.DoubleTap 단축코드
+layerA.onDoubleTap ->
+    print "Double tap"    
+</code>
+</pre>
+<h3 id="events.forcetap">ForceTap Events</h3> 
+<p>강하게 탭하는 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<ol>
+    <li><code>Events.ForceTap</code> — 강하게 탭했을 때</li>
+    <li><code>Events.ForceTapChange</code> — 탭하는 강도가 변할 때</li>
+    <li><code>Events.ForceTapStart</code> — 강하게 탭하는 것을 시작할 때</li>
+    <li><code>Events.ForceTapEnd</code> — 강하게 탭하는 것을 끝낼 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.ForceTap, (event) ->
+    print "Force tap"    
+</code>
+</pre>
+<h4>ForceTap 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.ForceTap 단축코드
+layerA.onForceTap ->
+    print "Force tap"
+ 
+# Events.ForceTapChange 단축코드
+layerA.onForceTapChange ->
+    print "Change of force tap pressure"
+ 
+# Events.ForceTapStart 단축코드
+layerA.onForceTapStart ->
+    print "Start force tap"
+ 
+# Events.ForceTapEnd 단축코드
+layerA.onForceTapEnd ->
+    print "End force tap"
+</code>
+</pre>
+<h3 id="events.longpress">LongPress Events</h3>
+<p>길게 누르는 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<ol>
+    <li><code>Events.LongPress</code> — 길게 누를 때</li>
+    <li><code>Events.LongPressStart</code> — 길게 누르는 것을 시작할 때</li>
+    <li><code>Events.LongPressEnd</code> — 길게 누르는 것을 끝낼 때</li>
+</ol>
+<pre>
+<code>
+# 길게 누르는 것을 감지하기
+layer.on Events.LongPress, (event) ->
+    print "Long press"
+</code>
+</pre>
+<h4>LongPress 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.LongPress 단축코드
+layerA.onLongPress ->
+    print "Long press"
+ 
+# Events.LongPressStart  단축코드
+layerA.onLongPressStart ->
+    print "Start long press"
+ 
+# Events.LongPressEnd 단축코드
+layerA.onLongPressEnd ->
+    print "End long press"    
+</code>
+</pre>
+<h3 id="events.swipe">Swipe Events</h3>
+<p>스와이프 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<h4>기본</h4>
+<ol>
+    <li><code>Events.Swipe</code> — 레이어를 스와이프했을 때</li>
+    <li><code>Events.SwipeStart</code> — 레이어 스와이프를 시작했을 때</li>
+    <li><code>Events.SwipeEnd</code> — 레이어 스와이프를 끝냈을 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Swipe, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>Swipe 이벤트 단축 코드</h4>
+<pre>
+<code>
+# Events.Swipe 단축코드
+layerA.onSwipe ->
+    print "Currently swiping"
+ 
+# Events.SwipeStart 단축코드
+layerA.onSwipeStart ->
+    print "Start swiping"
+ 
+# Events.SwipeEnd 단축코드
+layerA.onSwipeEnd ->
+    print "End swiping"    
+</code>
+</pre>
+<h4>위로 스와이프</h4>
+<ol>
+    <li><code>Events.SwipeUp</code> — 위로 스와이프할 때</li>
+    <li><code>Events.SwipeUpStart</code> — 위로 스와이프를 시작할 때</li>
+    <li><code>Events.SwipeUpEnd</code> — 아래로 스와이프를 끝낼 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.SwipeUp, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>SwipeUp 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.SwipeUp 단축코드
+layerA.onSwipeUp ->
+    print "Currently swiping up"
+ 
+# Events.SwipeUpStart 단축코드
+layerA.onSwipeUpStart ->
+    print "Start swiping up"
+ 
+# Events.SwipeUpEnd 단축코드
+layerA.onSwipeUpEnd ->
+    print "End swiping up"
+</code>
+</pre>
+<h4>오른쪽으로 스와이프</h4>
+<ol>
+    <li><code>Events.SwipeRight</code> — 오른쪽으로 스와이프할 때</li>
+    <li><code>Events.SwipeRightStart</code> — 오른쪽으로 스와이프하는 것을 시작할 때</li>
+    <li><code>Events.SwipeRightEnd</code> — 오른쪽으로 스와이프하는 것을 끝낼 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.SwipeRight, (event) ->
+    print event.distance
+</code>
+</pre>
+<h4>SwipeRight 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.SwipeRight 단축코드
+layerA.onSwipeRight ->
+    print "Currently swiping right"
+ 
+# Events.SwipeRightStart 단축코드
+layerA.onSwipeRightStart ->
+    print "Start swiping right"
+ 
+# Events.SwipeRightEnd 단축코드
+layerA.onSwipeRightEnd ->
+    print "End swiping right"    
+</code>
+</pre>
+<h4>아래로 스와이프</h4>
+<ol>
+    <li><code>Events.SwipeDown</code> — 아래로 스와이프할 때</li>
+    <li><code>Events.SwipeDownStart</code> — 아래로 스와이프하는 것을 시작할 때</li>
+    <li><code>Events.SwipeDownend</code> — 아래로 스와이프하는 것을 끝낼 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.SwipeDown, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>SwipeDown 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.SwipeDown 단축코드
+layerA.onSwipeDown ->
+    print "Currently swiping down"
+ 
+# Events.SwipeDownStart 단축코드
+layerA.onSwipeDownStart ->
+    print "Start swiping down"
+ 
+# Events.SwipeDownEnd 단축코드
+layerA.onSwipeDownEnd ->
+    print "End swiping down"
+</code>
+</pre>
+<h4>왼쪽으로 스와이프</h4>
+<ol>
+    <li><code>Events.SwipeLeft</code> — 왼쪽으로 스와이프할 때</li>
+    <li><code>Events.SwipeLeftStart</code> — 왼쪽으로 스와이프하는 것을 시작할 때</li>
+    <li><code>Events.SwipeLeftEnd</code> — 왼쪽으로 스와이프하는 것을 끝낼 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.SwipeLeft, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>SwipeLeft 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.SwipeLeft 단축코드
+layerA.onSwipeLeft ->
+    print "Currently swiping left"
+ 
+# Events.SwipeLeftStart 단축코드
+layerA.onSwipeLeftStart ->
+    print "Start swiping left"
+ 
+# Events.SwipeLeftEnd 단축코드
+layerA.onSwipeLeftEnd ->
+    print "End swiping left"
+</code>
+</pre>
+<h4 id="events.pan">Pan Events</h4>
+<p>팬 이벤트(자이로센서로 회전하는 이벤트)는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<ol>
+    <li><code>Events.Pan</code> — 팬했을 때 (모든 방향)</li>
+    <li><code>Events.PanStart</code> — 팬을 시작했을 때</li>
+    <li><code>Events.PanMove</code> — 팬을 하는 동안에</li>
+    <li><code>Events.PanEnd</code> — 팬을 끝냈을 때</li>
+    <li><code>Events.PanLeft</code> — 왼쪽으로 팬했을 때</li>
+    <li><code>Events.PanRight</code> — 오른쪽으로 팬했을 때</li>
+    <li><code>Events.PanUp</code> — 위로 팬했을 때</li>
+    <li><code>Events.PanDown</code> — 아래로 팬했을 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 팬 동작을 감지하기
+layerA.on Events.Pan, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>Pan 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.Pan 단축코드
+layerA.onPan ->
+    print "Currently panning"
+ 
+# Events.PanStart 단축코드
+layerA.onPanStart ->
+    print "Start panning"
+ 
+# Events.PanMove 단축코드
+layerA.onPanMove ->
+    print "Currently panning"
+ 
+# Events.PanEnd 단축코드
+layerA.onPanEnd ->
+    print "End panning"
+ 
+# Events.PanLeft 단축코드
+layerA.onPanLeft ->
+    print "Panning left"
+ 
+# Events.PanRight 단축코드
+layerA.onPanRight ->
+    print "Panning right"
+ 
+# Events.PanUp 단축코드
+layerA.onPanUp ->
+    print "Panning up"
+ 
+# Events.PanDown 단축코드
+layerA.onPanDown ->
+    print "Panning down"
+</code>
+</pre>
+<h3 id="events.pinch">Pinch Events</h3>
+<p>핀치 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<ol>
+    <li><code>Events.Pinch</code> — 두 손가락으로 좁히거나 넓힐 때</li>
+    <li><code>Events.PinchStart</code> — 핀치를 시작할 때</li>
+    <li><code>Events.PinchEnd</code> — 핀치를 끝낼 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+layerA.on Events.Pinch, ->
+    print layerA.scale, layerA.rotation    
+</code>
+</pre>
+<h4>Pinch 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.Pinch 단축코드
+layerA.onPinch ->
+    print "Currently pinching"
+ 
+# Events.PinchStart 단축코드
+layerA.onPinchStart ->
+    print "Start pinching"
+ 
+# Events.PinchEnd 단축코드
+layerA.onPinchEnd ->
+    print "End pinching"    
+</code>
+</pre>
+<h3 id="events.scale">Scale Events</h3>
+<p>크기변경 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<ol>
+    <li><code>Events.Scale</code> — 두 손가락(혹은 포인터)으로 레이어 크기변경을 했을 때</li>
+    <li><code>Events.ScaleStart</code> — 크기변경을 시작할 때</li>
+    <li><code>Events.ScaleEnd</code> — 크기변경을 끝냈을 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+layerA.on Events.Scale, ->
+    print layerA.scale
+</code>
+</pre>
+<h4>Scale 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.Scale 단축코드
+layerA.onScale ->
+    print "Currently scaling"
+ 
+# Events.ScaleStart 단축코드
+layerA.onScaleStart ->
+    print "Start scaling"
+ 
+# Events.ScaleEnd 단축코드
+layerA.onScaleEnd ->
+    print "End scaling"    
+</code>
+</pre>
+<h3 id="events.rotate">Rotate Events</h3>
+<p>회전 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<ol>
+    <li><code>Events.Rotate</code> — 두 손가락(혹은 포인터)으로 회전할 때</li>
+    <li><code>Events.RotateStart</code> — 회전을 시작할 때</li>
+    <li><code>Events.RotateEnd</code> — 회전을 끝낼 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+layerA.on Events.Rotate, ->
+    print layerA.rotation
+</code>
+</pre>
+<h4>Rotate 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.Rotate 
+layerA.onRotate ->
+    print "Currently rotating"
+ 
+# Events.RotateStart 단축코드
+layerA.onRotateStart ->
+    print "Start rotating"
+ 
+# Events.RotateEnd 단축코드
+layerA.onRotateEnd ->
+    print "End rotating"    
+</code>
+</pre>
+<h4 id="events.touch">Touch Events</h4>
+<ol>
+    <li><code>Events.TouchStart</code> — 터치를 시작할 때</li>
+    <li><code>Events.TouchMove</code> — 터치해서 이동, 혹은 마우스 드래그할 때</li>
+    <li><code>Events.TouchEnd</code> — 터치가 끝날 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 이벤트와 레이어를 반환
+layerA.on Events.TouchStart, (event, layer) ->
+    print event, layer    
+</code>
+</pre>
+<h4>Touch Event Shortcuts</h4>
+<pre>
+<code>
+# Events.TouchStart 단축코드
+layerA.onTouchStart ->
+    print "Start touch"
+ 
+# Events.TouchMove 단축코드  
+layerA.onTouchMove ->
+    print "Touch move"
+ 
+# Events.TouchEnd 단축코드
+layerA.onTouchEnd ->
+    print "End touch"
+</code>
+</pre>
+<h3 id="events.click">Click Events</h3>
+<pre>
+<code>
+Events.Click — Click or touch (no delay on mobile).
+layerA = new Layer
+ 
+# 이벤트와 레이어를 반환합니다.
+layerA.on Events.Click, (event, layer) ->
+    print event, layer    
+</code>
+</pre>
+<h3>Click 이벤트 단축코드</h3>
+<pre>
+<code>
+# Events.Click 단축코드
+layerA.onClick ->
+    print "Click"
+</code>
+</pre>
+<h3 id="events.mouse">Mouse Events</h3>
+<ol>
+    <li><code>Events.MouseUp</code> — 마우스 클릭을 해제했을 때</li>
+    <li><code>Events.MouseDown</code> — 마우스 클릭을 누르고 있을 때</li>
+    <li><code>Events.MouseOver</code> — 마우스 커서로 오버했을 때</li>
+    <li><code>Events.MouseOut</code> — 마우스 커서로 오버한 것을 해제했을 때</li>
+    <li><code>Events.MouseMove</code> — 마우스 커서가 움직일 때</li>
+    <li><code>Events.MouseWheel</code> — 마우스 휠을 움직일 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 이벤트와 레이어를 반환합니다.
+layerA.on Events.MouseOver, (event, layer) ->
+    print event, layer    
+</code>
+</pre>
+<h4>Mouse 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.mouseup 단축코드
+layerA.onMouseUp ->
+    print "mouseup"
+ 
+# Events.MouseDown 단축코드
+layerA.onMouseDown ->
+    print "mousedown"
+ 
+# Events.MouseOver 단축코드
+layerA.onMouseOver ->
+    print "mouseover"
+ 
+# Events.MouseOut 단축코드
+layerA.onMouseOut ->
+    print "mouseout"
+ 
+# Events.MouseMove 단축코드
+layerA.onMouseMove ->
+    print "mousemove"
+ 
+# Events.MouseWheel 단축코드 
+layerA.onMouseWheel ->
+    print "mousewheel"
+</code>
+</pre>
+<h3 id="events.animation">Animation Events</h3>
+<ol>
+    <li><code>Events.AnimationStart</code> — 애니메이션 시작 이벤트, 이벤트가 시작될 때 호출됩니다.</li>
+    <li><code>Events.AnimationStop</code> — 애니메이션 정지 이벤트, 이벤트가 끝나거나 일시정지한 경우 호출됩니다.</li>
+    <li><code>Events.AnimationEnd</code> — 애니메이션 종료 이벤트, 애니메이션 완전히 종료되었을 때만 호출됩니다.</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.animate
+    x: 100
+ 
+# Returns the animation and the layer 애니메이션과 레이어를 반환합니다.
+layerA.on Events.AnimationEnd, (animation, layer) ->
+    print animation, layer
+</code>
+</pre>
+<h4>Animation 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.AnimationStart 단축코드
+layerA.onAnimationStart ->
+    print "Animation started"
+ 
+# Events.AnimationStop 단축코드
+layerA.onAnimationStop ->
+    print "Animation stopped"
+ 
+# Events.AnimationEnd  단축코드   
+layerA.onAnimationEnd ->
+    print "Animation ended"    
+</code>
+</pre>
+<h3 id="events.state">State Events</h3>
+<ol>
+    <li><code>Events.StateSwitchStart</code> — 전환 시작 이벤트, 상태가 전환되었을 때 이벤트를 호출합니다.</li>
+    <li><code>Events.StateSwitchStop</code> — 전환 중지 이벤트, 전환이 완전히 끝나거나, 일시정지했을 때 이벤트를 호출합니다.</li>
+    <li><code>Events.StateSwitchEnd</code> — 전환이 완전히 끝났을 때만 이벤트를 호출합니다.</li>
+</ol>
+<p>(<code>StateWillSwitch</code>와 <code>StateDidSwitchevent</code>는 프레이머 버전이 업데이트되면서 더 이상 사용하지 않습니다)</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.states.rotate =
+    rotation: 90
+ 
+layerA.stateSwitch("rotate")
+ 
+# 예전의 상태, 새로운 상태를 반환합니다.
+layerA.on Events.StateSwitchEnd, (from, to) ->
+    print from, to
+</code>
+</pre>
+<h4>State 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.StateSwitchStart 단축코드
+layerA.onStateSwitchStart ->
+    print "Will switch state"
+ 
+# Events.StateSwitchStop 단축코드
+layerA.onStateSwitchStop ->
+    print "Did switch state"
+ 
+# Events.StateSwitchEnd 단축코드
+layerA.onStateSwitchEnd ->
+    print "Did switch state"    
+</code>
+</pre>
+<h3 id="events.drag">Drag Events</h3>
+<ol>
+    <li><code>Events.Move</code> — 레이어가 움직일 때</li>
+    <li><code>Events.DragStart</code> — 드래그를 시작했을 때</li>
+    <li><code>Events.Drag</code> — 드래그하는 중간에</li>
+    <li><code>Events.DragEnd</code> — 드래그를 끝냈을 때</li>
+    <li><code>Events.DragAnimationStart</code> — 모멘텀/바운스 애니메이션을 시작했을 때</li>
+    <li><code>Events.DragAnimationEnd</code> — 모멘텀/바운스 애니메이션을 끝냈을 때</li>
+    <li><code>Events.DirectionLockStart</code> — 방향 잠금을 시작했을 때</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerA.draggable.enabled = true
+ 
+# 오프셋 (x, y)와 레이어를 반환합니다.
+layerA.on Events.Move, (offset, layer) ->
+    print offset, layer
+</code>
+</pre>
+<pre>
+<code>
+layerA = new Layer
+layerA.draggable.enabled = true
+ 
+# 이벤트와 레이어를 반환합니다.
+layerA.on Events.DragStart, (event, layer) ->
+    print event, layer    
+</code>
+</pre>
+<h4>Drag 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.Move 단축코드
+layerA.onMove ->
+    print "Moving"
+ 
+# Events.DragStart 단축코드
+layerA.onDragStart ->
+    print "Start of drag"
+ 
+# Events.Drag 단축코드  
+layerA.onDrag ->
+    print "Dragging"
+ 
+# Events.DragEnd 단축코드
+layerA.onDragEnd ->
+    print "End of drag"
+ 
+# Events.DragAnimationStart 단축코드
+layerA.onDragAnimationStart ->
+    print "Start of drag animation"
+ 
+# Events.DragAnimationEnd  단축코드
+layerA.onDragAnimationEnd ->
+    print "End of drag animation"
+ 
+# Events.DirectionLockStart 단축코드
+layerA.onDirectionLockStart ->
+    print "Start of direction lock"    
+</code>
+</pre>
+<h3 id="events.scroll">Scroll Events</h3>
+<ol>
+    <li><code>Events.Move</code> — 레이어가 움직일 때</li>
+    <li><code>Events.ScrollStart</code> — 스크롤을 시작할 때</li>
+    <li><code>Events.Scroll</code> — 스크롤을 하는 중간에</li>
+    <li><code>Events.ScrollEnd</code> — 스크롤을 끝냈을 때</li>
+    <li><code>Events.ScrollAnimationDidStart</code> — 모멘텀/ 바운스 애니메이션을 시작했을 때</li>
+    <li><code>Events.ScrollAnimationDidEnd</code> — 모멘텀/바운스 애니메이션을 끝냈을 때</li>
+</ol>
+<pre>
+<code>
+scroll = new ScrollComponent
+layerA = new Layer
+    parent: scroll.content
+ 
+# 이벤트와 레이어를 반환합니다.
+scroll.on Events.ScrollStart, (event, layer) ->
+    print event, layer    
+</code>
+</pre>
+<h4>Scroll 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.Move 단축코드
+scroll.onMove ->
+    print "Moving"
+ 
+# Events.ScrollStart 단축코드
+scroll.onScrollStart ->
+    print "Start of scroll"
+ 
+# Events.Scroll  단축코드
+scroll.onScroll ->
+    print "Scrolling"
+ 
+# Events.ScrollEnd  단축코드   
+scroll.onScrollEnd ->
+    print "End of scroll"
+ 
+# Events.ScrollAnimationDidStart 단축코드 
+scroll.onScrollAnimationDidStart ->
+    print "Start of scroll animation"
+ 
+# Events.ScrollAnimationDidEnd 단축코드   
+scroll.onScrollAnimationDidEnd ->
+    print "End of scroll animation"    
+</code>
+</pre>
+<h3 id="events.EdgeSwipe">EdgeSwipe Events</h3>
+<p>EdgeSwipe(화면 모서리부터 스와이프) 이벤트는 <a href="#events.properties">동작 이벤트 속성</a>을 수신합니다.</p>
+<h4>기본</h4>
+<ol>
+   <li><code>Events.EdgeSwipe</code> — 화면 모서리부터 스와이프했을 때</li>
+   <li><code>Events.EdgeSwipeStart</code> — 화면 모서리부터 스와이프를 시작할 때</li>
+   <li><code>Events.EdgeSwipeEnd</code> — 화면 모서리 스와이프를 끝낼 때</li>
+</ol>
+<pre>
+<code>
+# 화면 모서리부터 스와이프
+Screen.on Events.EdgeSwipe, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>EdgeSwipe 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.EdgeSwipe 단축코드
+Screen.onEdgeSwipe ->
+    print "Swiping from edge"
+ 
+# Events.EdgeSwipeStart  단축코드
+Screen.onEdgeSwipeStart ->
+    print "Start swiping from edge"
+ 
+# Events.EdgeSwipeEnd 단축코드 
+Screen.onEdgeSwipeEnd ->
+    print "End swiping from edge"   
+</code>
+</pre>
+<h4>Top</h4>
+<ol>
+  <li><code>Events.EdgeSwipeTop</code> — 화면 위쪽 모서리에서 스와이프할 때</li>
+  <li><code>Events.EdgeSwipeTopStart</code> — 화면 위쪽 모서리에서 스와이프를 시작할 때</li>
+  <li><code>Events.EdgeSwipeTopEnd</code> — 화면 위쪽 모서리 스와이프를 끝낼 때</li>
+</ol>
+<pre>
+<code>
+# 화면 위쪽 모서리에서 스와이프할 때
+Screen.on Events.EdgeSwipeTop, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>EdgeSwipeTop 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.EdgeSwipeTop 단축코드
+Screen.onEdgeSwipeTop ->
+    print "Swiping from top edge"
+ 
+# Events.EdgeSwipeTopStart 단축코드
+Screen.onEdgeSwipeTopStart ->
+    print "Start swiping from top edge"
+ 
+# Events.EdgeSwipeTopEnd 단축코드
+Screen.onEdgeSwipeTopEnd ->
+    print "End swiping from top edge"    
+</code>
+</pre>
+<h4>Right</h4>
+<ol>
+    <li><code>Events.EdgeSwipeRight</code> — 화면 오른쪽 모서리에서 스와이프할 때</li>
+    <li><code>Events.EdgeSwipeRightStart</code> — 화면 오른쪽 모서리에서 스와이프를 시작할 때</li>
+    <li><code>Events.EdgeSwipeRightEnd</code> — 화면 오른쪽 모서리 스와이프를 끝낼 때</li>
+</ol>
+<pre>
+<code>
+# 화면 오른쪽 모서리에서 스와이프를 할 때
+Screen.on Events.EdgeSwipeRight, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>EdgeSwipeRight 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.EdgeSwipeRight 단축코드
+Screen.onEdgeSwipeRight ->
+    print "Swiping from right edge"
+ 
+# Events.EdgeSwipeRightStart 단축코드
+Screen.onEdgeSwipeRightStart ->
+    print "Start swiping from right edge"
+ 
+# Events.EdgeSwipeRightEnd 단축코드
+Screen.onEdgeSwipeRightEnd ->
+    print "Start swiping from right edge"    
+</code>
+</pre>
+<h4>Bottom</h4>
+<ol>
+    <li><code>Events.EdgeSwipeBottom</code> — 화면 아래쪽 모서리에서 스와이프할 때</li>
+    <li><code>Events.EdgeSwipeBottomStart</code> — 화면 아래쪽 모서리에서 스와이프를 시작할 때</li>
+    <li><code>Events.EdgeSwipeBottomEnd</code> — 화면 아래쪽 모서리 스와이프를 끝낼 때</li>
+</ol>
+<pre>
+<code>
+# 화면 아래쪽 모서리에서 스와이프할 때
+Screen.on Events.EdgeSwipeBottom, (event) ->
+    print event.distance
+</code>
+</pre>
+<h4>EdgeSwipeBottom 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.EdgeSwipeBottom 단축코드
+Screen.onEdgeSwipeBottom ->
+    print "Swiping from bottom edge"
+ 
+# Events.EdgeSwipeBottomStart 단축코드
+Screen.onEdgeSwipeBottomStart ->
+    print "Start swiping from bottom edge"
+ 
+# Events.EdgeSwipeBottomEnd 단축코드
+Screen.onEdgeSwipeBottomEnd ->
+    print "End swiping from bottom edge"    
+</code>
+</pre>
+<h4>Left</h4>
+<ol>
+    <li><code>Events.EdgeSwipeLeft</code> — 화면 왼쪽 모서리에서 스와이프할 때</li>
+    <li><code>Events.EdgeSwipeLeftStart</code> — 화면 왼쪽 모서리에서 스와이프를 시작할 때</li>
+    <li><code>Events.EdgeSwipeLeftEnd</code> — 화면 왼쪽 모서리 스와이프를 끝낼 때</li>
+</ol>
+<pre>
+<code>
+# 화면 왼쪽 모서리에서 스와이프할 때
+Screen.on Events.EdgeSwipeLeft, (event) ->
+    print event.distance    
+</code>
+</pre>
+<h4>EdgeSwipeLeft 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.EdgeSwipeLeft 단축코드
+Screen.onEdgeSwipeLeft ->
+    print "Swiping from left edge"
+ 
+# Events.EdgeSwipeLeftStart 단축코드
+Screen.onEdgeSwipeLeftStart ->
+    print "Start swiping from left edge"
+ 
+# Events.EdgeSwipeLeftEnd 단축코드
+Screen.onEdgeSwipeLeftEnd ->
+    print "End swiping from left edge"
+</code>
+</pre>
+<h3 id="events.transition">Transition Events</h3>
+<ol>
+    <li><code>Events.TransitionStart</code> — 트랜지션 시작 이벤트, 트랜지션이 시작할 때</li>
+    <li><code>Events.TransitionHalt</code> — 트랜지션이 중단되었을 때, 트랜지션 중단 이벤트가 발생합니다.</li>
+    <li><code>Events.TransitionStop</code> — 트랜지션이 완전히 끝났을 때, 트랜지션 정지 이벤트가 발생합니다.</li>
+    <li><code>Events.TransitionEnd</code> — 트랜지션이 완전히 끝났을 때, 트랜지션 종료 이벤트가 발생합니다.</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+flow = new FlowComponent
+flow.showOverlayRight(layerA)
+ 
+flow.on Events.TransitionStart, ->
+    print "Transition started"    
+</code>
+</pre>
+<h4>Transition Event Shortcuts 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.TransitionStart 단축코드
+flow.onTransitionStart ->
+    print "Transition started"
+ 
+# Events.TransitionHalt 단축코드
+flow.onTransitionHalt ->
+    print "Transition halted"
+ 
+# Events.TransitionStop 단축코드
+flow.onTransitionStop ->
+    print "Transition stopped"
+ 
+# Events.TransitionEnd 단축코드
+flow.onTransitionEnd ->
+    print "Transition ended"    
+</code>
+</pre>
+<h3 id="events.value">Value Events</h3>
+<p>값 변경 이벤트는 <a href="#slider.sliderComponent">SliderComponent</a> 또는 <a href="#rangeslider.rangeslidercomponent">RangeSliderComponent</a>에 사용할 수 있습니다. 최소 및 최댓값 이벤트는 범위 슬라이더에서만 사용할 수 있습니다.</p>
+<ol>
+    <li><code>Events.SliderValueChange</code> — 슬라이더 값이 변할 때</li>
+    <li><code>Events.SliderMinValueChange</code> — 최솟값이 변할 때 (범위 슬라이더만 작동)</li>
+    <li><code>Events.SliderMaxValueChange</code> — 최댓값이 변할 때 (범위 슬라이더만 작동)</li>
+</ol>
+<pre>
+<code>
+slider = new SliderComponent
+    x: Align.center
+    y: Align.center
+ 
+slider.on Events.SliderValueChange, ->
+    print slider.value
+</code>
+</pre>
+<h4>Slider 이벤트 단축코드</h4>
+<pre>
+<code>
+# Events.SliderValueChange 단축코드
+slider.onValueChange ->
+    print slider.value
+ 
+# Events.SliderMinValueChange 단축코드
+range.onMinValueChange ->
+    print range.minValue
+ 
+# Events.SliderMaxValueChange 단촉코드
+range.onMaxValueChange ->
+    print range.maxValue
+</code>
+</pre>
+<h3 id="events.change">Change Events</h3>
+<p><code>"change"</code> 이벤트를 사용하면 변경되는 속성들을 감지할 수 있습니다. 다음은 <code>"change"</code> 이벤트로 감지할 수 있는 전체 속성의 개요입니다.</p>
+<ol>
+    <li><code>"change:x"</code> — 새로운  x 위치</li>
+    <li><code>"change:y"</code> — 새로운 y 위치</li>
+    <li><code>"change:point"</code> — 새로운  x 또는 y 위치</li>
+    <li><code>"change:width"</code> — 새로운 너빗값</li>
+    <li><code>"change:height"</code> — 새로운 높이값</li>
+    <li><code>"change:size"</code> — 새로운 너비와 높이값</li>
+    <li><code>"change:frame"</code> — 새로운 x값, y값, 너빗값, 높이값</li>
+    <li><code>"change:scale"</code> — 새로운 크기변경 값</li>
+    <li><code>"change:rotation"</code> — 새로운 회전 값</li>
+    <li><code>"change:borderRadius"</code> — 새로운 borderRadius 값</li>
+    <li><code>"change:currentPage"</code> — 새로운 currentPage 값</li>
+    <li><code>"change:style"</code> — 새로운 스타일 정의</li>
+    <li><code>"change:html"</code> — 새로운 html 정의</li>
+    <li><code>"change:children"</code> — 자식 레이어가 추가되거나 제거되었을 때</li>
+    <li><code>"change:parent"</code> — 새로운 부모 레이어가 추가되거나 제거되었을 때</li>
+</ol>
+<p>예를 들어 애니메이션이 작동하는 동안 레이어의 <code>x</code> 위치를 가져올 수 있습니다. 정확한 서브픽셀 값만 반환한다는 점을 유의하세요.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.animate
+    x: 100
+ 
+layerA.on "change:x", ->
+    print layerA.x
+</code>
+</pre>
+<p><code>"change"</code> 이벤트는 <a href="#utils.modulate">modulate</a>(프레이머 예약어)로 두 레이어를 연결해서 속성 변경할 수 있습니다. 아래 예와 같이 첫 번째 레이어를 회전시키는데요. 반환 된 값은 두 번째 레이어를 가로로 이동하는 데 사용됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+    x: 100
+ 
+# 0에서 180도까지 레이어 A를 회전합니다.
+layerA.animate
+    rotation: 180
+ 
+# layerA의 회전 값이 변경될 때
+layerA.on "change:rotation", ->
+ 
+    # 값을 사용하여 layerB를 100에서 300으로 이동합니다.
+    x = Utils.modulate(layerA.rotation, [0, 180], [100, 300], true)
+    layerB.x = x    
+</code>
+</pre> 
+<h3 id="events.properties">Gesture Event Properties</h3>
+<p>모든 동작은 다음 속성들을 사용하여 이벤트 객체를 받습니다. <code>touchCenter</code>, <code>touchDistance</code>, <code>touchOffset</code>, <code>scale</code> 및 <code>rotation</code>은 다중 터치 이벤트를 사용할 때만 값을 반환합니다.</p>
+<h4>Positioning</h4>
+<ol>
+    <li><code>event.point</code> — 현재 x와 y의 위치</li>
+    <li><code>event.start</code> — x와 y의 시작위치</li>
+    <li><code>event.previous</code> — 이전 x와 y의 위치</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+layerA.on Events.Pinch, (event) ->
+    print event.point   
+</code>
+</pre>
+<h4>Offset</h4>
+<ol>
+    <li><code>event.offset</code> — 현재 x와 y의 오프셋 위치</li>
+    <li><code>event.offsetTime</code> — 시작한 이후로의 현재 시간</li>
+    <li><code>event.offsetAngle</code> — 시작한 이후로의 현재 각도</li>
+    <li><code>event.offsetDirection</code> — 시작한 이후로의 현재 방향</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Pan, (event) ->
+    print event.offset    
+</code>
+</pre>
+<h4>Deltas</h4>
+<ol>
+    <li><code>event.delta</code> — 마지막 이벤트 이후로 오프셋 위치</li>
+    <li><code>event.deltaTime</code> — 마지막 이벤트 이후로 걸린 시간</li>
+    <li><code>event.deltaAngle</code> — 마지막 이벤트 이후로 바뀐 각도</li>
+    <li><code>event.deltaDirection</code> — 마지막 이벤트 이후의 방향 변경</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Swipe, (event) ->
+    print event.delta    
+</code>
+</pre>
+<h4>Velocity &amp; Force</h4>
+<ol>
+    <li><code>event.velocity</code> — x와 y값의 현재 속도</li>
+    <li><code>event.force</code> — 현재 탭의 강도</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Swipe, (event) ->
+    print event.velocity   
+</code>
+</pre>
+<h4>Input</h4>
+<ol>
+    
+</ol>
+<ol>
+    <li><code>event.fingers</code> — 스크린에 닿아있는 손가락의 수</li>
+    <li><code>event.touchCenter</code> — 두 손가락 사이의 중앙 위치</li>
+    <li><code>event.touchDistance</code> — 두 손가락 사이의 거리</li>
+    <li><code>event.touchOffset</code> — 두 손가락 사이의 오프셋 위치</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Rotate, (event) ->
+    print event.fingers   
+</code>
+</pre>
+<h4>Scale &amp; Rotation</h4>
+<ol>
+    <li><code>event.scale</code> — 두 손가락의 크기변경 값</li>
+    <li><code>event.scaleDirection</code> — 현재 크기변경의 방향 (위 아니면 아래)</li>
+    <li><code>event.rotation</code> — 두 손가락의 회전 값</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+layerA.on Events.Pinch, (event) ->
+    print event.scaleDirection    
+</code>
+</pre>
+<h3 id="events.touchEvent">Events.touchEvent(<span class="param">event</span>)</h3>
+<p>모바일에서 입력된 이벤트에서 터치 이벤트를 추출합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Click, (event, layer) ->
+    myTouchEvent = Events.touchEvent(event)    
+</code>
+</pre>
+<h3 id="events.wrap">Events.wrap(event)</h3>
+<p>주어진 DOM 요소를 감싸서 이벤트를 추적하고 필요에 따라 없앨 수 있습니다. 이벤트를 임의의 DOM 요소에 바인드하려면 이 항목을 사용해야합니다.</p>
+<pre>
+<code>
+Events.wrap(window).addEventListener "resize", (event) ->
+    print "Page is resizing"   
+</code>
+</pre>
