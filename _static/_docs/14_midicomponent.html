@@ -1,0 +1,89 @@
+<p>MIDI 컨트롤러는 키보드나 마우스와 마찬가지로 컴퓨터로 신호를 보냅니다. 가장 일반적으로 MIDI 컨트롤러에는 소프트웨어에 연결할 수 있는 버튼, 슬라이더 및 노브가 있습니다. 시장에 나와 있는 하드웨어 MIDI 컨트롤러는 다양하며, 그중 다수는 USB를 통해 연결됩니다. 블루투스를 통해 연결되는 MIDI 컨트롤러 앱도 있습니다.</p>
+<p>MIDIComponent는 Framer와 Web MIDI API를 지원하는 브라우저에서 직접 MIDI 컨트롤러로 작업 할 수 있는 기능을 제공합니다.</p>
+<h3 id="midicomponent.midicomponent">시작하기</h3>
+<ul>
+    <li>MIDI 장치 연결</li>
+    <li>프레이머를 열고 다음 코드를 붙여 넣습니다.</li>
+</ul>
+<pre>
+<code>
+midi = new MIDIComponent
+ 
+midi.onValueChange (value, info) ->
+    print value, info    
+</code>
+</pre>
+<p>이제, MIDI 장치의 버튼을 변경할 때, 값들이 프린트되는 것을 확인할 수 있습니다. 예를 들어 컨트롤을 시작 위치에서 끝 위치로 이동하는 경우, 다음과 같이 프린트됩니다.</p>
+<pre>
+<code>
+» 0, {source:"111955983", channel:1, control:2}
+» 1, {source:"111955983", channel:1, control:2}
+» 2, {source:"111955983", channel:1, control:2}
+…
+» 125, {source:"111955983", channel:1, control:2}
+» 126, {source:"111955983", channel:1, control:2}
+» 127, {source:"111955983", channel:1, control:2}    
+</code>
+</pre>
+<p><code>MIDIComponent</code>는 기본으로 모든 채널에서 오는 모든 기기의 모든 컨트롤과 노트 버튼의 MIDI 신호를 수신합니다. 위에 프린트된 속성을 사용하여 신호 이벤트를 필터링할 수 있습니다. 그렇게 하면 컨트롤 번호 2를 슬라이더에 연결할 수 있습니다. 예를 들어:</p>
+<pre>
+<code>
+midi = new MIDIComponent
+    control: 2
+ 
+slider = new SliderComponent
+    point: Align.center
+    max: 127
+ 
+midi.onValueChange (value) ->
+    slider.value = value    
+</code>
+</pre>
+<p>MIDI의 출력 값은 항상 <code>0</code>에서 <code>127</code> 사이이지만 값을 사용하여 범위가 다른 속성을 설정하려는 경우 <code><a href="#midicomponent.min">min</a></code> 및 <code><a href="#midicomponent.max">max</a></code>을 사용하여 값을 조절(<a href="#utils.modulate">modulate</a>)할 수 있습니다. 예를 들어, <code>0</code>에서 <code>255</code>까지의 색상 범위에 있는 RGB 구성 요소는 다음과 같이 사용할 수 있습니다.</p>
+<pre>
+<code>
+midi = new MIDIComponent
+    min: 0
+    max: 255
+ 
+midi.onValueChange (value) ->
+    Screen.backgroundColor = new Color
+        r: value, g: 0, b: 0    
+</code>
+</pre>
+<h3>MIDIComponent.min <span>&lt;number&gt;</span></h3>
+<p><code><a href="#midicomponent.onValueChange">onValueChange</a></code>에 최솟값으로 설정하는 값입니다. 기본값은 <code>0</code>입니다.</p>
+<h3>MIDIComponent.max <span>&lt;number&gt;</span></h3>
+<p><code><a href="#midicomponent.onValueChange">onValueChange</a></code>에 최댓값으로 설정하는 값입니다. 기본값은 <code>127</code>입니다.</p>
+<h3>MIDIComponent.control <span>&lt;number&gt;</span></h3>
+<p><code>0</code> ~ <code>127</code> 사이의 컨트롤 번호입니다. 이 범위에서 전달되지 않는 이벤트는 필터링합니다.</p>
+<p>정확한 제어 번호를 찾으려면 <code><a href="#midicomponent.onValueChange">onValueChange</a></code>에서 보내는 추가 정보로 확인할 수 있습니다.</p>
+<h3>MIDIComponent.channel <span>&lt;number&gt;</span></h3>
+<p>채널을 나타내는 <code>1</code>에서 <code>16</code> 사이의 숫자입니다. 이 범위에 들어오지 않는 이벤트는 필터링합니다.</p>
+<p>컨트롤의 현재 채널을 찾으려면 <code><a href="#midicomponent.onValueChange">onValueChange</a></code>에서 보내는 추가 정보로 확인할 수 있습니다.</p>
+<h3>MIDIComponent.source <string></h3>
+<p>수신할 소스입니다. 이 소스에서 오지 않는 이벤트는 필터링합니다.</p>
+<p>각 MIDI 장치에는 시스템에서 관리하는 고유 소스 ID가 있습니다. 일반적으로 소스 ID는 안정적이어야하므로 장치를 같은 컴퓨터에 다시 연결하면 같은 ID를 가져야합니다. 소스 ID는 브라우저와 프레이머간에 같지 않습니다.</p>
+<p>소스 ID를 찾으려면 <code><a href="#midicomponent.onValueChange">onValueChange</a></code>에서 보내는 추가 정보로 확인할 수 있습니다.</p>
+<h3>MIDIComponent.onValueChange(<span class="param">handler</span>)</h3>
+<p>MIDI 신호 이벤트를 처리합니다.</p>
+<p>핸들러는 두 개의 매개 변수를 얻습니다. 첫 번째는 신호의 값이고, 두 번째는 원점에 대한 자세한 정보가 있는 객체입니다.</p>
+<pre>
+<code>
+midi = new MIDIComponent
+ 
+# 변경을 송신하는 컨트롤의 식별자를 출력합니다.
+midi.onValueChange (value, info) ->
+  print info.control
+</code>
+</pre>
+<p>더 많은 예제는 <a href="#midicomponent.midicomponent">시작하기</a> 섹션을 참조하십시오.</p>
+<h4>속성</h4>
+<p>매개 변수는 다음과 같은 속성을 가진 객체입니다.</p>
+<ol>
+    <li><code>control</code> — 신호를 보내는 컨트롤 (노브, 슬라이더 등)의 식별자.</li>
+    <li><code>channel</code> — 신호가 보내지는 채널.</li>
+    <li><code>source</code> — 신호를 보내는 장치의 식별자.</li>
+    <li><code>type</code> (선택) — <code>"note"</code> 만약 신호가 노트에서 나오면 값은 속도를 나타내고 0은 노트가 꺼짐을 의미합니다.</li>
+</ol>
+ 

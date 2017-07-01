@@ -1,0 +1,320 @@
+<p>TextLayer를 사용하면 프레이머에서 텍스트를 가공할 수 있습니다. 문자열 내에 텍스트를 정의하고 고유한 속성을 사용하여 스타일을 지정합니다. 거의 모든 속성 이름은 CSS 텍스트 스타일과 일치합니다. <a href="#text.fontFamily">서체</a>를 변경하고, <a href="#text.fontStyle">스타일</a>을 변경하고, <a href="#text.lineHeight">줄 높이</a>를 조정하고, <a href="#text.padding">내부여백</a>, <a href="#text.shadowY">그림자</a> 등을 추가할 수 있습니다.</p>
+<h3 id="text.text">text.text <span>&lt;string&gt;</span></h3>
+<p>텍스트 내용. 기본으로 <code>color</code>는 <code>#888</code>로 설정됩니다.</p>
+<pre>
+<code>
+# TextLayer 만들기
+title = new TextLayer
+    text: "Title"
+</code>
+</pre>
+<h3 id="text.fontSize">text.fontSize <span>&lt;number&gt;</span></h3>
+<p>텍스트의 크기. 기본으로 <code>40</code>으로 설정됩니다.</p>
+<pre>
+<code>
+# fontSize를 64px로 설정 
+title = new TextLayer
+    fontSize: 64
+</code>
+</pre>
+<h3 id="text.fontFamily">text.fontFamily <span>&lt;string&gt;</span></h3>
+<p>텍스트의 서체. 기본적으로 프리뷰하고 있는 기기의 시스템 글꼴을 사용하도록 설정되어 있습니다.</p>
+<ul>
+    <li>애플 기기: SF UI.</li>
+    <li>구글 기기: Roboto.</li>
+    <li>마이크로소프트 기기: Segoe UI.</li>
+</ul>
+<pre>
+<code>
+# TextLayer 만들기
+title = new TextLayer
+    fontFamily: "-apple-system"    
+</code>
+</pre>
+<h3 id="text.fontWeight">text.fontWeight <span>&lt;number&gt;</span></h3> 
+<p>텍스트의 굵기를 정의합니다. 기본으로 <code>400</code>으로 설정되어 있습니다.</p>
+<pre>
+<code>
+# TextLayer 만들기
+title = new TextLayer
+    fontWeight: 400
+</code>
+</pre>
+<h3 id="text.fontStyle">text.fontStyle <span>&lt;string&gt;</span></h3>
+The style of the text. 
+<p>텍스트의 스타일을 정의합니다.</p>
+<pre>
+<code>
+# 폰트를 이탤릭체로 설정
+title = new TextLayer
+    fontStyle: "italic"
+</code>
+</pre>
+<p>여러분은 <code>italic</code>, <code>bold</code> 그리고 <code>oblique</code> 중에 선택할 수 있습니다. </p>
+<pre>
+<code>
+# 폰트 스타일을 볼드로 설정
+title = new TextLayer
+    fontStyle: "bold"
+</code>
+</pre>
+<h3 id="text.font">text.font <span>&lt;string&gt;</span></h3>
+<p>한 줄 안에 모든 폰트 스타일을 정의합니다. 이 속성은 다음 순서대로 설정할 수 있습니다 : <code>"fontStyle fontWeight fontSize / lineHeight fontFamily"</code>.</p>
+<pre>
+<code>
+# 폰트 스타일을 한 줄에 모두 정의하기
+title = new TextLayer
+    font: "300 64px/1 -apple-system, Helvetica Neue"    
+</code>
+</pre>
+<p>fontSize 및 fontFamily 속성은 필수 항목이라는 점을 유의하세요.</p>
+<pre>
+<code>
+# 폰트 사이즈와 패밀리를 설정
+title = new TextLayer
+    font: "64px -apple-system"    
+</code>
+</pre>
+<h3 id="text.padding">text.padding <object></h3>
+<p>텍스트 레이어의 내부여백(padding)입니다. 기본적으로 <code>0</code>으로 설정됩니다.</p>
+<pre>
+<code>
+# 내부여백 설정하기
+title = new TextLayer
+    padding: 40
+</code>
+</pre>
+<p>또한 내부여백을 방향별로 정의할 수 있습니다.</p>
+<pre>
+<code>
+# 내부여백을 방향별로 정의
+title = new TextLayer
+    padding:
+        top: 40
+        left: 20
+        bottom: 40
+        right: 20
+</code>
+</pre>
+<p>왼쪽 및 오른쪽 내부여백은 <code>horizontal</code>를 사용하여 정의할 수 있습니다. 또한 상단 및 하단 내부여백은 <code>vertical</code>를 사용하여 정의할 수도 있습니다.</p>
+<pre>
+<code>
+# 가로 및 세로 내부여백 설정
+title = new TextLayer
+    padding:
+        horizontal: 40
+        vertical: 80    
+</code>
+</pre>
+<h3 id="text.lineHeight">text.lineHeight <span>&lt;number&gt;</span></h3>
+<p>텍스트의 줄 높이입니다. 기본으로 <code>1.25</code>로 설정되어 있습니다. 즉, <code>fontSize</code>를 40으로 설정하면 줄 높이가 50px가됩니다.</p>
+<pre>
+<code>
+# 줄 높이를 설정
+title = new TextLayer
+    lineHeight: 1.5    
+</code>
+</pre>
+<h3 id="text.letterSpacing">text.letterSpacing <span>&lt;number&gt;</span></h3>
+<p>글자의 문자의 간격 (픽셀 단위)입니다. 기본으로 <code>0</code>으로 설정됩니다.</p>
+<pre>
+<code>
+# 문자 간격 설정
+title = new TextLayer
+    letterSpacing: 2
+</code>
+</pre>
+<h3 id="text.wordSpacing">text.wordSpacing <span>&lt;number&gt;</span></h3>
+<p>단어의 문자 간격 (픽셀 단위)입니다. 기본으로 <code>0</code>으로 설정됩니다.</p>
+<pre>
+<code>
+# 단어의 문자 간격 설정
+title = new TextLayer
+    wordSpacing: 10    
+</code>
+</pre>
+<h3 id="text.textAlign">text.textAlign <span>&lt;string&gt;</span></h3>
+<p>텍스트의 정렬을 정의합니다.</p>
+<pre>
+<code>
+# 텍스트 중앙정렬
+title = new TextLayer
+    textAlign: "center"
+</code>
+</pre>
+<p><code>left</code>, <code>right</code> 그리고 <code>center</code> 중에 선택할 수 있습니다.</p>
+<pre>
+<code>
+# 텍스트를 정렬하는 여러 가지 방법
+title.textAlign = "left"
+title.textAlign = "right"
+title.textAlign = "center"
+</code>
+</pre>
+<p>대안으로, <a href="#align.align">Align</a> 클래스를 사용할 수도 있습니다.</p>
+<pre>
+<code>
+# 텍스트 중앙정렬
+title = new TextLayer
+    textAlign: Align.center    
+</code>
+</pre>
+<h3 id="text.textTransform">text.textTransform <span>&lt;string&gt;</span></h3>
+<p>텍스트의 대문자 혹은 소문자 사용을 설정합니다.</p>
+<pre>
+<code>
+# 모든 문자를 대문자로 바꿉니다.
+title = new TextLayer
+    textTransform: "uppercase"    
+</code>
+</pre>
+<p><code>uppercase</code>, <code>lowercase</code> 그리고 <code>capitalize</code> 중에 선택할 수 있습니다.</p>
+<pre>
+<code>
+# 대문자, 혹은 소문자 사용을 설정하는 여러 가지 방법
+# 전체 대문자
+title.textTransform = "uppercase”
+# 전체 소문자
+title.textTransform = "lowercase"
+# 첫 번째 글자만 대문자
+title.textTransform = "capitalize"
+</code>
+</pre>
+<h3 id="text.textDecoration">text.textDecoration <span>&lt;string&gt;</span></h3>
+The decoration of the text. 
+<p>글자에 장식을 넣습니다.</p>
+<pre>
+<code>
+# 텍스트에 밑줄 추가
+title = new TextLayer
+    textDecoration: "underline"
+</code>
+</pre>
+<p><code>underline</code>, <code>overline</code> 그리고 <code>line-through</code> 중에 선택할 수 있습니다.</p>
+<pre>
+<code>
+# 텍스트에 윗줄 추가
+title = new TextLayer
+    textDecoration: "overline"
+</code>
+</pre>
+<h3 id="text.textIndent">text.textIndent <span>&lt;number&gt;</span></h3>
+<p>픽셀 단위로 텍스트의 첫 번째 단락을 들여쓰기합니다.</p>
+<pre>
+<code>
+# 텍스트를 20 픽셀 들여쓰기
+title = new TextLayer
+    textIndent: 20
+</code>
+</pre>
+<h3 id="text.textOverflow">text.textOverflow <span>&lt;string&gt;</span></h3>
+<p>넘치는 텍스트 내용에 줄임표를 추가합니다.</p>
+<pre>
+<code>
+# 한 줄 줄임표 추가하기
+paragraph = new TextLayer
+    textOverflow: "ellipsis"
+    text:
+        """
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        """
+</code>
+</pre>
+<p><code>height</code>(높이)를 설정하면 2줄 이상의 글도 줄임표를 추가할 수 있습니다.</p>
+<pre>
+<code>
+# 2줄 이상의 글 줄임표 추가
+paragraph = new TextLayer
+    textOverflow: "ellipsis"
+    height: 100
+    text:
+        """
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        """    
+</code>
+</pre>
+<h3 id="text.direction">text.direction <span>&lt;string&gt;</span></h3>
+<p>텍스트의 방향입니다. 텍스트의 방향입니다. 기본으로 <code>left-to-right</code>(왼쪽에서 오른쪽으로)로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 텍스트 방향 정하기
+title = new TextLayer
+    direction: "right-to-left"
+</code>
+</pre>
+<p><code>right-to-left</code> (<code>rtl</code>) 과 <code>left-to-right</code> (<code>ltr</code>) 중에 선택할 수 있습니다.</p>
+<pre>
+<code>
+# 텍스트 방향 정하기
+title = new TextLayer
+    direction: "rtl"
+</code>
+</pre>
+<h3 id="text.truncate">text.truncate <boolean></h3>
+<p><a href="#text.textOverflow">textOverflow</a>(넘치는 텍스트)에 <code>ellipsis</code>(줄임표)를 더하는 단축코드입니다.</p>
+<pre>
+<code>
+# 한 줄 줄임표 더하기
+paragraph = new TextLayer
+    truncate: true
+    text:
+        """
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        """    
+</code>
+</pre>
+<p><code>height</code>(높이)를 설정하면 2줄 이상의 글도 줄임표를 추가할 수 있습니다.</p>
+<pre>
+<code>
+# 2줄 이상의 글 줄임표 추가
+paragraph = new TextLayer
+    truncate: true
+    height: 100
+    text:
+        """
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        """    
+</code>
+</pre>
+<h3 id="text.shadowX">text.shadowX <span>&lt;number&gt;</span></h3>
+<p>x 축의 그림자 방향을 정의합니다. 양수 값은 레이어의 오른쪽 가장자리에서 그림자를 생성하지만 음수 값이면 왼쪽 가장자리에서 그림자를 생성합니다.</p>
+<pre>
+<code>
+# 가로 텍스트 그림자 설정
+title = new TextLayer
+    shadowX: 10    
+</code>
+</pre>
+<h3 id="text.shadowY">text.shadowY <span>&lt;number&gt;</span></h3>
+<p>y 축의 그림자 방향을 정의합니다. 양수 값은 레이어의 아래쪽 가장자리에서 그림자를 생성하지만 음수 값을 지정하면 위쪽 가장자리에서 그림자가 생성됩니다.</p>
+<pre>
+<code>
+# 세로 텍스트 그림자 설정
+title = new TextLayer
+    shadowY: 10    
+</code>
+</pre>
+<h3 id="text.shadowBlur">text.shadowBlur <span>&lt;number&gt;</span></h3>
+<p>shadowX 또는 shadowY 속성에 가우시안 블러를 추가합니다. shadowBlur는 숫자로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+# 텍스트 그림자를 설정합니다.
+title = new TextLayer
+    shadowY: 1
+    shadowBlur: 4
+</code>
+</pre>
+<h3 id="text.shadowColor">text.shadowColor <span>&lt;string&gt;</span></h3>
+<p>레이어 그림자의 색상을 설정합니다. 색상은 CSS 색상 형식의 문자열로 표현됩니다.</p>
+# 텍스트 그림자 및 색상 설정
+<pre>
+<code>
+title = new TextLayer
+    shadowY: 10
+    shadowColor: "rgba(0,0,0,0.2)"    
+</code>
+</pre>

@@ -1,0 +1,29 @@
+Select Layers
+
+Framer groups any layer group (containing at least a single layer) as a layer in Framer. Layers should be selected by their name and grouped in Sketch. Ungrouped layers will not be included.
+
+Once you’ve successfully imported a file, the following line of code gets inserted at the very top of your Framer prototype:
+
+# Import file "design" 
+sketch = Framer.Importer.load("imported/design@1x")
+
+This loads and contains all of the imported layers. By default, the file is named after the app you’ve used to import. You can rename the file for an easier way to reference layers later.
+
+Now, to select a layer group that you’ve renamed layerA, type:
+
+# Import file "design" 
+sketch = Framer.Importer.load("imported/design@1x")
+ 
+# Set the opacity of layerA 
+sketch.layerA.opacity = 0.5
+
+Layer groups placed within other groups are called children. In the example below, the group has two children. They can be selected directly and there’s no need for you to take the layer hierarchy into account.
+
+If you’re using Sketch and don’t want the children to be selectable in Framer, you can flatten the group. Add * to the end of a group name and it will become a single layer without children. To exclude a group entirely, add a - to its name.
+
+
+Select Multiple Layers
+
+You can also select multiple layers simultaneously. This comes in handy for when you’d like to animate a couple of layers at once, or hide one of your layer groups.
+
+This can be done with a for-loop. You can choose to select all of your imported layers, or just the layers within a specific group.

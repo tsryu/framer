@@ -1,0 +1,35 @@
+<p>VideoLayers에는 비디오를 제어하는 <code>layer.player</code> 객체가 있습니다. 브라우저는 알파 채널을 지원하는 애니메이션 코덱을 포함하여 다양한 유형의 비디오를 지원합니다.</p>
+<h3 id="videoLayer.video">videoLayer.video <span>&lt;string&gt;</span></h3>
+<p>비디오 레이어의 비디오 URL을 설정합니다.</p>
+<pre>
+<code>
+# 생성 시 설정
+layerA = new VideoLayer
+    video: "hello.mp4"
+ 
+# 생성 이후 변경하기
+layerA.video = "bye.mp4"	
+</code>
+</pre>
+<h3 id="videoLayer.player">videoLayer.player <span>&lt;object&gt;</span></h3>
+<p>비디오 레이어의 플레이어 객체입니다. 비디오를 제어하고 재생 이벤트를 수신 할 수 있습니다. 모든 비디오 메서드 및 속성에 대한 <a href="http://www.w3im.com/ko/tags/ref_av_dom.html" target="_blank">개요</a>를 참조하십시오.</p>
+<pre>
+<code>
+# 생성 시 설정
+layerA = new VideoLayer
+    video: "hello.mp4"
+ 
+# 자동재생 활성화
+layerA.player.autoplay = true
+ 
+# 비디오 재생하기
+layerA.player.play()
+ 
+# 5초 건너뛰기
+layerA.player.fastSeek(5)
+ 
+# 일시 중지 시 이벤트 수신하기
+Events.wrap(layerA.player).on "pause", ->
+    print "Video paused"
+</code>
+</pre>

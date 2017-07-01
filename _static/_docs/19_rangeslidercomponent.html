@@ -1,0 +1,193 @@
+<p>RangeSliderComponent는 두 개의 손잡이(knob)가 있는 범위 슬라이더를 만듭니다. 가격 필터와 같이 숫자 범위를 정의하고 편집하는 데 사용할 수 있습니다. slider, fill, <a href="#rangeslider.minKnob">minKnob</a>, <a href="#rangeslider.maxKnob">maxKnob</a> 총 네 가지 레이어로 구성됩니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center    
+</code>
+</pre>
+<p>슬라이더는 기본으로 어두운 fill 색상, 밝은 회색의 <code>backgroundColor</code>(배경색), 그리고 <code>borderRadius</code>(둥근 모서리)를 가지고 있습니다. fill의 모서리 둥근 정도는 슬라이더와 일치하기 때문에 한 번만 설정하면 됩니다.</p>
+<pre>
+<code>
+# 디자인 커스터마이즈하기
+range.backgroundColor = "#ddd"
+range.borderRadius = 4
+</code>
+</pre>
+<h3 id="rangeslider.min">rangeSlider.min <span>&lt;number&gt;</span></h3>
+<p>슬라이더의 최소 범위입니다. 기본으로 <code>0</code>으로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+    min: 0
+    max: 10    
+</code>
+</pre>
+<h3 id="rangeslider.max">rangeSlider.max <span>&lt;number&gt;</span></h3>
+<p>슬라이더의 최대 범위입니다. 기본으로 <code>1</code>로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+    min: 0
+    max: 10
+</code>
+</pre>
+<h3 id="rangeslider.minValue">rangeSlider.minValue <span>&lt;number&gt;</span></h3>
+<p>슬라이더의 최솟값입니다. 기본으로 <code>0</code>으로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+    minValue: 0
+</code>
+</pre>
+<p>여러분은 최솟값이 변경되는 것만 체크해서 이벤트를 실행할 수 있습니다.</p>
+<pre>
+<code>
+range.onMinValueChange ->
+    print range.minValue
+</code>
+</pre>
+<p>또한 값이 변경되는 것도 체크해서 이벤트를 실행할 수 있습니다.</p>
+<pre>
+<code>
+range.onValueChange ->
+    print range.minValue, range.maxValue
+</code>
+</pre>
+<h3 id="rangeslider.maxValue">rangeSlider.maxValue <span>&lt;number&gt;</span></h3>
+<p>슬라이더의 최댓값입니다. 기본으로 <code>0.5</code>으로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+    maxValue: 0.5
+</code>
+</pre>
+<p>여러분은 최댓값이 변경되는 것만 체크해서 이벤트를 실행할 수 있습니다.</p>
+<pre>
+<code>
+range.onMaxValueChange ->
+    print range.maxValue
+</code>
+</pre>
+<p>또한 <a href="#events.value">Value Change</a> 이벤트로 값이 변경되는 것을 체크해서 이벤트를 실행할 수 있습니다.</p>
+<pre>
+<code>
+range.onValueChange ->
+    print range.minValue, range.maxValue
+</code>
+</pre>
+<h3 id="rangeslider.knobSize">rangeSlider.knobSize <span>&lt;number&gt;</span></h3>
+<p>양쪽 손잡이의 크기를 설정합니다. 이것은 자동으로 <code>minKnob</code>과 <code>maxKnob</code>의 너비와 높이로 설정됩니다. 기본값은 <code>30</code>입니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+ 
+# 손잡이의 크기를 바꿉니다
+range.knobSize = 40    
+</code>
+</pre>
+<h3 id="rangeslider.fill">rangeSlider.fill <span>&lt;layer&gt;</span></h3>
+<p>슬라이더의 fill 부분입니다. 너비와 높이는 슬라이더의 크기에 따라 자동으로 설정됩니다. 기본으로 <code>backgroundColor</code>는 <code>#333</code>으로 설정됩니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+ 
+# 색상을 파란색으로 설정합니다
+range.fill.backgroundColor = "#00AAFF"
+</code>
+</pre>
+<h3 id="rangeslider.minKnob">rangeSlider.minKnob <span>&lt;layer&gt;</span></h3>
+<p>슬라이더의 <a href="#rangeslider.minValue">최솟값</a>에 영향을 주는 손잡이입니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center    
+</code>
+</pre>
+<p>minKnob은 <code>momentum</code>이 활성화된 드래그 가능한 레이어입니다.</p>
+<pre>
+<code>
+# 모멘텀 비활성화
+range.minKnob.draggable.momentum = false
+</code>
+</pre>
+<h3 id="rangeslider.maxKnob">rangeSlider.maxKnob <span>&lt;layer&gt;</span></h3>
+<p>슬라이더의 <a href="#rangeslider.maxValue">최댓값</a>에 영향을 주는 손잡이입니다.</p>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+</code>
+</pre>
+<p>maxKnob은 <code>momentum</code>이 활성화된 드래그 가능한 레이어입니다.</p>
+<pre>
+<code>
+# 모멘텀 비활성화
+range.maxKnob.draggable.momentum = false
+</code>
+</pre>
+<h3 id="rangeslider.animateToMinValue">rangeSlider.animateToMinValue(<span class="param">minValue, animationOptions</span>)</h3>
+<p>특정 최솟값까지 자동으로 애니메이션을 적용합니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>minValue</code> — 숫자 형태, 최솟값을 설정합니다.</li>
+    <li><code>animationOptions</code> — 객체 형태, 커브, 시간, 딜레이 그리고 반복 속성을 설정합니다. (선택)</li>
+</ol>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+ 
+# 1까지 애니메이션 적용
+range.animateToMinValue(0.3)
+ 
+# 커스터마이즈한 커브 애니메이션 적용
+range.animateToMinValue(0.3, { curve: Spring })
+</code>
+</pre>
+<h3 id="rangeslider.animateToMaxValue">rangeSlider.animateToMaxValue(<span class="param">maxValue, animationOptions</span>)</h3>
+<p>특정 최댓값까지 자동으로 애니메이션을 적용합니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>minValue</code> — 숫자 형태, 최솟값을 설정합니다.</li>
+    <li><code>animationOptions</code> — 객체 형태, 커브, 시간, 딜레이 그리고 반복 속성을 설정합니다. (선택)</li>
+</ol>
+<pre>
+<code>
+# 범위 슬라이더 생성
+range = new RangeSliderComponent
+    x: Align.center
+    y: Align.center
+ 
+# 1까지 애니메이션 적용
+range.animateToMaxValue(1)
+ 
+# 사용자 정의 커브 애니메이션 적용
+range.animateToMaxValue(1, { curve: Spring })
+</code>
+</pre>

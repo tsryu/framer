@@ -22,13 +22,18 @@
           <img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/images/brand.png">
         </a>
       </div>
-
       <div class="navbar-collapse"><?php
         wp_nav_menu( array(
-          'theme_location'    => 'gnb',
-          'depth'             => 2,
+          'menu'    => 'global',
+          'depth'             => 1,
           'container'         => false,
-          'menu_class'        => 'nav navbar-nav no-style'
+          'menu_class'        => 'nav navbar-nav no-style menu-global'
+        ) ); 
+        wp_nav_menu( array(
+          'menu'    => 'external',
+          'depth'             => 1,
+          'container'         => false,
+          'menu_class'        => 'nav navbar-nav no-style menu-external'
         ) ); ?>
       </div><!-- .navbar-collapse -->
     </div><!-- .container -->

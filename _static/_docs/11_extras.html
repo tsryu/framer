@@ -1,52 +1,53 @@
-
-Extras are optional parts of Framer that have specific tasks like preloading, touch emulation and hints. In general, they are enabled automatically based on where your prototype is shown. But extras are often overridable explicitly by you, if you require specific behaviour. 
-
-기타기능(Extras)은 미리 로드하기(preloading), 터치 에뮬레이션과 힌트 등 프레이머에서 옵션으로 제공하는 기능입니다.  일반적으로 기타기능은 프로토타입이 표시되는 환경에 따라 자동으로 활성화됩니다. 그러나 특정기능이 필요한 경우, 우선 적용(override)할 수 있습니다.
-Hints
-Hints are used to highlight layers that a user can interact with, such as taps, swipes, etc. They are mainly to help users discover what a project can do when they see it for the first time. 힌트는 탭, 스와이프 등과 같이 사용자가 상호 작용할 수있는 레이어를 강조 표시하는 데 사용됩니다. 주로 사용자가 프로젝트를 처음 볼 때 할 수 있는 것을 발견하도록 도와줍니다.
-By default, hints are enabled both in Framer for Mac and when you share your prototypes with others. If you click anywhere outside of an interactive layer or outside of the device, purple rectangles will indicate the tappable or scrollable areas.
-기본적으로 맥용 프레이머와 프로토타입을 다른 사람들과 공유 할 때는 힌트가 활성화됩니다. 기기 밖이나 인터랙션이 있는 레이어를 제외하고 아무 곳이나 클릭하면, 보라색 직사각형이 탭 가능 영역 또는 스크롤 가능 영역을 안내할 것입니다.
-You can enable or disable hints for your entire projects like this:
-다음과 같이 모든 프로젝트에 힌트를 활성화하거나 비활성화 할 수 있습니다.
-Framer.Extras.Hints.disable()
-
-
-
-Or enable them like this:
-또는 다음과 같이 활성화할 수 있습니다.
+<p>기타기능(Extras)은 미리 로드하기(preloading), 터치 에뮬레이션과 힌트 등 프레이머에서 옵션으로 제공하는 기능입니다.  일반적으로 기타기능은 프로토타입이 표시되는 환경에 따라 자동으로 활성화됩니다. 그러나 특정 기능이 필요한 경우, 우선 적용(override)할 수 있습니다.</p>
+<h3 id="extras.hints">Hints</h3>
+<p>힌트는 탭, 스와이프 등과 같이 사용자가 상호 작용할 수있는 레이어를 강조 표시하는 데 사용됩니다. 주로 사용자가 프로젝트를 처음 볼 때 할 수 있는 것을 발견하도록 도와줍니다.</p>
+<p>기본적으로 맥용 프레이머와 프로토타입을 다른 사람들과 공유할 때는 힌트가 활성화됩니다. 기기 밖이나 인터랙션이 있는 레이어를 제외하고 아무 곳이나 클릭하면, 보라색 직사각형이 탭 가능 영역 또는 스크롤 가능 영역을 안내할 것입니다.</p>
+<p>다음과 같이 모든 프로젝트에 힌트를 활성화하거나 비활성화할 수 있습니다.</p>
+<pre>
+<code>
+Framer.Extras.Hints.disable()    
+</code>
+</pre>
+<p>또는 다음과 같이 활성화할 수 있습니다.</p>
+<pre>
+<code>
 Framer.Extras.Hints.enable()
-
-
-
-If you would like to show hints directly after a page loads, without any clicks you can do this: 페이지가로드 된 직후, 아무 클릭없이 힌트를 표시하려면 다음처럼 해보세요.
+</code>
+</pre>
+<p>페이지가 로드 된 직후, 아무 클릭 없이 힌트를 표시하려면 다음처럼 해보세요.</p>
+<pre>
+<code>
 Framer.Extras.Hints.enable()
-Framer.Extras.Hints.showHints()
+Framer.Extras.Hints.showHints()   
+</code>
+</pre>
+<h4>참고사항</h4>
+<ul>
+    <li>드래그 가능 영역 또는 스크롤 영역은 탭하면 하이라이트 되지만 스크롤 하지는 않습니다.</li>
+    <li>드래그 가능 영역 또는 스크롤 영역은 가로 또는 세로로 스크롤 하는 경우에만 강조 표시됩니다.</li>
+    <li>둥근 모서리가 있는 레이어는 힌트도 모서리가 둥글게 보입니다.</li>
+    <li>회전된 레이어는 현재 지원되지 않습니다.</li>
+    <li>보이지 않는 레이어는 보이지 않게 설정되거나 불투명도가 0으로 설정되지 않는 한 힌트를 표시하지 않습니다. 다른 레이어에 덮여 있지만 여전히 탭에 응답하면 힌트를 표시합니다.</li>
+</ul>
+<h4>커스터마이즈</h4>
+<p>힌트 표시(기본적으로 자주색 사각형)를 커스터마이즈 하려면 레이어(또는 레이어를 기반으로하는 구성 요소)를 재정의할 수 있습니다. 이 기능은 특정 레이어에서 강조 표시를 비활성화하거나 특정 시각적 힌트를 사용하는 경우에 유용합니다.</p>
 
-
-
-Some notes: 참고사항
-Draggable or scrollable areas will highlight if you tap them, but did not scroll. 드래그 가능 영역 또는 스크롤 영역은 탭하면 하이라이트되지만 스크롤하지는 않습니다.
-Draggable or scrollable areas will only highlight if they can either scroll horizontal or vertically. 드래그 가능 영역 또는 스크롤 영역은 가로 또는 세로로 스크롤 하는 경우에만 강조 표시됩니다.
-Layers with rounded corners will get a hint with rounded corners. 둥근 모서리가있는 레이어는 모서리가 둥근 힌트를 얻을 수 있습니다. (?)
-Rotated layers are currently unsupported. 회전 된 레이어는 현재 지원되지 않습니다.
-Invisible layers will not show hints, unless they are set to invisible or their opacity is 0. They will show a hint if they are covered by another layer but still respond to taps. 보이지 않는 레이어는 보이지 않게 설정되거나 불투명도가 0으로 설정되지 않는 한 힌트를 표시하지 않습니다. 다른 레이어에 덮여 있지만 여전히 탭에 응답하면 힌트를 표시합니다.
- 
-Customization 사용자 정의
-You can override layers (or components based on layers) to customize the hint indicator (by default a purple rectangle). This is great when you want to disable the highlight on a specific layer, or have a specific visiual hint. 
-힌트 표시 (기본적으로 자주색 사각형)를 사용자 정의하려면 레이어 (또는 레이어를 기반으로하는 구성 요소)를 재정의 할 수 있습니다. 이 기능은 특정 레이어에서 강조 표시를 비활성화하거나 특정 시각적 힌트를 사용하는 경우에 유용합니다.
-This is how you disable a hint on a specific layer:
+<p>아래 예시는 특정 레이어에서 힌트를 비활성화하는 방법입니다.</p>
+<pre>
+<code>
 layerA = new Layer
 layerA.onTap -> print "layerA"
  
 layerB = new Layer x: 220
-layerB.onTap -> print "layerB"
- 
-# Set an empty function on showHint  showHint에 빈 함수를 설정
-layerB.showHint = -> print "nope"
+layerB.onTap -> print "layerB"  
 
-
-
-And you can customize the hint the same way: 그리고 힌트를 같은 방식으로 사용자 정의 할 수 있습니다.
+# showHint에 빈 함수를 설정
+layerB.showHint = -> print "nope"  
+</code>
+</pre>
+<p>그리고 힌트를 같은 방식으로 커스터마이즈 할 수 있습니다.</p>
+<pre>
+<code>
 layerA = new Layer
 layerA.onTap -> print "layerA"
  
@@ -55,59 +56,53 @@ layerB.onTap -> print "layerB"
  
 layerB.showHint = (hintFrame) ->
  
-    # Create a hint layer, this will automatically be   
-# 힌트 레이어를 만듭니다. 이것은 자동으로됩니다.
-   # placed in the hints context on top of everything. 
+# 힌트 레이어를 만듭니다. 이것은 자동으로 됩니다.
   # 모든 것 위에 힌트를 배치.
     hint = new Layer
         frame: hintFrame
         backgroundColor: "red"
         opacity: 0.5
  
-    # Add a cool animation  애니메이션 추가
+    # 애니메이션 추가
     hint.animate
         scale: 1.3
         opacity: 0
         options:
             time: 0.5
  
-    # Remove the layer when done 끝날 때 레이어 제거
-    hint.onAnimationEnd -> hint.destroy()
-
-
-
-Preloader 미리 로드하기
-When you open a project, our preloader makes sure your media is loaded before fully displaying. It analyzes the images and video you use and downloads them in the background, all while showing a circular progress indicator. When everything is fully loaded, it displays your project simultaneously.
-프로젝트를 열면 미리 로드하기 기능(preloader)은 미디어를 완전히 표시하기 전에 로드되었는지 확인합니다. 사용중인 이미지와 비디오를 분석하여 백그라운드에서 다운로드하며 원형 진행률 표시를 보여줍니다. 모든 것이 완전히 로드되면 프로젝트가 한꺼번에 보여집니다.
-A preloader vastly improves the user's experience because it avoids displaying your project in an incomplete state. When users interact with a prototype that is still loading, performance can suffer due to images being decompressed on the same thread that handles user interaction.
-미리 로드하기 기능은 프로젝트를 불완전한 상태로 표시하지 않으므로 사용자 경험을 크게 향상시킵니다. 사용자가 아직 로드중인 프로토 타입과 상호 작용할 때, 이미지가 사용자 상호 작용을 처리하는 동일한 스레드에서 작동하기 때문에 성능이 저하 될 수 있습니다.
-By default the preloader is only enabled outside of Framer, such as when you share a project online or via mirroring.
-기본적으로 미리 로드하기 기능은 프로젝트를 온라인 또는 미러링을 통해 공유하는 경우와 같이 Framer 외부에서만 사용할 수 있습니다.
-You can force enable the preloader like this:
-다음과 같이 프리 로더를 강제로 활성화 할 수 있습니다.
- 
+    # 끝날 때 레이어 제거
+    hint.onAnimationEnd -> hint.destroy()    
+</code>
+</pre>
+<h3 id="extras.preloader">Preloader</h3>
+<p>프리로더(미리 로드하기 기능)는 프로젝트를 열 때 미디어가 표시하기 전에 로드되었는지 확인합니다. 사용 중인 이미지와 비디오를 분석하여 백그라운드에서 다운로드하며 원형 진행률 표시를 보여줍니다. 모든 것이 완전히 로드되면 프로젝트가 한꺼번에 보입니다.</p>
+<p>프리로더는 프로젝트를 불완전한 상태로 표시하지 않으므로 사용자 경험을 크게 향상하게 시킵니다. 사용자가 아직 로드 중인 프로토타입과 상호 작용할 때, 이미지가 사용자 상호 작용을 처리하는 같은 스레드에서 작동하기 때문에 성능이 저하 될 수 있습니다.</p>
+<p>기본적으로 프리로더는 프로젝트를 온라인 또는 미러링을 통해 공유하는 경우와 같이 프레이머 외부에서만 사용할 수 있습니다.</p>
+<p>다음과 같이 프리 로더를 강제로 활성화할 수 있습니다.</p>
+<pre>
+<code>
+Framer.Extras.Preloader.enable()   
+</code>
+</pre> 
+<p>아니면 다음과 같이 비활성화할 수도 있습니다.</p>
+<pre>
+<code>
+Framer.Extras.Preloader.disable()    
+</code>
+</pre>
+<h4>커스터마이즈</h4>
+<p>미리 로드하기 기능은 로고와 같이 어떤 이미지든 사용자 정의할 수 있습니다. 로고를 사용자 정의하려면 <code>setLogo()</code> 함수를 사용해보세요.</p>
+<pre>
+<code>
 Framer.Extras.Preloader.enable()
-
-
-
-Or disable it like this: 아니면 다음과 같이 비활성화할 수도 있습니다.
-Framer.Extras.Preloader.disable()
-
-
-
-Customization 사용자 정의
-You can customize the preloader image with any image, such as your logo. To do so, use the setLogo() function: 미리 로드하기 기능은 로고와 같이 어떤 이미지든 사용자 정의 할 수 있습니다. 로고를 사용자 정의하려면 setLogo () 함수를 사용해보세요.
-Framer.Extras.Preloader.enable()
-Framer.Extras.Preloader.setLogo("https://twitter.com/framerjs/profile_image?size=bigger")
-
-
-
-Manually adding images 수동으로 이미지를 더하기
-While the preloader often does a great job of discovering the main images used in your project, it may fail to locate specific images that were used at arbitrary points. The preloader also allows you to add these images manually using Framer.Extras.Preloader.addImage(). 
-미리 로드하기 기능이 프로젝트에서 사용되는 주요 이미지를 발견하는 데 종종 도움이되지만, 임의의 지점에서 사용된 특정 이미지를 찾지 못할 수도 있는데요. 여러분은  Framer.Extras.Preloader.addImage ()를 사용하여 이러한 이미지를 수동으로 추가 할 수 있습니다.
-In the example below, the preloader cannot discover the image that layerBuses because it only gets created after a tap, and theoretically could be any url. So in this scenarios, we add the image manually at the top of the prototype.
-아래 예제에서 미리 로드하기 기능은 탭 이후에 생성되기 때문에 layerBus 이미지를 발견 할 수 없으며, 이론적으로는 어떠한 URL이 될 수 있습니다. 따라서이 시나리오에서는 프로토 타입 상단에 이미지를 수동으로 추가합니다.
- 
+Framer.Extras.Preloader.setLogo("https://twitter.com/framerjs/profile_image?size=bigger")    
+</code>
+</pre>
+<h4>수동으로 이미지 추가하기</h4>
+<p>프리로더가 프로젝트에서 사용되는 주요 이미지를 로드하는데 종종 도움되지만, 임의의 지점에서 사용된 특정 이미지를 찾지 못할 수도 있는데요. 여러분은  <code>Framer.Extras.Preloader.addImage()</code>를 사용하여 이러한 이미지를 수동으로 추가 할 수 있습니다.</p>
+<p>아래 예제에서 layerB의 이미지는 탭 이후에 생성되기 때문에 프리로더가 발견할 수 없습니다. 따라서 이런 케이스는 프로토타입 상단에 이미지를 수동으로 추가합니다.</p>
+<pre>
+<code>
 Framer.Extras.Preloader.enable()
 Framer.Extras.Preloader.addImage("https://twitter.com/framerjs/profile_image?size=bigger")
  
@@ -115,21 +110,17 @@ layerA = new Layer point: Align.center
  
 layerA.onTap ->
     layerB = new Layer
-        image: "https://twitter.com/framerjs/profile_image?size=bigger"
+        image: "https://twitter.com/framerjs/profile_image?size=bigger"    
+</code>
+</pre>
+<h4>참고사항</h4>
+<ul>
+    <li>장치 이미지는 미리 로드하기에 적용되지 않으며, 캐시되어 있으므로 즉시 표시됩니다.</li>
+    <li>미리 로드하기 기능에는 30초의 시간제한이 있으며, 그 후에 모든 이미지가 로드되지 않아도 프로젝트가 표시됩니다.</li>
+    <li>캐시된 이미지는 두 번째로 프로젝트를 방문할 때 더 빠르게 로드됩니다.</li>
+    <li>비디오를 미리 로드하는 기능은 재생할 수 있는 충분한 버퍼가 있을 때 <a href="http://www.w3big.com/ko/tags/av-event-canplay.html" target="_blank">canplay 이벤트</a>를 기반으로 합니다.</li>
+    <li>로딩 오류는 로드된 것으로 계산되므로 일부 이미지가 없는 경우에도 프로젝트가 보여집니다.</li>
+    <li>진행률은 이미지 수와 로드된 바이트를 기반으로하므로 다수의 작은 이미지와 큰 이미지가 있는 경우 마지막 단계가 상당히 길어질 수 있습니다. 아쉽게도 현재는 크기를 기준으로 진행 상황을 파악할 수 있는 좋은 방법은 없습니다.</li>
+</ul>  
 
-
-
-Some notes:
-Device images are not counted against the preloader and are shown instantly because they are likely cached.
-There is a 30 second hard timeout on the preloader, after which your project gets shown even if not all images are loaded.
-Cached images load faster the second time you visit a project.
-Video preloading is based on the canplay event when enough buffer is available to play them.
-Loading errors are counted as loaded, so that the project appears even if some images are missing.
-The progress is based on image count and not loaded bytes, so if you have many small images and one big one, the last step may be significantly longer. Unfortunately, there is no great way to get progress based on size today.
-장치 이미지는 미리 로드하기에 적용되지 않으며, 캐시되어 있기 때문에 즉시 표시됩니다.
-미리 로드하기 기능에는 30 초의 시간제한이 있으며, 그 후에 모든 이미지가로드되지 않아도 프로젝트가 표시됩니다.
-캐시 된 이미지는 두 번째로 프로젝트를 방문 할 때 더 빠르게로드됩니다.
-비디오를 미리 로드하는 기능은 재생할 수 있는 충분한 버퍼가 있을 때 캔 플레이 이벤트를 기반으로합니다.
-로딩 오류는 로드 된 것으로 계산되므로 일부 이미지가없는 경우에도 프로젝트가 보여집니다.
-진행률은 이미지 수와 로드 된 바이트를 기반으로하므로 다수의 작은 이미지와 큰 이미지가 있는 경우 마지막 단계가 상당히 길어질 수 있습니다. 아쉽게도 현재는 크기를 기준으로 진행 상황을 파악할 수있는 좋은 방법은 없습니다.
  

@@ -1,0 +1,1365 @@
+<p>레이어는 프레이머의 기본 컨테이너이며 <a href="#layer.image">이미지</a>, <a href="#layer.video">비디오</a> 또는 <a href="#layer.html">텍스트</a>를 포함 할 수 있습니다. <a href="#layer.x">숫자</a>와 <a href="#layer.center">동적인 값</a>으로 레이어를 배치할 수 있습니다. 레이어에는 <a href="#layer.opacity">오퍼시티</a>, <a href="#layer.roation">회전</a> 및 <a href="#layer.scale">크기</a>와 같은 형태를 정의하는 많은 속성이 포함되어 있습니다. 레이어를 <a href="#layer.parent">중첩</a>하여 계층 구조를 조정할 수도 있습니다.</p>
+<p>레이어를 만들려면 <code>new</code> 키워드를 사용하십시오. 모든 레이어에는 파란색 배경과 기본 너비 및 높이 100의 기본 속성을 가지고 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+</code>
+</pre>
+<p>레이어 속성을 만들 때 설정할 수 있습니다:</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+    width: 250
+    height: 250
+    opacity: 0.5
+    backgroundColor: "white"
+</code>
+</pre>
+<p>나중에 다시 정의할 수도 있습니다:</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+ 
+layerA.x = 200
+</code>
+</pre>
+<h3 id="layer.id">layer.id <span>&lt;number&gt;</span></h3>
+<p>레이어의 고유한 식별 번호입니다. 다른 레이어는 똑같은 고유식별 번호를 가질 수 없습니다. 레이어 id는 읽기 전용이며 변경할 수 없습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+print layerA.id
+# 결과: 1 
+</code>
+</pre>
+<h3 id="layer.name">layer.name <span>&lt;string&gt;</span></h3>
+<p>레이어의 이름입니다. 레이어의 이름은 기본적으로 지정되지 않습니다. 가져온 레이어는 스케치 또는 포토샵에서 정의한 이름을 상속합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.name = "Button"
+ 
+print layerA.name
+# 결과: "Button" 
+</code>
+</pre>
+<h3 id="layer.x">layer.x <span>&lt;number&gt;</span></h3>
+<p>레이어의 x 속성은 왼쪽 위 모서리를 기준으로 x 위치를 정의합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.x = 500
+</code>
+</pre>
+<h3 id="layer.y">layer.y <span>&lt;number&gt;</span></h3>
+<p>레이어의 y 속성은 왼쪽 위 모서리를 기준으로 y 위치를 정의합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.y = 500
+</code>
+</pre>
+<h3 id="layer.z">layer.z <span>&lt;number&gt;</span></h3>
+<p>레이어의 z 속성은 깊이라고도 할 수 있는 공간에서의 위치를 정의합니다. 이 값이 클수록 객체는 사용자의 시점 기준으로 멀리 떨어져 있습니다.</p>
+<p>이 효과를 보기 전에 부모 레이어에서 원근감을 사용하도록 설정해야 합니다. 또한 z 속성이 레이어의 인덱스를 정의하는 layer.index (z-index)와 다르다는 점에 유의하세요.  layer.index는 모두 같은 z 값을가집니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.z = 500    
+</code>
+</pre>
+<h3 id="layer.width">layer.width <span>&lt;number&gt;</span></h3>
+<p>레이어의 넓이(픽셀 단위)입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.width = 500
+</code>
+</pre>
+<h3 id="layer.height">layer.height <span>&lt;number&gt;</span></h3>
+<p>레이어의 높이(픽셀 단위)입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.height = 500
+</code>
+</pre>
+<h3 id="layer.minX">layer.minX <span>&lt;number&gt;</span></h3>
+<p>레이어의 왼쪽 가장자리 위치입니다. layer.x와 같습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+    width: 100
+    height: 100
+ 
+print layerA.minX
+# 결과: 100 
+</code>
+</pre>
+<h3 id="layer.midX">layer.midX <span>&lt;number&gt;</span></h3>
+<p>레이어의 가로 중심입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+    width: 100
+    height: 100
+ 
+print layerA.midX
+# 결과: 150 
+ 
+layerA.midX = 500
+print layerA.x
+# 결과: 450 
+</code>
+</pre>
+<h3 id="layer.maxX">layer.maxX <span>&lt;number&gt;</span></h3>
+<p>레이어의 오른쪽 가장자리 위치입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+    width: 100
+    height: 100
+ 
+print layerA.maxX
+# 결과: 200 
+ 
+layerA.maxX = 500
+print layerA.x
+# 결과: 400 
+</code>
+</pre>
+<h3 id="layer.minY">layer.minY <span>&lt;number&gt;</span></h3>
+<p>레이어의 위쪽 가장자리 위치입니다. layer.y와 같습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+    width: 100
+    height: 100
+ 
+print layerA.minY
+# 결과: 100 
+</code>
+</pre>
+<h3 id="layer.midY">layer.midY <span>&lt;number&gt;</span></h3>
+<p>레이어의 세로 중심입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+    width: 100
+    height: 100
+ 
+print layerA.midY
+# 결과: 150 
+ 
+layerA.midY = 500
+print layerA.y
+# 결과: 450 
+</code>
+</pre>
+<h3 id="layer.maxY">layer.maxY <span>&lt;number&gt;</span></h3>
+<p>레이어의 아래쪽 가장자리 위치입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+    y: 100
+    width: 100
+    height: 100
+ 
+print layerA.maxY
+# 결과: 200 
+ 
+layerA.maxY = 500
+print layerA.y
+# 결과: 400 
+</code>
+</pre>
+<h3 id="layer.point">layer.point <span>&lt;object&gt;</span></h3>
+<p>레이어의 x 및 y 값을 설정하거나 얻을 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+print layerA.point
+# 결과: { x: 100, y: 100 } 
+ 
+layerA.point =
+    x: 10
+    y: 200 
+ 
+print layerA.point
+# 결과: { x: 10, y: 200 } 
+ 
+print layerA.x
+# 결과: 10 
+</code>
+</pre>
+<h3 id="layer.size">layer.size <span>&lt;object&gt;</span></h3>
+<p>레이어의 너비 및 높이 값을 설정하거나 가져올 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+print layerA.size
+# 결과: { width: 100, height: 100 } 
+ 
+layerA.size =
+    width: 10
+    height: 10
+ 
+print layerA.size
+# 결과: { width: 10, height: 10 } 
+ 
+print layerA.width
+# 결과: 10 
+</code>
+</pre>
+<h3 id="layer.frame">layer.frame <span>&lt;object&gt;</span></h3>
+<p>레이어의 x, y, 너비 및 높이 값을 설정하거나 얻을 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+print layerA.frame
+# 결과: { x: 100, y: 100, width: 100, height: 100 } 
+ 
+layerA.frame =
+    x: 10
+    y: 200
+    width: 10
+    height: 10
+ 
+print layerA.frame
+# 결과: { x: 10, y: 200, width: 10, height: 10 } 
+ 
+print layerA.x
+# 결과: 10 
+</code>
+</pre>
+<h3 id="layer.pros">layer.props <span>&lt;object&gt;</span></h3>
+<p>레이어의 모든 속성을 가져오거나 설정합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# Get current layer properties 
+print layerA.props
+# 결과: { x: 100, y: 100, ...} 
+ 
+# Set properties 
+layerA.props =
+    rotation: 90
+    opacity: 0.5
+</code>
+</pre>
+<h3 id="layer.center">layer.center()</h3>
+<p>레이어를 부모 레이어 가운데에 놓습니다. 상위가 없으면 화면 기준으로 중심에 배치됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    width: 500
+    height: 500
+ 
+layerB = new Layer
+    parent: layerA
+    width: 100
+    height: 100
+ 
+layerB.center()
+ 
+print layerB.x, layerB.y
+# 결과: 200, 200 
+</code>
+</pre>
+<h3 id="layer.centerX">layer.centerX(offset)</h3>
+<p>레이어를 부모의 수평 가운데에 배치합니다. 부모가 존재하지 않는 경우, 화면 기준으로 중앙에 배치됩니다. <code>offset</code>은 중심으로부터의 픽셀 단위의 오프셋 위치이며 선택 사항입니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>offset</code> — 숫자 형태, 오프셋 위치로 배치합니다.</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+    width: 500
+    height: 500
+ 
+layerB = new Layer
+    parent: layerA
+    width: 100
+    height: 100
+ 
+layerB.centerX()
+print layerB.x, layerB.y
+# 결과: 200, 0 
+ 
+layerB.centerX(20)
+print layerB.x, layerB.y
+# 결과: 220, 0
+</code>
+</pre>
+<h3 id="layer.centerY">layer.centerY(offset)</h3>
+<p>레이어를 부모의 세로 가운데에 배치합니다. 부모 레이어가 존재하지 않는 경우, 화면 기준으로 중앙에 배치됩니다. <code>offset</code>은 중심으로부터의 픽셀 단위의 오프셋 위치이며 선택 사항입니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>offset</code> — 숫자 형태, 오프셋 위치로 배치합니다.</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+    width: 500
+    height: 500
+ 
+layerB = new Layer
+    parent: layerA
+    width: 100
+    height: 100
+ 
+layerB.centerY()
+print layerB.x, layerB.y
+# 결과: 0, 200 
+ 
+layerB.centerY(20)
+print layerB.x, layerB.y
+# 결과: 0, 220 
+</code>
+</pre>
+<h3 id="layer.pixelAlign">layer.pixelAlign()</h3>
+<p>레이어의 x 및 y 값을 정수로 반올림합니다. 레이어를 픽셀 단위에 맞출 수 있습니다. 이 기능은 동적으로 레이어를 <a href="#layer.center">가운데</a>에 맞출 때 유용합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100.18293
+    y: 10.12873
+ 
+layerA.pixelAlign()
+ 
+print layerA.x, layerA.y
+# 결과: 100, 10 
+</code>
+</pre>
+<h3 id="layer.screenFrame">layer.screenFrame <span>&lt;object&gt;</span></h3>
+<p>부모 레이어로부터 상속된 위치를 무시하고 화면에서 레이어의 절대 위치를 설정하거나 얻을 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    x: 100
+ 
+layerB = new Layer
+    parent: layerA
+    x: 100
+ 
+print layerB.screenFrame
+# 결과: { x: 200, y: 0, width: 100, height: 100 } 
+ 
+layerB.screenFrame =
+    x: 400
+    y: 0
+    width: 100
+    height: 100
+ 
+print layerB.x
+# 결과: 300 
+</code>
+</pre>
+<h3 id="layer.contentFrame">layer.contentFrame()</h3>
+<p>모든 자식레이어의 크기를 합산한 프레임 값을 반환합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+    parent: layerA
+    x: 0
+    width: 100
+ 
+layerC = new Layer
+    parent: layerA
+    x: 100
+    width: 300
+ 
+print layerA.contentFrame()
+# 결과: { x: 0, y: 0, width: 400, height: 100 } 
+</code>
+</pre>
+<h3 id="layer.centerFrame">layer.centerFrame()</h3>
+<p>부모 레이어의 중앙에 배치된 프레임 값을 반환합니다. 부모 레이어가 없으면 화면을 기준으로 중심에 배치됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    width: 500
+    height: 500
+ 
+layerB = new Layer
+    parent: layerA
+    width: 100
+    height: 100
+ 
+print layerB.centerFrame()
+# 결과: { x: 200, y: 200, width: 100, height: 100 } 
+</code>
+</pre>
+<h3 id="layer.backgroundColor">layer.backgroundColor <span>&lt;string&gt;</span></h3>
+<p>레이어의 배경색을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다. 레이어는 기본적으로 하늘색 배경색을 사용합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.backgroundColor = "red"
+layerA.backgroundColor = "#00ff00"
+layerA.backgroundColor = "rgba(134, 12, 64, 0.3)"
+layerA.backgroundColor = "transparent"
+ 
+# 배경색 제거
+layerA.backgroundColor = ""
+</code>
+</pre>
+<h3 id="layer.color">layer.color <span>&lt;string&gt;</span></h3>
+<p>레이어의 텍스트 색상을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다. 레이어는 기본적으로 흰색으로 설정되어 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.color = "red"
+layerA.color = "#00ff00"
+layerA.color = "rgba(134, 12, 64, 0.3)"
+layerA.color = "transparent"
+ 
+# 색상 제거
+layerA.color = ""
+</code>
+</pre>
+<h3 id="layer.image">layer.image <span>&lt;string&gt;</span></h3>
+<p>레이어의 배경 이미지 URL 또는 경로를 설정합니다. 로컬 경로 또는 전체 URL로 설정할 수 있습니다. 이미지는 항상 레이어에 맞춰지며, 늘리지 않습니다. 이미지는 null 또는 빈 문자열로 설정하여 제거할 수도 있습니다.</p>
+<pre>
+<code>
+# 로컬 이미지
+layerA = new Layer
+    image: "images/logo.png"
+ 
+# 호스트된 이미지
+layerA.image = "http://framerjs.com/logo.png"
+</code>
+</pre>
+<p>이미지를 설정하면 레이어의 기본 배경색이 제거됩니다. 배경색을 설정하여 이미지 뒤에 보여줄 수 있습니다.</p>
+<pre>
+<code>
+# 투명한 이미지 뒤에 배경색상 보여주기
+layerA = new Layer
+    image: "images/logo.png"
+    backgroundColor: "blue"
+</code>
+</pre>
+<p>Events.ImageLoaded 이벤트로 이미지가 로드가 완료되면 알림을 받을 수 있습니다. 발견되지 않은 이미지를 로드하는 중에 오류가 발생하면 Events.ImageLoadError 이벤트가 발생합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 이미지 로딩 이벤트 수신하기
+layerA.on Events.ImageLoaded, ->
+    print "The image loaded"
+ 
+layerA.on Events.ImageLoadError, ->
+    print "The image couldn't be loaded"
+ 
+layerA.image = "images/logo.png"
+</code>
+</pre>
+<h3 id="layer.visible">layer.visible <span>&lt;boolean&gt;</span></h3>
+<p>레이어를 표시 여부를 설정합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.visible = false
+</code>
+</pre>
+<h3 id="layer.opacity">layer.opacity <span>&lt;number&gt;</span></h3>
+<p>레이어의 오퍼시티를 설정합니다. 오퍼시티는 0과 1 사이의 숫자로 정의되며 0은 보이지 않으며 1은 완전히 불투명합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.opacity = 0.5
+</code>
+</pre>
+<h3 id="layer.clip">layer.clip <span>&lt;boolean&gt;</span></h3>
+<p>레이어에서 자식 레이어의 클리핑(마스킹) 여부를 설정합니다. 클리핑은 기본적으로 비활성화되어 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    width: 100
+    height: 100
+ 
+layerB = new Layer
+    width: 200
+    height: 200
+    parent: layerA
+ 
+layerA.clip = true
+</code>
+</pre>
+<h3 id="layer.ignoreEvents">layer.ignoreEvents <span>&lt;boolean&gt;</span></h3>
+<p>레이어에 추가된 사용자 이벤트를 사용 또는 사용하지 않도록 설정합니다. 비활성화하면 레이어의 사용자 이벤트가 발생하지 않습니다. 이것의 기본값은 <code>true</code>입니다. 프레이머는 이벤트 수신을 설정할 때 자동으로 비활성화합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.on Events.Click, ->
+    print "Click!"
+ 
+# 클릭에 반응하지 않도록 설정
+layerA.ignoreEvents = true
+ 
+# 다시 반응하도록 설정
+layerA.ignoreEvents = false
+</code>
+</pre>
+<h3 id="layer.originX">layer.originX <span>&lt;number&gt;</span></h3>
+<p>크기 조절, 회전 및 기울이기 변형에 대한 x 원점을 설정합니다. 원점은 숫자로 정의됩니다. 여기서 0은 레이어의 왼쪽 가장자리이고 1은 오른쪽 가장자리입니다. 기본값은 레이어의 중심인 0.5입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.rotation = 45
+layerA.originX = 0
+layerA.originX = 1
+</code>
+</pre>
+<h3 id="layer.originY">layer.originY <span>&lt;number&gt;</span></h3>
+<p>크기 조절, 회전 및 기울이기 변형의 y 원점을 설정합니다. 원점은 숫자로 정의됩니다. 여기서 0은 레이어의 위쪽 가장자리이고 1은 아래쪽 가장자리입니다. 기본값은 레이어의 중심인 0.5입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.rotation = 45
+layerA.originY = 0
+layerA.originY = 1
+</code>
+</pre>
+<h3 id="layer.originZ">layer.originZ <span>&lt;number&gt;</span></h3>
+<p>3D 변형의 z 원점을 설정합니다. 원점은 픽셀 단위로 정의됩니다. 양수 값은 3D 레이어를 사용자에게 가까이 가져오고 음수 값은 더 먼 방향으로 설정합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    originZ: -45
+    rotationY: 90
+</code>
+</pre>
+<h3 id="layer.perspective">layer.perspective <span>&lt;number&gt;</span></h3>
+<p>자식 레이어의 원근감을 설정합니다. Perspective는 rotationX, rotationY와 같은 3D 속성에 깊이를 줍니다. 회전은 가장 큰 원근감을 주는 1부터 무한대로 설정할 수 있습니다. Perspective를 0으로 설정하면 등각 투영 효과가 제공됩니다. Perspective는 기본적으로 비활성화 되어있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 모든 자식 레이어에 원근감을 설정합니다.
+layerA.perspective = 100
+ 
+layerB = new Layer
+    parent: layerA
+    rotationX: 30
+    rotationY: 30
+</code>
+</pre>
+<h3 id="layer.flat">layer.flat <span>&lt;boolean&gt;</span></h3>
+<p>레이어의 모든 자식 레이어에 대해 3D 속성을 활성화 또는 비활성화합니다.</p>
+<pre>
+<code>
+# 모든 자식 레이어에 3D 속성을 비활성화
+layerA = new Layer
+    width: 200
+    height: 200
+    x: 100
+    y: 100
+    clip: false
+    flat: true
+ 
+# 수평으로 회전
+layerA.rotationX = 45
+ 
+# flat이 활성화 된 상태에서 z를 조정해도 아무 효과가 없습니다.
+layerB = new Layer
+    parent: layerA
+    z: 25
+</code>
+</pre>
+<h3 id="layer.backfaceVisible">layer.backfaceVisible <span>&lt;boolean&gt;</span></h3>
+<p>화면을 마주 보지 않을 때 레이어를 표시 여부를 정의합니다. 이것은 요소가 회전할 때, 그 뒷면을 보고 싶지 않을 때 유용합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.backfaceVisible = false    
+</code>
+</pre>
+<h3 id="layer.rotation">layer.rotation <span>&lt;number&gt;</span></h3>
+<p>회전의 원점을 기준으로 회전을 설정합니다. 회전 각도는 0에서 360 사이의 각도로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.rotation = 45
+</code>
+</pre>
+<h3 id="layer.rotationX">layer.rotationX <span>&lt;number&gt;</span></h3>
+<p>변환 원점을 기준으로 x 회전을 설정합니다. 회전 각도는 0에서 360 사이의 각도로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.rotationX = 45
+</code>
+</pre>
+<h3 id="layer.roationY">layer.rotationY <span>&lt;number&gt;</span></h3>
+<p>변환 원점을 기준으로 y 회전을 설정합니다. 회전 각도는 0에서 360 사이의 각도로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.rotationY = 45
+</code>
+</pre>
+<h3 id="layer.rotationZ">layer.rotationZ <span>&lt;number&gt;</span></h3>
+<p>변환 원점을 기준으로 z 회전을 설정합니다. 회전 각도는 0에서 360 사이의 각도로 정의됩니다. <a href="#layer.roation">layer.rotation</a>과 같은 기능입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.rotationZ = 45
+</code>
+</pre>
+<h3 id="layer.scale">layer.scale <span>&lt;number&gt;</span></h3>
+<p>변환 원점을 기준으로 크기를 설정합니다. 기본 배율은 1입니다. 1보다 작으면 기본크기 보다 작아지고, 1보다 크면 기본크기 보다 커집니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.scale = 2
+</code>
+</pre>
+<h3 id="layer.scaleX">layer.scaleX <span>&lt;number&gt;</span></h3>
+<p>변환 원점을 기준으로 수평 크기를 설정합니다. 기본 배율은 1입니다. 1보다 작으면 기본크기 보다 작아지고, 1보다 크면 기본크기 보다 커집니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.scaleX = 2
+</code>
+</pre>
+<h3 id="layer.scaleY">layer.scaleY <span>&lt;number&gt;</span></h3>
+<p>변환 원점을 기준으로 수직 크기를 설정합니다. 기본 배율은 1입니다. 1보다 작으면 기본크기 보다 작아지고, 1보다 크면 기본크기 보다 커집니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.scaleY = 2
+</code>
+</pre>
+<h3 id="layer.parent">layer.parent <span>&lt;Layer object&gt;</span></h3>
+<p>레이어의 부모를 설정합니다. 레이어를 문서의 루트에 두려면 부모를 null로 설정할 수 있습니다. (superLayer와 같습니다)</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+ 
+layerB.parent = layerA
+ 
+print layerB.parent
+# 결과: <Object:Layer layerA> 
+</code>
+</pre>
+<h3 id="layer.children">layer.children <span>&lt;Array&gt;</span></h3>
+<p>레이어의 모든 자식 레이어. (subLayers와 같습니다)</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerB = new Layer
+    parent: layerA
+ 
+layerC = new Layer
+    parent: layerA
+ 
+print layerA.children
+# 결과: [<Object:Layer layerB>, <Object:Layer layerC>] 
+</code>
+</pre>
+<h3 id="layer.childrenWithName">layer.childrenWithName(<span class="param">name</span>)</h3>
+<p>레이어의 모든 자식 레이어를 이름으로 필터링합니다. (subLayersByName와 같습니다)</p>
+<h4>인수</h4>
+<ol>
+    <li><code>name</code> — 레이어의 이름 (문자열)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerB = new Layer
+    name: "navigation"
+    parent: layerA
+ 
+layerC = new Layer
+    name: "button"
+    parent: layerA
+ 
+print layerA.childrenWithName("button")
+# 결과: [<Object:Layer layerC>]
+</code>
+</pre>
+<h3 id="layer.siblings">layer.siblings <span>&lt;Array&gt;</span></h3>
+<p>레이어의 모든 형제 레이어. (siblingLayers와 같습니다)</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerB = new Layer
+    parent: layerA
+ 
+layerC = new Layer
+    parent: layerA
+ 
+print layerB.siblings
+# 결과: [<Layer layerC id:3 (0,0) 200x200>] 
+</code>
+</pre>
+<h3 id="layer.siblingsWithName">layer.siblingsWithName(<span class="param">name</span>)</h3>
+<p>레이어의 모든 형제 레이어를 이름으로 필터링합니다. (subLayersByName와 같습니다)</p>
+<h4>인수</h4>
+<ol>
+    <li><code>name</code> — 문자열 형태, 레이어의 이름</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerB = new Layer
+    name: "navigation"
+    parent: layerA
+ 
+layerC = new Layer
+    name: "button"
+    parent: layerA
+ 
+print layerB.siblingsWithName("button")
+# 결과: [<Object:Layer name:button layerC>] 
+</code>
+</pre>
+<h3 id="layer.descendants">layer.descendants <span>&lt;Array&gt;</span></h3>
+<p>레이어의 모든 하위 레이어. 여러 번 중첩된 레이어가 포함되므로 하위 레이어를 가지고 있는 자식 레이어도 포함됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerB = new Layer
+    parent: layerA
+ 
+layerC = new Layer
+    parent: layerB
+ 
+print layerA.descendants
+# 결과: [<Layer id:2 name:layerB (0,0) 200x200>, <Layer id:3 name:layerC (0,0) 200x200>] 
+</code>
+</pre>
+<h3 id="layer.ancestors">layer.ancestors()</h3>
+<p>레이어의 모든 상위 레이어입니다. 여러 번 중첩된 레이어가 포함되므로 상위 레이어를 가지고 있는 부모 레이어도 포함됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerB = new Layer
+    parent: layerA
+ 
+layerC = new Layer
+    parent: layerB
+ 
+print layerC.ancestors()
+# 결과: [<Layer id:2 name:layerB (0,0) 200x200>, <Layer id:1 name:layerA (0,0) 200x200>] 
+</code>
+</pre>
+<h3 id="layer.addChild">layer.addChild(layer)</h3>
+<p>레이어에 자식 레이어를 추가합니다. 그러면 추가된 레이어의 부모로 설정됩니다. (addSubLayer와 같습니다)</p>
+<h4>인수</h4>
+<ol>
+    <li><code>layer</code> — 레이어 객체</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+ 
+layerA.addChild(layerB)
+ 
+print layerB.parent
+# 결과: <Object:Layer layerA> 
+</code>
+</pre>
+<h3 id="layer.removeChild">layer.removeChild(layer)</h3>
+<p>레이어의 자식 레이어를 제거합니다. (removeSubLayer와 같습니다)</p>
+<h4>인수</h4>
+<ol>
+    <li><code>layer</code> — 레이어 객체</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+    parent: layerA
+ 
+layerA.removeChild(layerB)
+ 
+print layerB.parent
+# 결과: null 
+</code>
+</pre>
+<h3 id="layer.index">layer.index <span>&lt;number&gt;</span></h3>
+<p>레이어의 순서 인덱스입니다. 더 높은 순서(혹은 z 값)를 가진 레이어는 위에 위치하며, 낮은 순서를 가진 레이어는 아래에 위치합니다.</p>
+<p>레이어 인덱스는 삽입 순서에 따라 증가합니다. 따라서 하위 레이어를 추가하고 가장 높은 인덱스 값이 5인 경우 삽입된 레이어의 인덱스는 6 (5 + 1)됩니다. 또는 마지막으로 삽입된 레이어가 항상 맨 위에 표시됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+ 
+# layerB를 맨위에 배치하기
+layerA.index = 2
+layerB.index = 1
+</code>
+</pre>
+<h3 id="layer.placeBefore">layer.placeBefore(<span class="param">layer</span>)</h3>
+<p>다른 레이어 앞에 레이어를 배치합니다. 이렇게 하면 레이어 중 하나는 layer.index 속성이 변경됩니다. 이 메서드는 부모 레이어가 같은 레이어 또는 부모가 없는 레이어에서만 작동합니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>layer</code> — 레이어 객체</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+ 
+# layerB를 맨위에 배치하기
+layerB.placeBefore(layerA)
+</code>
+</pre>
+<h3 id="layer.placeBehind">layer.placeBehind(<span class="param">layer</span>)</h3>
+<p>다른 레이어 뒤에 레이어를 배치합니다. 이렇게 하면 레이어 중 하나는 layer.index 속성이 변경됩니다. 이 메서드는 부모 레이어가 같은 레이어 또는 부모가 없는 레이어에서만 작동합니다.</p> 
+<h4>인수</h4>
+<ol>
+    <li><code>layer</code> — 레이어 객체</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+ 
+# layerB를 맨 뒤에 배치하기
+layerA.placeBehind(layerB)
+</code>
+</pre>
+<h3 id="layer.bringToFront">layer.bringToFront()</h3>
+<p>같은 부모 레이어가 있는 다른 모든 레이어 맨 앞에 배치합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+layerC = new Layer
+ 
+# layerA를 맨 위에 배치하기
+layerA.bringToFront()
+</code>
+</pre>
+<h3 id="layer.sendToBack">layer.sendToBack()</h3>
+<p>같은 부모 레이어가 있는 다른 모든 레이어 맨 뒤에 배치합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+layerC = new Layer
+ 
+# layerC를 맨 뒤에 배치하기
+layerC.sendToBack()
+</code>
+</pre>
+<h3 id="layer.html">layer.html <span>&lt;string&gt;</span></h3>
+<p>레이어에 HTML 내용을 삽입합니다. html은 텍스트, 캔버스 또는 SVG 콘텐츠에서 입력폼에 이르기까지 모든 것이 될 수 있습니다.</p>
+<p>생성된 요소를 대상으로 사용한다면 프레이머가 렌더링 한 후에  사용할 수 있습니다. DOM 요소를 안정적으로 가져 오려면 <code>layer.querySelector</code> 또는 <code>layer.querySelectorAll</code>을 사용하세요.</p>
+<p>삽입된 내용에 인터랙션이 필요한 경우 <a href="#layer.ignoreEvents">layer.ignoreEvents</a>를 <code>false</code>로 설정하는 것이 좋습니다. 레이어 구조를 유지하기 위해 HTML을 처음 설정할 때 생성되는 요소 내에 내용이 배치됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 간단한 텍스트 내용 추가
+layerA.html = "Hello"
+ 
+# 인라인 스타일의 텍스트 콘텐츠 추가
+layerA.html = "I'm <span style='color:red'>Koen</span>"
+ 
+# 입력 필드 추가
+layerA.html = "<input type='text' value='Hello'>"
+ 
+# canvas 요소가있는 div를 추가하고 셀렉터로 접근합니다
+layerA.html = "<div><canvas id='canvas'></canvas></div>"
+canvasElement = layerA.querySelectorAll("#canvas")
+</code>
+</pre>
+<h3 id="layer.style">layer.style <span>&lt;object&gt;</span></h3>
+<p>레이어의 CC 스타일 속성을 설정하거나 가져옵니다.</p>
+<p>표준 CSS 속성 이름 옆에 카멜표기법으로(camelCase : 낙타의 등처럼 각 단어의 첫글자만 대문자로 표기하는 방법) 이름을 지정할 수도 있습니다. 예를 들어, <code>layer.style [ "border-color"]</code>는 <code>layer.style.borderColor</code>와 같습니다. 전체 목록은 이 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference" target="_blank">개요</a>를 참조하십시오.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 단일 스타일 속성 수정
+layerA.style["outline"] = "1px solid red"
+ 
+# 스타일 속성 집합 수정
+layerA.style =
+    "outline": "1px solid red",
+    "padding": "10px"
+ 
+# 특정 스타일 속성 가져오기
+print layerA.style["outline"]
+# 결과: "1px solid red" 
+</code>
+</pre>
+<h3 id="layer.computedStyle">layer.computedStyle()</h3>
+<p>레이어에 현재 적용된 CSS 스타일 속성을 모두 가져옵니다. 이것은 브라우저에게 많은 부하를 줄 수도 있으니 참고해주시기 바랍니다. 입력된 스타일에 대한 전체 레퍼런스는 이 개요를 확인해보세요.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.backgroundColor = "red"
+ 
+print layer.computedStyle()["background-color"]
+# 결과: "red" 
+</code>
+</pre>
+<h3 id="layer.classList">layer.classList <span>&lt;ClassList object&gt;</span></h3>
+<p>레이어의 클래스 목록입니다. 또한 클래스를 추가, 제거, 전환 및 확인하는 메소드가 포함되어 있습니다. 전체 레퍼런스는 이 개요를 확인해보세요.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# red 클래스를 더하기
+layerA.classList.add("red")
+ 
+# red 클래스를 제거하기
+layerA.classList.remove("red")
+ 
+# Tred 클래스를 토글하기
+layerA.classList.toggle("red")
+ 
+# red 클래스를 가졌는지 체크하기
+print layerA.classList.contains("red")
+# 결과: true 
+</code>
+</pre>
+<h3 id="layer.destroy">layer.destroy()</h3>
+<p>레이어가 제거되고 연결된 이벤트가 제거됩니다. 자식 레이어가 있으면 같이 없어집니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.destroy()
+</code>
+</pre>
+<h3 id="layer.copy">layer.copy()</h3>
+<p>레이어와 그 모든 자식 레이어를 복사합니다. 복사된 레이어는 원본과 같은 속성을 갖습니다. (같은 위치 및 모양) 원본에 연결된 이벤트는 복사되지 않습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+    parent: layerA
+ 
+layerC = layerA.copy()
+</code>
+</pre>
+<h3 id="layer.copySingle">layer.copySingle()</h3>
+<p>자식 레이어를 제외하고 레이어를 복사합니다. 원본에 연결된 이벤트는 복사되지 않습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerB = new Layer
+    parent: layerA
+ 
+layerC = layerA.copySingle()
+</code>
+</pre>
+<h3 id="layer.blur">layer.blur <span>&lt;number&gt;</span></h3>
+<p>레이어에 가우시안 블러 효과를 추가합니다. 가우시안 블러는 픽셀 단위로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.blur = 10
+</code>
+</pre>
+<h3 id="layer.brightness">layer.brightness <span>&lt;number&gt;</span></h3>
+<p>레이어를 밝게 하거나 어둡게 합니다. 밝기는 숫자로 정의됩니다. 밝기를 0으로 설정하면 완전히 검은색 레이어가 생성되는 반면, 완전히 흰색인 레이어를 생성하는 값은 레이어 또는 이미지의 색상에 따라 다릅니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.brightness = 10
+</code>
+</pre>
+<h3 id="layer.saturate">layer.saturate <span>&lt;number&gt;</span></h3>
+<p>레이어를 채도를 조절합니다. 채도는 0과 100 사이의 숫자로 정의되며, 0은 모든 채도가 제거됩니다. 기본값은 100입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.saturate = 50
+</code>
+</pre>
+<h3 id="layer.hueRotate">layer.hueRotate <span>&lt;number&gt;</span></h3>
+<p>레이어의 색조를 설정합니다. 색조 회전은 0에서 360 사이의 각도로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.hueRotate = 180
+</code>
+</pre>
+<h3 id="layer.contrast">layer.contrast <span>&lt;number&gt;</span></h3>
+<p>레이어의 대비를 설정합니다. 명암은 0과 100 사이의 숫자로 정의되며 0은 모든 대비를 제거합니다. 기본값은 100입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.contrast = 50
+</code>
+</pre>
+<h3 id="layer.invert">layer.invert <span>&lt;number&gt;</span></h3>
+<p>레이어의 색상을 반전합니다. 반전은 0과 100 사이의 숫자로 정의됩니다. 반전 속성은 레이어의 모든 색상과 밝깃값을 반전합니다. 색상이 있는 레이어에서 100으로 반전을 설정하면 모든 색상이 보색으로 바뀝니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.invert = 100
+</code>
+</pre>
+<h3 id="layer.grayscale">layer.grayscale <span>&lt;number&gt;</span></h3>
+<p>그레이스케일은 모든 색상을 회색으로 변환합니다. 그레이 스케일은 0과 100 사이의 숫자로 정의됩니다. 여기서 100은 모든 색상을 회색 음영으로 바꿉니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.grayscale = 100
+</code>
+</pre>
+<h3 id="layer.sepia">layer.sepia <span>&lt;number&gt;</span></h3>
+<p>레이어에 세피아 톤을 추가합니다. 세피아는 0에서 100 사이의 숫자로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.sepia = 100
+</code>
+</pre>
+<h3 id="layer.shadowX">layer.shadowX <span>&lt;number&gt;</span></h3>
+<p>x 축의 그림자 방향을 정의합니다. 양수 값은 레이어의 오른쪽 가장자리에서 그림자를 생성하지만, 음수 값이면 왼쪽 가장자리에서 그림자를 생성합니다. 보이는 그림자는 shadowColor 속성도 정의된 경우에만 나타납니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.shadowX = 10
+</code>
+</pre>
+<h3 id="layer.shadowY">layer.shadowY <span>&lt;number&gt;</span></h3>
+<p>y 축의 그림자 방향을 정의합니다. 양수 값은 레이어의 아래쪽 가장자리에서 그림자를 생성하지만, 음수 값은 위쪽 가장자리에서 그림자를 생성합니다. 보이는 그림자는 shadowColor 속성도 정의된 경우에만 나타납니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.shadowY = 10
+</code>
+</pre>
+<h3 id="layer.shadowBlur">layer.shadowBlur <span>&lt;number&gt;</span></h3>
+<p>shadowX 또는 shadowY 속성에 가우시안 블러를 추가합니다. shadowBlur는 숫자로 정의됩니다. 기본값은 0입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.shadowY = 1
+layerA.shadowBlur = 4
+</code>
+</pre>
+<h3 id="layer.shadowSpread">layer.shadowSpread <span>&lt;number&gt;</span></h3>
+<p>그림자를 모든 방향으로 크게 만듭니다. 그림자는 주어진 값만큼 확장됩니다. 음수 값을 지정하면 그림자가 축소됩니다. shadowX, shadowY 및 shadowBlur가 모두 0으로 설정된 경우 테두리로 표시됩니다. 그림자는 shadowColor 속성도 정의된 경우에만 나타납니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.shadowY = 1
+layerA.shadowBlur = 4
+layerA.shadowSpread = 2
+</code>
+</pre>
+<h3 id="layer.shadowColor">layer.shadowColor <span>&lt;string&gt;</span></h3>
+<p>레이어 그림자의 색상을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.shadowY = 1
+layerA.shadowBlur = 4
+layerA.shadowColor = "rgba(0,0,0,0.2)"
+</code>
+</pre>
+<h3 id="layer.borderRadius">layer.borderRadius <span>&lt;number&gt;</span></h3>
+<p>픽셀 단위로 레이어의 모서리를 둥글게합니다. 원을 만들려면 속성을 높은 값 (50-100)으로 설정하거나 레이어의 너비 혹은 높이를 2로 나눕니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.borderRadius = 3
+ 
+# 원 만들기
+layerA.borderRadius = layerA.width/2
+</code>
+</pre>
+<h3 id="layer.borderColor">layer.borderColor <span>&lt;string&gt;</span></h3>
+<p>레이어의 테두리 색상을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.borderColor = "red"
+layerA.borderWidth = 2
+</code>
+</pre>
+<h3 id="layer.borderWidth">layer.borderWidth <span>&lt;number&gt;</span></h3>
+<p>레이어 테두리의 폭을 픽셀 단위로 설정합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.borderWidth = 2
+layerA.borderColor = "red"
+</code>
+</pre>
+<h3 id="layer.animate">layer.animate(<span class="param">properties or state, options</span>)</h3>
+<p>레이어 속성이나 <a href="#layer.states">상태</a> 이름으로 새 <a href="#animation.animation">애니메이션 객체</a>를 만들어 레이어에 애니메이션을 적용합니다. 선택으로 <a href="#layer.animationOptions">애니메이션 옵션</a>을 사용하면 커브, 타이밍 등을 사용하여 레이어의 애니메이션을 정의할 수 있습니다. 같은 속성을 변경하지 않는 한, 한 번에 여러 애니메이션을 실행할 수 있습니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>properties</code> 또는 <code>state</code> — 레이어 속성이나 상태의 이름</li>
+    <li><code>options</code> — 커브와 시간 등 <a href="#layer.animationOptions">애니메이션 옵션</a> 객체 (선택)</li>
+</ol>
+<h4>예시: 속성으로 애니메이션 주기</h4>
+<pre>
+<code>
+layerA = new Layer
+ 
+# x 위치에 애니메이션 적용
+layerA.animate
+    x: 200
+</code>
+</pre>
+<h4>예시: 속성과 옵션으로 애니메이션 주기</h4>
+<pre>
+<code>
+layerA = new Layer
+ 
+# Animate the x position with options 옵션으로 x 위치에 애니메이션 적용
+layerA.animate
+    x: 200
+    options:
+        curve: Spring(damping: 0.5)
+        time: 0.5
+</code>
+</pre>
+<h4>예시: 상태로 애니메이션 주기</h4>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 새로운 상태 만들기
+layerA.states.stateA =
+    x: 200
+ 
+# 상태 애니메이션
+layerA.animate "stateA"
+</code>
+</pre>
+<h4>예시: 상태 및 옵션으로 애니메이션 적용하기</h4>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 새로운 상태 만들기
+layerA.states.stateA =
+    x: 200
+ 
+# 옵션으로 상태 애니메이션 적용
+layerA.animate "stateA",
+    curve: Spring(damping: 0.5)
+    time: 0.5
+</code>
+</pre>
+<h3 id="layer.animationOptions">layer.animationOptions <span>&lt;object&gt;</span></h3>
+<p>애니메이션 옵션은 레이어의 애니메이션 방법 및 시간을 관리합니다. 커브 및 타이밍과 같은 옵션을 편집하여 애니메이션을 변경해보세요. 애니메이션 옵션은 설정하면 레이어에서 작동하는 모든 애니메이션에 대해 적용됩니다. 개별 레이어 상태에 대한 애니메이션 옵션을 설정할 수도 있습니다.</p>
+<h4>속성</h4>
+<ol>
+    <li><code>curve</code> — 문자열 형태, 기본으로 ease로 설정되어 있습니다. (선택)</li>
+    <li><code>curveOptions</code> — 커브의 옵션을 가지는 객체 (선택)</li>
+    <li><code>time</code> — 숫자 형태, 초 단위의 지속 시간 (선택)</li>
+    <li><code>delay</code> — 숫자 형태, 애니메이션이 지연되는 시간 (선택)</li>
+    <li><code>repeat</code> — 숫자 형태, 반복되는 횟수</li>
+    <li><code>colorModel</code> — 문자열 형태, 색상을 애니메이션 주기 위한 색상 모델입니다. (선택)</li>
+    <li><code>instant</code> — 불리언 형태(true 혹은 false), 애니메이션 끝으로 즉시 이동합니다. (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.animationOptions =
+    curve: Bezier.ease
+    time: 0.25
+</code>
+</pre>
+<h3 id="layer.animations">layer.animations()</h3>
+<p>레이어의 현재 실행 중인 애니메이션을 모두 반환합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.animate
+    x: 100
+ 
+layerA.animate
+    y: 100
+ 
+print layerA.animations()
+# 결과: [<Object Animation>, <Object Animation>] 
+</code>
+</pre>
+<h3 id="layer.isAnimating">layer.isAnimating <span>&lt;boolean&gt;</span></h3>
+<p>레이어에 애니메이션 효과가 있는지 확인하는 읽기 전용 속성입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.animate
+    x: 100
+ 
+print layerA.isAnimating
+# 결과: True     
+</code>
+</pre>
+<h3 id="layer.animateStop">layer.animateStop()</h3>
+<p>레이어에서 실행 중인 모든 애니메이션을 즉시 중단합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+# 애니메이션 즉시 중단하기
+layerA.animate
+    x: 100
+ 
+layerA.animateStop()
+</code>
+</pre>
+<h3 id="layer.stateSwitch">layer.stateSwitch(<span class="param">name</span>)</h3>
+<p>애니메이션 없이 즉시 상태로 전환합니다. (<code>layer.states.switchInstant()</code>는 프레이머 버전이 업데이트되면서 사용하지 않습니다)</p>
+<h4>인수</h4>
+<ol>
+    <li><code>name</code> — 문자열 형태, 상태의 이름</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.states.stateA =
+    x: 100
+ 
+layerA.stateSwitch("stateA")
+</code>
+</pre>
+<h3 id="layer.stateCycle">layer.stateCycle(<span class="param">states, options</span>)</h3>
+<p>모든 레이어 상태를 순환합니다. 순환이 사이클의 끝까지 도달하면 처음부터 다시 시작합니다. 상태 이름을 배열로 제공하여 순환 순서를 바꿀 수 있습니다. 만약 그러지 않으면 상태가 추가된 순서로 설정됩니다.</p>
+<p>애니메이션 옵션 매개 변수를 추가하여 순환 애니메이션을 변경할 수도 있습니다.</p>
+ <p>(<code>layer.states.next()</code>는 프레이머 버전이 업데이트되면서 더 이상 사용하지 않습니다)</p>
+<h4>인수</h4>
+<ol>
+    <li><code>states</code> — 상태 이름의 배열 (선택)</li>
+    <li><code>options</code> — 커브나 시간 등 애니메이션 옵션을 가진 객체 (선택)</li>
+</ol>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.states =
+    stateA:
+        x: 100
+    stateB:
+        x: 200
+ 
+# 이것을 호출할 때마다 다음 상태로 순환합니다.
+layerA.stateCycle(["stateA", "stateB"])
+</code>
+</pre>
+<h3 id="layer.stateNames">layer.stateNames <span>&lt;Array&gt;</span></h3>
+<p>레이어가 가지고 있는 모든 상태의 이름으로 구성된 배열을 반환합니다. (읽기 전용)</p>
+<pre>
+<code>
+layerA = new Layer
+ 
+layerA.states =
+    stateA:
+        x: 100
+    stateB:
+        y: 100
+ 
+print layerA.stateNames
+# 결과: ["stateA", "stateB"]
+</code>
+</pre>
+<h3 id="layer.convertPointToCanvas">layer.convertPointToCanvas(<span class="param">point</span>)</h3>
+<p>레이어의 한 포인트를 캔버스 기준으로 변환합니다.</p>
+<pre>
+<code>
+point =
+    x: 20
+    y: 40
+ 
+layer = new Layer
+ 
+pointInCanvas = layer.convertPointToCanvas(point)
+</code>
+</pre>
+<h3 id="layer.convertPointToScreen">layer.convertPointToScreen(<span class="param">point</span>)</h3>
+<p>레이어의 한 포인트를 스크린 기준으로 변환합니다.</p>
+<pre>
+<code>
+point =
+    x: 20
+    y: 40
+ 
+layer = new Layer
+ 
+pointInScreen = layer.convertPointToCanvas(point)
+</code>
+</pre>
+<h3 id="layer.convertPointToLayer">layer.convertPointToLayer(<span class="param">point, layer</span>)</h3>
+<p>레이어의 한 포인트를 다른 레이어 기준으로 변환합니다.</p>
+<pre>
+<code>
+point =
+    x: 20
+    y: 40
+ 
+layerA = new Layer
+layerB = new Layer
+ 
+pointInLayerB = layerA.convertPointToLayer(point, layerB)
+</code>
+</pre>
+<h3 id="layer.on">layer.on(<span class="param">eventName, handler</span>)</h3>
+<p>레이어에서 <a href="#events.events">이벤트</a> 수신을 시작합니다.</p>
+<p>이벤트가 호출될 때 첫 번째 인수는 이벤트 정보입니다. 특정 이벤트에 따라 마우스 위치, 마우스 델타 등을 포함할 수 있습니다. 두 번째 인수는 이벤트가 발생할 레이어입니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.name = "layerA"
+ 
+layerA.on Events.Click, (event, layer) ->
+    print "Clicked", layer.name
+ 
+# 결과: "Clicked", "layerA" 
+</code>
+</pre>
+<h3 id="layer.off">layer.off(<span class="param">eventName, handler</span>)</h3>
+<p>레이어에서 <a href="#events.events">이벤트</a> 수신을 중단합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.name = "layerA"
+ 
+clickHandler = (event, layer) ->
+    print "This layer was clicked", layer.name
+ 
+layerA.on(Events.Click, clickHandler)
+layerA.off(Events.Click, clickHandler)
+</code>
+</pre>

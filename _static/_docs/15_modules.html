@@ -1,0 +1,121 @@
+<p>모듈을 사용하면 여러 파일에서 프로토타입 일부를 분리하고 구성할 수 있습니다. 이 파일은 JavaScript 또는 CoffeeScript 파일로, 프로토타입 내에 포함할 수 있습니다. 코드를 구성하고 집중할 부분을 선택하는 데 도움이됩니다.</p>
+<p>프로토타입의 /modules 폴더에서 찾을 수 있습니다. 모듈은 JavaScript 및 Node.js 표준을 기반으로 합니다. 모듈에 <code>exports</code> 접두사가 있는 모든 모듈은 프로토타입에서 사용할 수 있습니다. <code>require</code> 키워드는 모듈을 가져옵니다.</p>
+<p>이전 프로젝트에 모듈을 추가하려는 경우, 최신 프레이머 스튜디오에서 새 프로젝트를 만들고 파일을 복사하는 방법을 제안합니다.</p>
+ 
+<h3 id="modules.modules">시작하기</h3>
+<ul>
+    <li>Framer Studio에서 새 프로젝트 만듭니다.</li>
+    <li>/ modules 폴더로 이동하여 텍스트 편집기에서 myModule.coffee 파일을 엽니다.</li>
+    <li>프로젝트에 모듈을 포함하려면 다음 코드를 추가하세요.</li>
+</ul>
+<pre>
+<code>
+ # 프로토타입에 myModule.coffee를 포함하기
+module = require "myModule"   
+</code>
+</pre>
+<p>파일을 저장하고 프로토타입을 새로 고쳐 변경 사항을 확인하세요. 모듈은 무엇이든 포함할 수 있습니다. 예를 들어, 모듈 내에서 레이어를 만들거나 함수 내에서 특정 인터랙션을 정의할 수 있습니다.</p>
+<pre>
+<code>
+# 변수 저장
+exports.myVar = "myVariable"
+ 
+# 함수 만들기
+exports.myFunction = ->
+    print "I'm running!"
+ 
+# 배열 만들기
+exports.myArray = [1, 2, 3]
+ 
+# 레이어 만들기
+exports.mylayerA = new Layer
+    backgroundColor: "#fff"
+</code>
+</pre>
+<p>위의 예에서 새 레이어가 자동으로 만들어져 프로토타입에 포함됩니다. 함수를 실행하려면 다음과 같이 작성할 수 있습니다.</p>
+<pre>
+<code>
+# myModule.coffee를 포함하기
+module = require "myModule"
+ 
+# 함수 실행, "I'm running!" 출력하기
+module.myFunction()    
+</code>
+</pre>
+<h4>예시: 인터랙션</h4>
+<p>모듈 내에서 간단한 드래그 가능한 인터랙션을 만들어 보겠습니다. myModule.coffee 파일에는 레이어를 가져 와서 드래그 할 수 있게 만들고, DragEnd 시에 원래 위치로 이동하는 함수가 포함되어 있습니다. </p>
+<pre>
+<code>
+# 모듈이 없는 draggable 함수
+exports.makeDraggable = (layer) ->
+    layer.draggable.enabled = true
+ 
+    # 현재 x, y 위치를 저장
+    startX = layer.x
+    startY = layer.y
+ 
+    # DragEnd 시에 애니메이트되어 돌아오기
+    layer.on Events.DragEnd, ->
+        this.animate
+            x: startX
+            y: startY
+            options:
+                curve: Spring(damping: 0.5)
+                time: 0.5    
+</code>
+</pre>
+<p>프로토타입 내에서 모듈의 makeDraggable 함수를 호출하여 드래그 인터랙션을 포함할 수 있습니다.</p>
+<pre>
+<code>
+# 모듈 포함하기
+module = require "myModule"
+ 
+# 배경 설정하기
+bg = new BackgroundLayer
+    backgroundColor: "#28AFFA"
+ 
+# 레이어 새로 만들기
+layerA = new Layer
+    backgroundColor: "#fff"
+    borderRadius: 4
+ 
+layerA.center()
+ 
+# layerA에 드래그 인터랙션을 추가하기
+module.makeDraggable(layerA)    
+</code>
+</pre>
+<h4>Example: npm</h4>
+<p>프레이머 모듈은 수천 개의 JavaScript 패키지가 있는 패키지 관리자 <a href="https://www.npmjs.com/" target="_blank">npm</a>과 함께 작동합니다. <a href="http://momentjs.com/" target="_blank">Moment.js</a> 라이브러리를 가져와봅시다. 이미 npm이 설치되어 있는지 확인하세요.</p>
+<pre>
+<code>
+# 터미널에서 입력하세요
+cd ~/my-project.framer
+npm install moment    
+</code>
+</pre>
+<p><code>/modules</code>에 새 모듈을 만들고 이름을 <code>npm.coffee</code>로 지정합니다. 파일 이름을 npm 모듈(예 : <code>moment.coffee</code>)과 똑같이 하면 반복해서 가져오는 문제가 발생할 수 있습니다.</p>
+<pre>
+<code>
+# File: modules/npm.coffee 
+exports.moment = require "moment"    
+</code>
+</pre>
+<p>새로 고침 후 프로젝트에 momnet을 가져올 수 있습니다.</p>
+<pre>
+<code>
+# npm 인덱스에서 moment 모듈 가져오기
+moment = require("npm").moment
+ 
+# 또는 단축코드를 사용해보세요.
+{moment} = require "npm"    
+</code>
+</pre>
+<p>이제 프로젝트에서 사용할 수 있습니다.</p>
+<pre>
+<code>
+dayStarted = new Layer
+    html: moment().startOf("day").fromNow()    
+</code>
+</pre>
+

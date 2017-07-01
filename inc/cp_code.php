@@ -1,33 +1,33 @@
 <?php
 /*
 
-Docs
+Code
 
 */
 
-add_action( 'init', 'get_started_create' );
+add_action( 'init', 'code_create' );
 
-function get_started_create() {
-  register_post_type( 'get_started',
+function code_create() {
+  register_post_type( 'code',
     array(
       'labels' => array(
-      'name' => 'Get started',
-      'singular_name' => 'get_started',
+      'name' => 'code',
+      'singular_name' => 'code',
       'add_new' => '추가하기',
       'add_new_item' => '아이템 추가',
       'edit' => '편집',
       'edit_item' => '아이템 편집',
-      'new_item' => '새로운 Get started',
+      'new_item' => '새로운 code',
       'view' => '보기',
-      'view_item' => 'Get started 보기',
-      'search_items' => 'Get started 검색',
+      'view_item' => 'code 보기',
+      'search_items' => 'code 검색',
       'not_found' => '검색결과 없음',
       'not_found_in_trash' =>
       '(휴지통)검색결과 없음',
-      'parent' => '부모 Get started'
+      'parent' => '부모 code'
       ),
       'public' => true,
-      'menu_position' => 6,
+      'menu_position' => 7,
       'supports' =>
       array( 
         'title', 
@@ -43,23 +43,23 @@ function get_started_create() {
 }
 
 //rest api 등록
-add_action( 'init', 'add_get_started_to_json_api', 30 );
-function add_get_started_to_json_api(){
+add_action( 'init', 'add_code_to_json_api', 30 );
+function add_code_to_json_api(){
 
     global $wp_post_types;
-    $wp_post_types['get_started']->show_in_rest = true;
-    $wp_post_types['get_started']->rest_base = 'get_started';
-    $wp_post_types['get_started']->rest_controller_class = 'WP_REST_Posts_Controller';
+    $wp_post_types['code']->show_in_rest = true;
+    $wp_post_types['code']->rest_base = 'code';
+    $wp_post_types['code']->rest_controller_class = 'WP_REST_Posts_Controller';
 }
 
-// taxonomy 추가 - get_started_type
+// taxonomy 추가 - code_type
 
-// add_action( 'init', 'get_started_type_taxonomies', 0 ); 
+// add_action( 'init', 'code_type_taxonomies', 0 ); 
 
-// function get_started_type_taxonomies() {
+// function code_type_taxonomies() {
 //     $labels = array(
 //         'name' => _x( '부문 관리', 'taxonomy general name' ),
-//         'singular_name' => _x( 'get_started_type', 'taxonomy singular name' ),
+//         'singular_name' => _x( 'code_type', 'taxonomy singular name' ),
 //         'search_items' => __( '부문 검색' ),
 //         'all_items' => __( '모든 part' ),
 //         'parent_item' => __( '상위 part' ),
@@ -71,15 +71,15 @@ function add_get_started_to_json_api(){
 //         'menu_name' => __( '부문 관리' ),
 //     );
 //     register_taxonomy( 
-//       'get_started_type', 
-//       array( 'get_started' ), 
+//       'code_type', 
+//       array( 'code' ), 
 //       array(
 //           'hierarchical' => true,
 //           'labels' => $labels,
 //           'show_ui' => true,
 //           'show_admin_column' => true,
 //           'query_var' => true,
-//           'rewrite' => array( 'slug' => 'get_started_type' ), 
+//           'rewrite' => array( 'slug' => 'code_type' ), 
 //       ) 
 //     );
 // }

@@ -1,0 +1,122 @@
+<p>핀치 가능한 레이어는 두 손가락으로 <a href="#layer.pinchable.scale">크기를 조정</a>하고 <a href="#layer.pinchable.rotate">회전</a>할 수 있습니다. 기본적으로 이 두 기능은 모두 사용 가능합니다. <a href="#layer.pinchable.scaleMin">최소</a> 및 <a href="#layer.pinchable.scaleMax">최댓값</a>을 정의하여 범위를 정할 수도 있습니다. 프레이머 스튜디오에서 레이어를 핀치 하려면 커서를 움직이는 동안 <strong>alt</strong> 키를 누르면 됩니다.</p>
+<h3 id="layer.pinchable.enabled">layer.pinchable.enabled <span>&lt;boolean&gt;</span></h3>
+<p>레이어에 핀치를 가능하게 합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true	
+</code>
+</pre>
+<h3 id="layer.pinchable.threshold">layer.pinchable.threshold <span>&lt;number&gt;</span></h3>
+<p>핀치를 인식하는 두 포인터의 최소 거리를 설정합니다. 기본으로 0으로 설정됩니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 최소 거리를 10으로 설정합니다.
+layerA.pinchable.threshold = 10	
+</code>
+</pre>
+<h3 id="layer.pinchable.centerOrigin">layer.pinchable.centerOrigin <span>&lt;boolean&gt;</span></h3>
+<p>핀치 가능 레이어의 변형 원점을 손가락 사이의 중심점으로 설정합니다. 기본으로 true로 설정되어 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 항상 레이어의 중심에서 크기 조절
+layerA.pinchable.centerOrigin = false	
+</code>
+</pre>
+<h3 id="layer.pinchable.enabled">layer.pinchable.scale <span>&lt;boolean&gt;</span></h3>
+<p>핀치시 크기변경을 활성화 또는 비활성화합니다. 기본으로 true로 설정되어 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# Disable scale on pinch 핀치시 크기변경 비활성화
+layerA.pinchable.scale = false	
+</code>
+</pre>
+<h3 id="layer.pinchable.scaleIncrements">layer.pinchable.scaleIncrements <span>&lt;number&gt;</span></h3>
+<p>핀치 가능한 레이어의 크기를 점차 조정합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# Scale in increments of 0.5 (0.5, 1, 1.5, 2) 
+0.5 단위로 배율 조정 (0.5, 1, 1.5, 2) 
+layerA.pinchable.scaleIncrements = 0.5	
+</code>
+</pre>
+<h3 id="layer.pinchable.minScale">layer.pinchable.minScale <span>&lt;number&gt;</span></h3>
+<p>핀치 가능한 레이어의 크기 최솟값을 설정합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 최소 크기를 0.5로 설정.
+layerA.pinchable.minScale = 0.5	
+</code>
+</pre>
+<h3 id="layer.pinchable.maxScale">layer.pinchable.maxScale <span>&lt;number&gt;</span></h3>
+<p>핀치 가능한 레이어의 크기 최댓값을 설정합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 최대 크기를 2로 설정.
+layerA.pinchable.maxScale = 2	
+</code>
+</pre>
+<h3 id="layer.pinchable.scaleFactor">layer.pinchable.scaleFactor <span>&lt;number&gt;</span></h3>
+<p>핀치 가능한 레이어의 크기 변경 속도를 설정합니다. 기본으로 1로 설정되어 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 크기 변경 속도를 2로 설정
+layerA.pinchable.scaleFactor = 2	
+</code>
+</pre>
+<h3 id="layer.pinchable.rotate">layer.pinchable.rotate <span>&lt;boolean&gt;</span></h3>
+<p>핀치시 회전을 활성화 또는 비활성화합니다. 기본으로 true로 설정되어 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 핀치시 회전 비활성화
+layerA.pinchable.rotate = false	
+</code>
+</pre>
+<h3 id="layer.pinchable.rotateIncrements">layer.pinchable.rotateIncrements <span>&lt;number&gt;</span></h3>
+<p>핀치 가능한 레이어를 점진적으로 회전합니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 15도 단위로 회전합니다.
+layerA.pinchable.rotateIncrements = 15	
+</code>
+</pre>
+<h3 id="layer.pinchable.rotateFactor">layer.pinchable.rotateFactor <span>&lt;number&gt;</span></h3>
+<p>핀치 가능한 레이어의 회전속도를 설정합니다. 기본으로 1로 설정되어 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+layerA.pinchable.enabled = true
+ 
+# 회전 속도를 2로 설정
+layerA.pinchable.rotateFactor = 2	
+</code>
+</pre>
+
+ 

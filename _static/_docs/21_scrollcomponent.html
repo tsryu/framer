@@ -1,0 +1,516 @@
+<p>스크롤 컴포넌트는 내용을 스크롤하는 데 사용됩니다. 모멘텀과 스프링 모션을 구현하고, 커스터마이즈를 허용하며, 다양한 이벤트를 가지고 있습니다.</p>
+<p>스크롤 컴포넌트는 두 개의 레이어로 구성됩니다. 스크롤 컴포넌트 자체는 내용을 마스킹하는 레이어입니다. 그것은 드래그 가능하며 드래그 제한영역이 활성화되어있는 콘텐츠 레이어를 가지고 있습니다. 이는 콘텐츠 레이어의 하위 레이어의 총 크기를 기반으로 콘텐츠 레이어의 크기를 자동으로 관리합니다.</p>
+<pre>
+<code>
+# 스크롤 컴포넌트 만들기
+scroll = new ScrollComponent
+    width: 100
+    height: 100
+ 
+# 레이어 포함하기
+layerA = new Layer
+    parent: scroll.content    
+</code>
+</pre>
+<p>ScrollComponent.wrap()을 사용하여 스크롤 컴포넌트 내에 기존 레이어를 감쌀 수도 있습니다. 스크롤 컴포넌트는 내용과 부모 레이어 사이에 삽입됩니다. 이 기능은 스케치 또는 포토샵에서 디자인을 가져와서 레이어를 스크롤 가능하게 만들 때 유용합니다. <a href="#scroll.wrap">이곳</a>에서 감싸기에 대해 더 배울 수 있습니다.</p>
+<pre>
+<code>
+layerA = new Layer
+    width: 300
+    height: 300
+ 
+scroll = ScrollComponent.wrap(layerA)
+</code>
+</pre>
+<h3 id="scroll.content">scroll.content <span>&lt;layer&gt;</span></h3>
+<p>내용을 추가 할 레이어입니다. 내용을 추가하려면 새 레이어를 만들고 해당 부모 레이어(parent)를 scroll.content 레이어로 설정합니다. 콘텐츠가 스크롤 컴포넌트에 크기가 맞지 않은 경우, 마스킹됩니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+    width: 100
+    height: 100
+ 
+layerA = new Layer
+    parent: scroll.content
+    image: "images/bg.png"
+    width: 100
+    height: 200
+</code>
+</pre>
+<h3 id="scroll.contentInset">scroll.contentInset <span>&lt;object&gt;</span></h3>
+<p>콘텐츠 영역 내부에 여백을 제공합니다. 이렇게하면 콘텐츠가 제한영역과 실제 콘텐츠 레이어 사이에 내부 여백을 제공합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+    width: 100
+    height: 100
+ 
+layerA = new Layer
+    parent: scroll.content
+    image: "images/bg.png"
+    width: 100
+    height: 200
+ 
+scroll.contentInset =
+    top: 20
+    right: 0
+    bottom: 20
+    left: 0    
+</code>
+</pre>
+<h3 id="scroll.speedX">scroll.speedX <span>&lt;number&gt;</span></h3>
+<p>가로 스크롤 속도, 0과 1 사이의 값을 가집니다. 기본값은 1입니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content 
+ 
+scroll.speedX = 0.5    
+</code>
+</pre>
+<h3 id="scroll.speedY">scroll.speedY <span>&lt;number&gt;</span></h3>
+<p>세로 스크롤 속도, 0과 1 사이의 값을 가집니다. 기본값은 1입니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content 
+ 
+scroll.speedY = 0.5
+</code>
+</pre>
+<h3 id="scroll.scroll">scroll.scroll <span>&lt;boolean&gt;</span></h3>
+<p>스크롤을 활성화 혹은 비활성화합니다. 기본으로 활성화되어있습니다. 이것을 <code>false</code>로 설정하면 <code>scrollVertical</code> 및 <code>scrollHorizontal</code>이 모두 false로 설정됩니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content
+ 
+scroll.scroll = false
+</code>
+</pre>
+<h3>scroll.scrollHorizontal <span>&lt;boolean&gt;</span></h3>
+<p>가로 스크롤을 활성화 혹은 비활성화합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content
+ 
+scroll.scrollHorizontal = false    
+</code>
+</pre>
+<h3>scroll.scrollVertical <span>&lt;boolean&gt;</span></h3>
+<p>세로 스크롤을 활성화 또는 비활성화합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+
+layerA = new Layer
+    parent: scroll.content
+ 
+scroll.scrollVertical = false
+</code>
+</pre>
+<h3 id="scroll.scrollX">scroll.scrollX <span>&lt;number&gt;</span></h3>
+<p>가로 스크롤 위치를 설정합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content
+ 
+scroll.scrollX = 250    
+</code>
+</pre>
+<h3 id="scroll.scrollY">scroll.scrollY <span>&lt;number&gt;</span></h3>
+<p>세로 스크롤 위치를 설정합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content 
+ 
+scroll.scrollY = 250
+</code>
+</pre>
+<h3 id="scroll.scrollPoint">scroll.scrollPoint <span>&lt;object&gt;</span></h3>
+<p>x, y 속성으로 스크롤 위치를 정의합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content
+ 
+scroll.scrollPoint =
+    x: 0
+    y: 50    
+</code>
+</pre>
+<h3 id="scroll.scrollFrame">scroll.scrollFrame <span>&lt;object&gt;</span></h3>
+<p>스크롤 프레임을 정의합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content
+ 
+scroll.scrollFrame =
+    x: 0
+    y: 250
+    width: 250
+    height: 250
+</code>
+</pre>
+<h3 id="scroll.velocity">scroll.velocity <span>&lt;number&gt;</span></h3>
+<p>현재의 스크롤 속도와 방향을 반환합니다. (픽셀 단위).</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 스크롤 시, 속도를 출력합니다
+scroll.on Events.Scroll, ->
+    print scroll.velocity    
+</code>
+</pre>
+<h3 id="scroll.direction">scroll.direction <span>&lt;string&gt;</span></h3>
+<p>현재 스크롤 방향을 반환합니다. <code>"up"</code>, <code>"down"</code>, <code>"left"</code>, 또는 <code>"right"</code>를 반환합니다. 스크롤 방향은 드래그 동작의 방향과 반대입니다. 아래쪽으로 드래그하면 위쪽으로 효과적으로 스크롤됩니다. (읽기 전용)</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 스크롤 시, 방향을 출력합니다.
+scroll.on Events.Scroll, ->
+    print scroll.direction
+</code>
+</pre>
+<h3 id="scroll.directionLock">scroll.directionLock <span>&lt;boolean&gt;</span></h3>
+<p>특정 임계값 이후 수평 / 수직 방향으로 이동합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 한 번에 한 방향으로만 드래그 허용
+scroll.directionLock = true    
+</code>
+</pre>
+<h3 id="scroll.directionLockThreshold">scroll.directionLockThreshold <span>&lt;object&gt;</span></h3>
+<p>잠금 방향에 대한 임계값입니다. x 및 y 값은 잠금을 시작하기 전에 특정 방향으로 드래그할 수 있는 거리를 나타냅니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 50px 드래그한 후 가로로 이동
+# 즉시 수직으로 이동
+scroll.directionLock = true
+ 
+scroll.directionLockThreshold =
+    x: 50
+    y: 0
+</code>
+</pre>
+<h3 id="scroll.angle">scroll.angle <span>&lt;number&gt;</span></h3>
+<p>현재 스크롤 각도 (도 단위). 스크롤 각도는 드래그 동작의 반대 방향입니다. 아래로 드래그하면 위쪽으로 효과적으로 스크롤 됩니다. (읽기 전용)</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 스크롤 시, 현재 스크롤 각도를 출력 
+scroll.on Events.Scroll, ->
+    print scroll.angle
+</code>
+</pre>
+<h3 id="scroll.isDragging">scroll.isDragging <span>&lt;boolean&gt;</span></h3>
+<p>레이어가 현재 드래그되고 있는지를 확인합니다 ( 스크롤 애니메이션 될때는 false를 반환). (읽기 전용)</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 레이어가 현재 드래그되는지 확인
+scroll.onMove ->
+    print scroll.isDragging
+</code>
+</pre>
+<h3 id="scroll.isMoving">scroll.isMoving <span>&lt;boolean&gt;</span></h3>
+<p>드래그 또는 모멘텀 / 바운스 애니메이션으로 현재 컨텐트가 이동하는지를 확인합니다.(읽기 전용)</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 레이어가 이동중인지 확인
+scroll.onMove ->
+    print scroll.isMoving
+</code>
+</pre>
+<h3 id="scroll.closestContentLayer">scroll.closestContentLayer(<span class="param">originX, originY</span>)</h3>
+<p>정의된 원점 기준으로 스크롤 컴포넌트에 가장 가까운 레이어를 가져옵니다. 원점은 <code>0</code>과 <code>1</code> 사이의 숫자로 정의됩니다. 여기서 <code>(0,0)</code>은 왼쪽 위 모서리이고, <code>(0.5, 0.5)</code> 가운데는, <code>(1,1)</code>은 오른쪽 아래 모서리입니다.</p>
+<p>기본값은 <code>(0,0)</code>입니다. 즉, 스크롤 컴포넌트의 왼쪽 위부터 콘텐츠 레이어의 왼쪽 상단까지의 거리를 계산합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 콘텐츠 레이어를 생성
+layerA = new Layer
+    parent: scroll.content
+    name: "layerA"
+    x: 0
+    y: 0
+ 
+layerB = new Layer
+    parent: scroll.content
+    name: "layerB"
+    x: 50
+    y: 50
+ 
+# 중심점이 가장 가까운 레이어 가져 오기
+# ScrollComponent의 중심점으로 보내기
+print scroll.closestContentLayer(0.5, 0.5)
+</code>
+</pre>
+<h3 id="scroll.closestContentLayerForScrollPoint">scroll.closestContentLayerForScrollPoint(<span class="param">originX, originY</span>)</h3>
+<p>특정 지점에 가장 가까운 콘텐츠 레이어를 가져옵니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+
+# 콘텐츠 레이어를 생성
+layerA = new Layer
+    parent: scroll.content
+    name: "layerA"
+    x: 0
+    y: 0
+ 
+layerB = new Layer
+    parent: scroll.content
+    name: "layerB"
+    x: 50
+    y: 50
+ 
+# 왼쪽 위의 레이어를 가져옵니다.
+# 모서리가 x : 50, y : 25에 가장 가깝습니다.
+print scroll.closestContentLayerForScrollPoint(
+    x: 50
+    y: 25
+)
+ 
+# layerB를 반환
+</code>
+</pre>
+<p>원점값을 조정하여 거리 계산 방법을 정의할 수 있습니다. 기본값은 <code>(0,0)</code>입니다. 즉, ScrollComponent의 왼쪽 위부터 콘텐츠 레이어의 왼쪽 상단까지의 거리를 계산합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 콘텐츠 레이어를 생성합니다
+layerA = new Layer
+    parent: scroll.content
+    name: "layerA"
+    x: 0
+    y: 0
+ 
+ 
+layerB = new Layer
+    parent: scroll.content
+    name: "layerB"
+    x: 50
+    y: 50
+ 
+# 원점이 중심으로 설정되면서 layerA가 가장 가까워집니다
+print scroll.closestContentLayerForScrollPoint({ x: 50, y: 25 }, 0.5, 0.5)
+ 
+# layerA를 반환
+</code>
+</pre>
+<h3 id="scroll.scrollToPoint">scroll.scrollToPoint(<span class="param">point, animate, animationOptions</span>)</h3>
+<p>특정 지점으로 스크롤 합니다. 선택적으로 애니메이션을 적용할 수도 있습니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>point</code> — x와 y 속성을 가진 객체</li>
+    <li><code>animate</code> — 불리언(true 또는 false), 기본으로 true로 설정되어 있습니다. (선택)</li>
+    <li><code>animationOptions</code> — 커브, 시간, 딜레이 그리고 반복 속성의 객체 (선택)</li>
+</ol>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 콘텐츠를 x: 200, y: 100로 스크롤
+scroll.scrollToPoint(
+    x: 200, y: 100
+    true
+    curve: Bezier.ease
+)
+ 
+# 아주 느리게 스크롤 하기
+scroll.scrollToPoint(
+    x: 200, y: 100
+    true
+    curve: Bezier.ease, time: 10
+)
+</code>
+</pre>
+<h3 id="scroll.scrollToLayer">scroll.scrollToLayer(<span class="param">layer, originX, originY, animate, animationOptions</span>)</h3>
+<p>특정 레이어로 스크롤합니다. scroll.content 레이어의 자식 레이어만 스크롤 할 수 있습니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>layer</code> — 레이어 객체</li>
+    <li><code>originX</code> — 숫자 형태, 0과 1 사이 (선택)</li>
+    <li><code>originY</code> — 숫자 형태, 0과 1 사이 (선택)</li>
+    <li><code>animate</code> — 불리언(true 또는 false) 형태, 기본으로 true로 설정되어 있습니다. (선택)</li>
+    <li><code>animationOptions</code> — 커브, 시간, 딜레이 그리고 반복 속성의 객체 (선택)</li>
+</ol>
+<pre>
+<code>
+# 스크롤 컴포넌트 만들기
+scroll = new ScrollComponent
+    width: 500
+    height: 500
+ 
+# 배경 정의
+layerA = new Layer
+    x: 500
+    y: 1000
+    image: "bg.png"
+    parent: scroll.content
+ 
+# 이 레이어로 스크롤하기
+scrollerA = new Layer
+    parent: scroll.content
+ 
+scroll.scrollToLayer(scrollerA)    
+</code>
+</pre>
+<p>originX 및 originY 인수는 스크롤 될 레이어 내의 지점을 정의합니다. 기본값은 0,0 - 왼쪽 위 모서리입니다.</p>
+<pre>
+<code>
+scroll.scrollToLayer(
+    layerA
+    0.5, 0
+    true
+    time: 2
+)    
+</code>
+</pre>
+<h3 id="scroll.scrollToClosestLayer">scroll.scrollToClosestLayer(<span class="param">originX, originY</span>)</h3>
+<p>지정된 원점을 사용하여 가장 가까운 콘텐츠 레이어로 스크롤 합니다. 기본값인 상단 왼쪽 구석은 <code>(0,0)</code>, 중앙은 <code>(0.5, 0.5)</code>, 오른쪽 하단 구석은 <code>(1,1)</code> 입니다.</p>
+<h4>인수</h4>
+<ol>
+    <li><code>originX</code> — 숫자 형태, 0과 1 사이</li>
+    <li><code>originY</code> — 숫자 형태, 0과 1 사이</li>
+</ol>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content
+    x: 75
+    y: 75
+ 
+# layerA 중앙으로 스크롤하기
+scroll.scrollToClosestLayer(0.5, 0.5)
+</code>
+</pre>
+<h3 id="scroll.mouseWheelEnabled">scroll.mouseWheelEnabled <span>&lt;boolean&gt;</span></h3>
+<p>마우스 휠로 스크롤링을 활성화 또는 비활성화합니다. 기본으로 사용하지 않도록 설정되어 있습니다. <code>true</code>로 설정하면 레이어를 끌거나 마우스로 스크롤 할 수 있습니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+    width: 100
+    height: 100
+ 
+# 마우스 휠로 스크롤하는 것을 허용
+scroll.mouseWheelEnabled = true
+ 
+layerA = new Layer
+    parent: scroll.content
+    image: "images/bg.png"
+    width: 100
+    height: 200
+</code>
+</pre>
+<h3>scroll.wrap(<span class="param">layer</span>)</h3>
+<p>새로운 ScrollComponent 내의 레이어를 감쌉니다. 이는 가져온 레이어에서 스크롤 가능한 레이어를 만드는 데 유용합니다.</p>
+<pre>
+<code>
+# 스케치에서 가져오기
+sketch = Framer.Importer.load "imported/Scrollable"
+
+# “content” 레이어그룹을 감싸기
+scroll = ScrollComponent.wrap(sketch.content)
+</code>
+</pre>
+<p>이제 <code>scroll</code>은 ScrollComponent의 변수 이름입니다. 또한 ScrollContent 레이어 내에 레이어를 자동으로 감싸서 모멘텀, 오버 드래그 또는 바운스와 같은 특정 속성을 조정할 수 있습니다.</p>
+<pre>
+<code>
+# 스케치 파일을 가져오기 
+sketch = Framer.Importer.load "imported/Scrollable"
+ 
+# “content” 레이어그룹을 감싸기
+scroll = ScrollComponent.wrap(sketch.content)
+ 
+# 스크롤 속성 변경
+scroll.scrollHorizontal = false
+scroll.speedY = 0.5
+ 
+# scroll.content 속성을 변경
+scroll.content.draggable.momentum = true
+scroll.content.draggable.overdrag = false
+scroll.content.draggable.bounce = false
+</code>
+</pre>
+<h3 id="scroll.updateContent">scroll.updateContent()</h3>
+<p>내용의 크기와 드래그 제한영역을 다시 계산하고 업데이트합니다. 또한 contentInset도 다시 계산합니다.</p>
+<p>콘텐츠 레이어의 크기를 변경하려는 경우, 이를 호출하여 그에 따라 ScrollComponent의 크기를 업데이트할 수 있습니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+# 스크롤 컴포넌트의 콘텐츠를 업데이트
+scroll.updateContent()
+</code>
+</pre>
+<h3 id="scroll.copy">scroll.copy()</h3>
+<p>내용과 속성을 포함하여 ScrollComponent를 복사합니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+ 
+layerA = new Layer
+    parent: scroll.content
+ 
+# 스크롤 컴포넌트를 복사
+scrollB = scroll.copy()
+</code>
+</pre>
+<h3 id="scroll.propagateEvents">scroll.propagateEvents <span>&lt;boolean&gt;</span></h3>
+<p>드래그 가능한 내용 계층의 propagateEvents 속성을 설정합니다. 기본으로 true로 설정되어 있습니다. 중첩된 ScrollComponents 또는 PageComponent로 작업 할 때 유용합니다.</p>
+<p>scroll.content 레이어 내에 드래그 가능한 레이어를 만든다고 가정해보겠습니다. 기본으로 레이어를 이동하면 scroll.content도 이동합니다. 이는 두 레이어가 드래그 이벤트를 수신하기 때문입니다.</p>
+<p>드래그 가능한 자식 레이어가 부모 레이어에게 이벤트를 전달하지 못하게하려면 propagateEvents를 false로 설정합니다. 이는 중첩 된 모든 드래그 가능한 레이어에 적용됩니다.</p>
+<pre>
+<code>
+scroll = new ScrollComponent
+    width: Screen.width,
+    height: Screen.height
+ 
+scroll.content.backgroundColor = "#28affa"
+ 
+layerA = new Layer
+    parent: scroll.content,
+    backgroundColor: "#fff"
+ 
+layerA.draggable.enabled = true
+ 
+# propagateEvents를 false로 설정하면, 스크롤 컴포넌트 내에서 스크롤하지 않고 레이어를 드래그할 수 있습니다.
+layerA.draggable.propagateEvents = false
+</code>
+</pre>

@@ -1,0 +1,102 @@
+<p>스크린 객체는 현재 기기 화면의 크기를 포함됩니다. 다른 기기로 전환하면 크기가 변경됩니다. 기기 화면의 배경색과 원근감을 변경할 수도 있습니다.</p>
+<h3 id="screen.backgroundColor">Screen.backgroundColor &lt;string&gt;</h3>
+<p>기기 화면의 배경색을 설정합니다.</p>
+<pre>
+<code>
+# 장치 화면 배경색 변경
+Screen.backgroundColor = "#28affa"
+</code>
+</pre>
+<h3 id="screen.width">Screen.width &lt;number&gt;</h3>
+<p>현재 기기 화면의 너비 (픽셀 단위)입니다. (읽기 전용)</p>
+<pre>
+<code>
+print Screen.width
+# Output: 640 	
+</code>
+</pre>
+<h3 id="screen.height">Screen.height &lt;number&gt;</h3>
+<p>현재 기기 화면의 높이 (픽셀 단위)입니다. (읽기 전용)</p>
+<pre>
+<code>
+print Screen.height
+# Output: 1080 	ㅁ
+</code>
+</pre>
+<h3 id="screen.size">Screen.size &lt;object&gt;</h3>
+<p>현재 기기 화면의 너비와 높이 (픽셀 단위)입니다. (읽기 전용)</p>
+<pre>
+<code>
+print Screen.size
+# Output: { width:640, height: 1080 } 	
+</code>
+</pre>
+<h3 id="screen.frame">Screen.frame &lt;object&gt;</h3>
+The x, y, width and height of the current device screen in pixels. (Read-only)
+<p>현재 기기 화면의 x, y, 너비 및 높이 (픽셀 단위)입니다. (읽기 전용)</p>
+<pre>
+<code>
+print Screen.frame
+# Output: { x:0, y:0, width:640, height: 1080 } 	
+</code>
+</pre>
+<h3 id="screen.perspective">Screen.perspective &lt;number&gt;</h3>
+<p>현재 기기 화면의 원근감. 기본으로 1200으로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 3D로 레이어 회전
+layerA = new Layer
+    rotationX: 30
+ 
+# 원근감 조정
+Screen.perspective = 1000	
+</code>
+</pre>
+<h3 id="screen.perspectiveOriginX">Screen.perspectiveOriginX &lt;number&gt;</h3>
+<p>3D 변형의 x 원점을 설정합니다. 원점은 숫자로 정의됩니다. 여기서 0은 화면의 왼쪽 모서리고 1은 오른쪽 모서리입니다. 기본값은 화면 중앙인 0.5입니다.</p>
+<pre>
+<code>
+# 3D로 레이어 회전
+layerA = new Layer
+    rotationX: 30
+ 
+# 수평 원점 설정
+Screen.perspectiveOriginX = 1	
+</code>
+</pre>
+<h3 id="screen.perspectiveOriginY">Screen.perspectiveOriginY &lt;number&gt;</h3>
+<p>3D 변형의 y 원점을 설정합니다. 원점은 숫자로 정의됩니다. 여기서 0은 화면의 위쪽 모서리고 1은 아래쪽 모서리입니다. 기본값은 화면 중앙인 0.5입니다.</p>
+<pre>
+<code>
+# 3D로 레이어 회전
+layerA = new Layer
+    rotationX: 30
+ 
+# 수직 원점 설정
+Screen.perspectiveOriginY = 1	
+</code>
+</pre>
+<h3 id="screen.convertPointToCanvas">Screen.convertPointToCanvas(<span class="param">point</span>)</h3>
+<p>한 점을 화면 기준에서 캔버스 기준으로 변환합니다.</p>
+<pre>
+<code>
+point =
+    x: 20
+    y: 40
+ 
+pointInCanvas = Screen.convertPointToCanvas(point)
+</code>
+</pre>
+<h3 id="screen.convertPointToLayer">Screen.convertPointToLayer(<span class="param">point, layer</span>)</h3>
+<p>한 점을 화면 기준에서 레이어 기준으로 변환합니다.</p>
+<pre>
+<code>
+point =
+    x: 20
+    y: 40
+ 
+layer = new Layer
+ 
+pointInLayer = Screen.convertPointToLayer(point, layer)
+</code>
+</pre>

@@ -27,7 +27,7 @@ function docs_create() {
       'parent' => '부모 Docs'
       ),
       'public' => true,
-      'menu_position' => 7,
+      'menu_position' => 8,
       'supports' =>
       array( 
         'title', 

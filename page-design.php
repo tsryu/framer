@@ -1,7 +1,7 @@
 <?php
 get_header();
 ?>
-<div ng-controller="getStarted">
+<div ng-controller="design">
 <?php slowalk_before_content(); ?>
 
 <?php

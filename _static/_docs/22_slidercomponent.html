@@ -1,0 +1,155 @@
+<p>슬라이더 컴포넌트(SliderComponent)는 모든 부분에서 커스터마이즈할 수 있는 슬라이더를 만듭니다. 슬라이더 컴포넌트의 숫자 값이나 레이어 속성을 조정할 수 있습니다. <code>slider</code>(슬라이더 자체), <code>fill</code>(슬라이더의 현재 값), <code>knob</code>(슬라이더의 값을 조절하는 손잡이) 총 세 가지 레이어로 구성됩니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 만들기
+slider = new SliderComponent
+slider.center()
+</code>
+</pre>
+<p>슬라이더는 기본으로 어두운 <code>fill</code> 색상, 밝은 회색의 <code>backgroundColor</code>(배경색), 그리고 <code>borderRadius</code>(둥근 모서리)를 가지고 있습니다. <code>fill</code>의 모서리 둥근 정도는 슬라이더와 일치하기 때문에 한번만 설정하면 됩니다.</p>
+<pre>
+<code>
+# 디자인 커스터마이즈하기
+slider.backgroundColor = "#ddd"
+slider.borderRadius = 4
+</code>
+</pre>
+<h3 id="slider.knob">slider.knob <span>&lt;layer&gt;</span></h3>
+<p>슬라이더의 손잡이(knob)입니다. 기본으로 <code>borderRadius</code>로 원형으로 만들어졌으며 약간의 그림자가 적용되었습니다. </p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 만들기
+slider = new SliderComponent
+slider.center()
+ 
+# 디자인 커스터마이즈하기
+slider.knob.shadowY = 2
+slider.knob.shadowBlur = 4
+slider.knob.borderRadius = 6
+</code>
+</pre>
+<p>손잡이는 드래그 가능한 레이어이며, 모멘텀이 활성화 되어있습니다.</p>
+<pre>
+<code>
+# 모멘텀 비활성화하기
+slider.knob.draggable.momentum = false
+</code>
+</pre>
+<h3 id="slider.knobSize">slider.knobSize <span>&lt;number&gt;</span></h3>
+<p>손잡이의 크기를 설정합니다. 이것은 자동으로 손잡이의 너비와 높이를 설정합니다. 기본값은 <code>30</code>입니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성
+slider = new SliderComponent
+slider.center()
+ 
+# 손잡이 크기를 변경
+slider.knobSize = 40	
+</code>
+</pre>
+<h3 id="slider.fill">slider.fill <span>&lt;layer&gt;</span></h3>
+<p>슬라이더의 fill 부분입니다. 너비와 높이는 슬라이더의 크기에 따라 자동으로 설정됩니다. 기본으로 <code>backgroundColor</code>(배경색)은 <code>#333</code>으로 설정됩니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성
+slider = new SliderComponent
+slider.center()
+ 
+# fill 색상을 파란색으로 설정
+slider.fill.backgroundColor = "#28affa"
+</code>
+</pre>
+<h3 id="slider.min">slider.min <span>&lt;number&gt;</span></h3>
+<p>슬라이더의 최솟값입니다. 기본으로 <code>0</code>으로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성
+slider = new SliderComponent
+slider.center()
+ 
+# 최솟값 설정
+slider.min = -1	
+</code>
+</pre>
+<h3 id="slider.max">slider.max <span>&lt;number&gt;</span></h3>
+<p>슬라이더의 최댓값입니다. 기본으로 <code>1</code>로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성  
+slider = new SliderComponent
+slider.center()
+ 
+# 최댓값 설정
+slider.max = 2
+</code>
+</pre>
+<h3 id="slider.value">slider.value <span>&lt;number&gt;</span></h3>
+<p>슬라이더의 값입니다. 기본적으로 <code>0.5</code>로 설정되어 있습니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성
+slider = new SliderComponent
+slider.center()
+
+# 현재 값을 출력
+print slider.value
+</code>
+</pre>
+<p><code>"change : value"</code>이벤트로 값이 변경되는 것을 체크해서 이벤트를 실행할 수 있습니다. 이 이벤트는 슬라이더로 레이어의 오퍼시티를 변경하는 등, 값을 가져오거나 다른 레이어 속성으로 변환하는 데 유용합니다.</p>
+<pre>
+<code>
+slider.on "change:value", ->
+    print this.value
+</code>
+</pre>
+<h3 id="slider.pointForValue">slider.pointForValue(value)</h3>
+<p>값을 계산해서 슬라이더 내에서 해당 위치(x축)를 반환합니다. <code>0</code>에서 <code>1</code>까지의 슬라이더를 사용하면 <code>pointForValue(0.5)</code>가 슬라이더의 중심이 됩니다. 너비가 <code>200</code>이면 <code>100</code>을 반환합니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성
+slider = new SliderComponent
+    width: 200
+ 
+slider.center()
+ 
+# 0.5 값에 맞는 위치를 출력
+print slider.pointForValue(0.5)
+# 100을 반환
+</code>
+</pre>
+<h3 id="slider.valueForPoint">slider.valueForPoint(value)</h3>
+<p>위치를 계산해서 해당 슬라이더 값을 반환합니다. 너비가 <code>200</code>이면 <code>valueForPoint(100)</code>가 슬라이더의 가운데에 위치합니다. <code>0</code>에서 <code>1</code>까지의 슬라이더를 사용하면 <code>0.5</code>를 반환합니다.</p>
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성
+slider = new SliderComponent
+    width: 200
+ 
+slider.center()
+ 
+# 위치에 맞는 값을 출력
+print slider.valueForPoint(100)
+# 0.5를 반환
+</code>
+</pre>
+<h3 id="slider.animateToValue">slider.animateToValue(value, animationOptions)</h3>
+<p>특정 값으로 자동 애니메이트합니다.</p>
+<h4>인수</h4>
+<ol>
+	<li><code>value</code> — 숫자 형태, 범위는 최솟값에서 최댓값 사이입니다.</li>
+	<li><code>animationOptions</code> — 객체 형태, 커브, 시간, 딜레이 그리고 반복 속성을 설정합니다. (선택)</li>
+</ol>
+
+<pre>
+<code>
+# 슬라이더 컴포넌트 생성
+slider = new SliderComponent
+slider.center()
+ 
+# 1로 애니메이트
+slider.animateToValue(1)
+ 
+# 커스텀 커브로 애니메이트
+slider.animateToValue(1, { curve: Spring })	
+</code>
+</pre>
