@@ -12,12 +12,7 @@ function slowalk_after_content() { ?>
 
 /* 페이지 헤더 */
 function slowalk_page_header($heading = null) { ?>
-  <header class="page-header"><?php
-    if( is_search() || is_404() || is_page('styleguide') ) :
-    else : 
-      slowalk_breadcrumb();
-    endif; ?>
-     
+  <header class="page-header">
     <h1 class="page-title"><?php
       if ( $heading ) :
         echo $heading;
@@ -29,11 +24,6 @@ function slowalk_page_header($heading = null) { ?>
       endif; ?>
     </h1>
   </header><?php
-}
-
-/* 브래드크럼 */
-function slowalk_breadcrumb() {
-  echo '<div class="breadcrumbs"><span><a href="/" title="home" class="home">home</a></span></div>';
 }
 
 /* 페이지 제목 */

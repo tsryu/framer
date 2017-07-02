@@ -1,28 +1,50 @@
 @header-height: 50px;
 .site-header{
-	background-color: #000;
-	margin-bottom: 120px;
+	background-color: @white;
+	margin-bottom: 60px;
+	border-bottom: 1px solid #eee;
+	@media (min-width: @screen-sm-min) {
+		margin-bottom: 120px;
+	}
 	.hidden-xs{
-		.nav{
+		.menu-global{
+			overflow: hidden;
+			margin: 0;
+			float: left;
+			>li{
+				float: left;
+				margin-left: 77px;
+				a{
+					color: @white;
+					font-weight: 400;
+					font-size: 15px;
+					color:#333;
+					.transition(all .15s ease-out);
+					&:hover{
+						.opacity(.4);
+					}
+				}
+			}
+			.current-menu-item a{
+				.opacity(.4);
+			}
+		}
+		.menu-external{
+			float: right;
 			overflow: hidden;
 			margin: 0;
 			>li{
-				float: left;margin-left: 77px;
-			}
-			a{
-				color:#fff;
-				font-weight: 600;
-				font-size: 15px;
-				.transition(all .2s ease-in-out);
-				&:hover{
-					color:#00AAFF
+				float: left;
+				margin-left: 20px;
+				a{
+					.font-size(13);
+					color:#666;
 				}
 			}
-			.current-menu-item a{color:#666}
 		}
 		&.gnb{
-			padding-top: 22px;
-			padding-bottom: 21px;
+			padding-top: 16px;
+			padding-bottom: 15px;
 		}
 		.site-title{
 			width: 12px;

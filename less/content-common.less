@@ -1,4 +1,5 @@
 //사이드바가 있는 문서
+.home,
 .page-id-10,
 .page-id-8 {
 	
@@ -6,8 +7,10 @@
 	.site-content {
 		position: relative;
 		min-height: 1px;
-		float: right;
-		width: 75%;
+		@media (min-width: @screen-lg-min) {
+			float: right;
+			width: 75%;
+		}
 		.page-header{
 			display: none;
 		}
@@ -15,22 +18,26 @@
 
 }
 .site-sidebar{
-	width: 25%;
-	max-width: 270px;
-	float: left;
-	position: fixed;
-	.anchor-link{
-		margin: 0;
-		li{
-			margin:0 0 8px;
-			a{
-				.transition(color 0.2s ease);
-			    .font-size(15);
-			    font-weight: 400;
-			    letter-spacing: 0.4px;
-			    &.active{
-			    	color:#bbb;
-			    }
+	display: none;
+	@media (min-width: @screen-lg-min) {
+		display: block;
+		width: 25%;
+		max-width: 270px;
+		float: left;
+		position: fixed;
+		.anchor-link{
+			margin: 0;
+			li{
+				margin:0 0 8px;
+				a{
+					.transition(color 0.2s ease);
+				    .font-size(15);
+				    font-weight: 400;
+				    letter-spacing: 0.4px;
+				    &.active{
+				    	color:#bbb;
+				    }
+				}
 			}
 		}
 	}

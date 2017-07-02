@@ -11,7 +11,7 @@
 <footer id="colophon" class="site-footer" role="contentinfo">
   <div class="container">
     <div class="site-info">
-    	<p class="copyright">&copy; <a href="http://tsryu.com" target="_blank">tsryu</a> <?php echo date( 'Y', current_time( 'timestamp' ) ); ?> All right Reserved.</p>
+    	<p class="copyright">Translated by <a href="https://github.com/tsryu" target="_blank">tsryu</a></p>
     </div><!-- .site-info -->
   </div><!-- .container -->
 </footer><!-- .site-footer -->

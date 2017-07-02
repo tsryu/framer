@@ -11,20 +11,20 @@ function design_create() {
   register_post_type( 'design',
     array(
       'labels' => array(
-      'name' => 'design',
+      'name' => 'Design',
       'singular_name' => 'design',
       'add_new' => '추가하기',
       'add_new_item' => '아이템 추가',
       'edit' => '편집',
       'edit_item' => '아이템 편집',
-      'new_item' => '새로운 design',
+      'new_item' => '새로운 Design',
       'view' => '보기',
-      'view_item' => 'design 보기',
-      'search_items' => 'design 검색',
+      'view_item' => 'Design 보기',
+      'search_items' => 'Design 검색',
       'not_found' => '검색결과 없음',
       'not_found_in_trash' =>
       '(휴지통)검색결과 없음',
-      'parent' => '부모 design'
+      'parent' => '부모 Design'
       ),
       'public' => true,
       'menu_position' => 6,

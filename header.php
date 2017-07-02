@@ -19,7 +19,13 @@
     <div class="container">
       <div class="navbar-header">
         <a id="brand" class="site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>">
-          <img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/images/brand.png">
+          <svg class="logo" width="12" height="18" viewBox="0 0 12 18">
+            <g fill="none" fill-rule="evenodd">
+              <path class="logo-top" fill="#AEF" d="M0 0h12v6H6z"></path>
+              <path class="logo-middle" fill="#0AF" d="M12 12H0V6h6z"></path>
+              <path class="logo-bottom" fill="#04F" d="M6 18l-6-6h6z"></path>
+            </g>
+          </svg>
         </a>
       </div>
       <div class="navbar-collapse"><?php

@@ -53,9 +53,17 @@
 
 	//wp query
 	// myApp.controller('MainCtrl', function ($scope, wpFactory) {
-	myApp.controller('getStarted', ['$scope', 'wpFactory', function ($scope, wpFactory) {
+	myApp.controller('design', ['$scope', 'wpFactory', function ($scope, wpFactory) {
 		$scope.posts = [];
-		wpFactory.getPosts('get_started').then(function (succ) {
+		wpFactory.getPosts('desing').then(function (succ) {
+			$scope.posts = succ;
+		}, function error(err) {
+			console.log('Errror: ', err);
+		});
+	}]);
+	myApp.controller('code', ['$scope', 'wpFactory', function ($scope, wpFactory) {
+		$scope.posts = [];
+		wpFactory.getPosts('code').then(function (succ) {
 			$scope.posts = succ;
 		}, function error(err) {
 			console.log('Errror: ', err);

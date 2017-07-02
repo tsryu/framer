@@ -11,20 +11,20 @@ function code_create() {
   register_post_type( 'code',
     array(
       'labels' => array(
-      'name' => 'code',
+      'name' => 'Code',
       'singular_name' => 'code',
       'add_new' => '추가하기',
       'add_new_item' => '아이템 추가',
       'edit' => '편집',
       'edit_item' => '아이템 편집',
-      'new_item' => '새로운 code',
+      'new_item' => '새로운 Code',
       'view' => '보기',
-      'view_item' => 'code 보기',
-      'search_items' => 'code 검색',
+      'view_item' => 'Code 보기',
+      'search_items' => 'Code 검색',
       'not_found' => '검색결과 없음',
       'not_found_in_trash' =>
       '(휴지통)검색결과 없음',
-      'parent' => '부모 code'
+      'parent' => '부모 Code'
       ),
       'public' => true,
       'menu_position' => 7,
