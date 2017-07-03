@@ -1,12 +1,12 @@
 <h2>거의 모든 레이어 속성들은 애니메이션을 줄 수 있습니다. 여러 가지 속성들을 한꺼번에 애니메이션을 줄 수도 있는데요. 여러분은 애니메이션 커브, 시간, 딜레이 등 수 많은 애니메이션의 옵션들을 조절할 수 있습니다.</h2>
 <h3>시작하기</h3>
-레이어 투명도에 애니메이션 주는 것으로 시작해봅시다. 여러분은 <code>animate</code>로 애니메이션을 시작하여, 그 후에 여러가지 속성을 설정할 수 있습니다.
+<p>레이어 투명도에 애니메이션 주는 것으로 시작해봅시다. 여러분은 <code>animate</code>로 애니메이션을 시작하여, 그 후에 여러 가지 속성을 설정할 수 있습니다.</p>
 <pre><code>
 layerA.animate
     opacity: 0.5
 </code></pre>
 <h3>옵션</h3>
-여러분은 여러분이 생각하는 애니메이션을 시간, 커브, 딜레이와 같은 옵션을 조절하면서 완성할 수 있습니다. 아래 예시는 조절 가능한 옵션입니다.
+<p>여러분은 여러분이 생각하는 애니메이션을 시간, 커브, 딜레이와 같은 옵션을 조절하면서 완성할 수 있습니다. 아래 예시는 조절 가능한 옵션입니다.</p>
 <ul>
     <li>time (초 단위)</li>
     <li>curve (ease, spring, bezier)</li>
@@ -14,11 +14,11 @@ layerA.animate
     <li>repeat (횟수)</li>
     <li>colorModel (rgb, hsl, husl)</li>
 </ul>
-프레이머에서 지속시간은 초 단위로 정의됩니다. <code>options</code>를 써주고, 속성은 그다음 줄에 들여쓰기로 정의해주면 됩니다.
+<p>프레이머에서 지속시간은 초 단위로 정의됩니다. <code>options</code>를 써주고, 속성은 그다음 줄에 들여쓰기로 정의해주면 됩니다.</p>
 <pre>
 <figure><img src="/wp-content/uploads/anim-radius@2x.gif" alt="anim-radius@2x" width="600" height="600" class="alignnone size-full wp-image-39" /></figure>
 <code>
-# Animate with an easing curve 
+# easing 커브로 애니메이션 주기
     layerA.animate
         rotation: 180
         borderRadius: 200
@@ -26,9 +26,10 @@ layerA.animate
        options:
             curve: "ease"
             time: 1
-</code></pre>
+</code>
+</pre>
 <h3>Easing 커브</h3>
-애니메이션은 어떤 유형의 애니메이션으로 작동시킬지 커브를 선택해 정할 수 있습니다. 여러분은 <code>Bezier.linear</code>, <code>Bezier.ease</code>와 같은 프레이머에 기본으로 내장된 커브를 쓸 수 있습니다. 아래 예시들은 프레이머의 기본 커브입니다. 아니면 이 <a href="http://easings.net/ko" target="_blank">웹사이트</a>를 참고해 easing 커브를 배워보세요.
+<p>애니메이션은 어떤 유형의 애니메이션으로 작동시킬지 커브를 선택해 정할 수 있습니다. 여러분은 <code>Bezier.linear</code>, <code>Bezier.ease</code>와 같은 프레이머에 기본으로 내장된 커브를 쓸 수 있습니다. 아래 예시들은 프레이머의 기본 커브입니다. 아니면 이 <a href="http://easings.net/ko" target="_blank">웹사이트</a>를 참고해 easing 커브를 배워보세요.</p>
 <ul>
     <li>ease</li>
     <li>ease-in</li>
@@ -45,16 +46,18 @@ layerA.animate
             curve: "ease"
             delay: 0
             time: 1
-</code></pre>
+</code>
+</pre>
 <h3>Spring 커브</h3>
-애니메이션을 좀 더 자연스럽게 만들기 원하신다면, spring 커브를 써보세요. spring 커브의 탄력성은 <code>damping</code>로 커스터마이징이 가능하며, <code>time</code> 속성과 함께 사용할 수 있습니다.
+<p>애니메이션을 좀 더 자연스럽게 만들기 원하신다면, spring 커브를 써보세요. spring 커브의 탄력성은 <code>damping</code>로 커스터마이징이 가능하며, <code>time</code> 속성과 함께 사용할 수 있습니다.</p>
 <pre>
 <figure><img src="/wp-content/uploads/curve-spring@2x.gif" alt="curve-spring@2x" width="600" height="600" class="alignnone size-full wp-image-41" /></figure>
 <code>
-# Animate with a spring curve 
+# spring 커브로 애니메이션 주기
 layerA.animate
     scale: 0.75
     options:
         curve: Spring(damping: 0.5)
         time: 0.5
-</code></pre>
+</code>
+</pre>

@@ -1,27 +1,27 @@
-<h2>드래그가 가능한 레이어는 물리적인 것들과 조작이 가능한 속성들을 가지고 있기 때문에, 다양한 인터랙션을 구현할 수 있습니다. 여러분은 속도와 방향을 가지고 드래그 인터랙션을 통제할 수 있습니다.</h2>
+<h2>드래그가 가능한 레이어는 물리적인 성질과 조작 가능한 속성들을 가지고 있으므로, 다양한 인터랙션을 구현할 수 있습니다. 여러분은 속도와 방향을 가지고 드래그 인터랙션을 통제할 수 있습니다.</h2>
 <h3>시작하기</h3>
 <p>드래그 가능한 레이어를 만들어 보겠습니다. <code>draggable.enabledto</code>를 <code>true</code>로 설정해보세요. 이제 여러분은 이 레이어를 집어 들고 이동시킬 수 있으며, 던질 수도 있습니다.</p>
-<p>가로 또는 세로로 드래그를 비활성화하여 드래그 방향을 제한 할 수도 있는데요. 둘 다 기본으로 활성화되어 있습니다. 여러분은 속도도 지정할 수도 있습니다. 속도지정은 끌기 속도가 빨라지거나 줄어 들게합니다.</p>
+<p>가로 또는 세로로 드래그를 비활성화하여 드래그 방향을 제한할 수도 있는데요. 둘 다 기본으로 활성화되어 있습니다. 여러분은 속도도 지정할 수도 있습니다. 속도지정은 끌기 속도가 빨라지거나 줄어 들게 합니다.</p>
 <pre>
-<figure><img src="/wp-content/uploads/dragging.gif" alt="dragging" width="300" height="232" class="alignnone size-full wp-image-46" /></figure>
+<figure><img src="/wp-content/uploads/dragging.gif" alt="dragging"  /></figure>
 <code>
-# 레이어가 드래그 가능하도록 설정하기
+# 레이어가 드래그할 수 있도록 설정하기
 layerA.draggable.enabled = true
  
 # 수직 드래그 막기
 layerA.draggable.horizontal = true
 layerA.draggable.vertical = false
  
-# 드래그 속도 설정하는 다른방법
+# 드래그 속도 설정하는 다른 방법
 layerA.draggable.speedX = 1
 layerA.draggable.speedY = 0
 </code>
 </pre>
 <h3>드래그 영역 제한하기</h3>
-<p>대부분의 경우, 레이어를 드래그 할 수있는 범위를 제한해야 합니다. 예를 들어, 당겨서 새로고침(pull-to-refresh)되는 인터랙션을 생각해보세요. 이는 제한된 영역에서 작동하도록 설정해야 합니다. 
-드래그 영역 제한에는 x, y, width 및 height 속성이 있습니다. 드래그 가능한 레이어가 포함 된 다른 레이어라고 생각하세요.</p>
+<p>대부분의 경우, 레이어를 드래그할 수 있는 범위를 제한해야 합니다. 예를 들어, 당겨서 새로고침(pull-to-refresh)되는 인터랙션을 생각해보세요. 이는 제한된 영역에서 작동하도록 설정해야 합니다.</p>
+<p>드래그 영역 제한에는 <code>x, y, width</code> 및 <code>height</code> 속성이 있습니다. 드래그 가능한 레이어가 포함된 다른 레이어라고 생각하세요.</p>
 <pre>
-<figure><img src="/wp-content/uploads/dragging-constraints.gif" alt="dragging-constraints" width="300" height="232" class="alignnone size-full wp-image-47" /></figure>
+<figure><img src="/wp-content/uploads/dragging-constraints.gif" alt="dragging-constraints"  /></figure>
 <code>
 # 드래그 가능한 레이어 만들기
 layerA.draggable.enabled = true
@@ -35,10 +35,10 @@ layerA.draggable.constraints =
 </code>
 </pre>
 <h3>오버 드래그, 바운스 그리고 모멘텀</h3>
-<p>이름은 몰라도, 용어에 대해 친숙할 수도 있는데요. 하나씩 살펴 보겠습니다.</p>
+<p>이름은 몰라도, 용어에 대해 친숙할 수도 있는데요. 하나씩 살펴보겠습니다.</p>
 <p>드래그 가능한 레이어는 제한된 영역 안으로 돌아가지만, 밖으로 드래그 할 수 있습니다. 이를 <code>overdrag</code>(오버드래그)라고합니다. iOS의 Safari를 생각해보십시오. 여기서 Safari는 페이지 상단과 하단으로 웹 사이트를 드래그 할 수 있습니다.</p>
-<p>레이어가 한 방향으로 움직이는 경우 제한 영역을 넘을수도 있습니다. (?) 이를 <code>bounce</code>(바운스)라고합니다. 이것은 마치 고무줄 효과와 비슷합니다.</p>
-<p>마지막으로, <code>momentum</code>(모멘텀)을 false로 설정하면 레이어의 물리적인 성질이 비활성화됩니다. (역주 - 관성이 없어진다고 이해하시면 쉽습니다.) 여러분은 여전히 레이어를 움직일 수 있지만 더 이상 주위로 던질 수는 없습니다. 모멘텀과 바운스 속성은 사용자가 정의 할 수도 있는데요. <a href="http://share.framerjs.com/7ifsajyiwadl/" target="_blank">예</a>를 살펴보세요.</p>
+<p>레이어가 제한 영역을 넘었을 때 튕겨서 돌아오는데요. 이를 <code>bounce</code>(바운스)라고합니다. 이것은 마치 고무줄 효과와 비슷합니다.</p>
+<p>마지막으로, <code>momentum</code>(모멘텀)을 false로 설정하면 레이어의 물리적인 성질이 비활성화됩니다. (역주 - 관성이 없어진다고 이해하시면 쉽습니다) 여러분은 여전히 레이어를 움직일 수 있지만 주위로 던질 수는 없습니다. 모멘텀과 바운스 속성은 사용자가 정의할 수도 있는데요. <a href="http://share.framerjs.com/7ifsajyiwadl/" target="_blank">예</a>를 살펴보세요.</p>
 <pre>
 <code>
 # overdrag 비활성화하기
@@ -54,7 +54,7 @@ layerA.draggable.momentum = false
 <h3>이벤트 (Events)</h3>
 <p>드래그 이벤트 중에 기본적인 세가지 이벤트는 <code>DragStart</code>, <code>DragMove</code> 그리고 <code>DragEnd</code>입니다. <code>Move</code> 이벤트는 드래그 가능한 레이어가 움직일 때 작동합니다. <code>DragMove</code> 이벤트와 달리, 이것은 모멘텀과 바운스 애니메이션을 포함합니다.</p>
 <pre>
-<figure><img src="/wp-content/uploads/dragging-events.gif" alt="dragging-events" width="300" height="300" class="alignnone size-full wp-image-48" /></figure>
+<figure><img src="/wp-content/uploads/dragging-events.gif" alt="dragging-events"/></figure>
 <code>
 # 드래그가 시작할 때 이벤트
 layerA.onDragStart ->
@@ -70,7 +70,7 @@ layerA.onDragEnd ->
 <h3>드래그 애니메이션 (Drag Animation)</h3>
 <p><code>momentum</code>과 <code>bounce</code>가 활성화되었을 때 발생하는 두 가지 특수한 이벤트가 있는데요. <code>DragAnimationDidStart</code>와 <code>DragAnimationDidEnd</code>입니다. 그들은 레이어가 애니메이팅되는 동안, <code>DragEnd</code> 이벤트 뒤에 발생합니다.</p>
 <pre>
-<figure><img src="/wp-content/uploads/dragging-didstart.gif" alt="dragging-didstart" width="300" height="300" class="alignnone size-full wp-image-49" /></figure>
+<figure><img src="/wp-content/uploads/dragging-didstart.gif" alt="dragging-didstart" /></figure>
 <code>
 # DragEnd 후에, the DragAnimation이 시작하도록 설정
 layerA.onDragAnimationStart ->
