@@ -25,7 +25,6 @@
 	  	type = typeof type !== 'undefined' ? type : 'posts';
 	    return ($http.get(url+type+'?per_page=100')
 	    .then(handleSuccess, handleError));
-	    console.log();
 	  }
 
 	  
