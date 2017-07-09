@@ -1,9 +1,19 @@
-Layout & Hierarchy
+<h2>프레이머는 자동 계층 구조 및 관련 레이아웃 배치 기능에 중점을 뒀습니다.</h2>
+<h3>자동 계층 구조</h3>
+<p>프레이머에서 캔버스에 레이어를 배치하면 시각적 위치에 따라 레이어의 계층 구조를 추측합니다. 이 순서는 레이어 패널에 표시된 순서로 기록됩니다.</p>
+<p>이 방법으로 캔버스에 배치하는 거의 모든 것이 부모 - 자식 레이어 관계에 따라 정렬됩니다. 이렇게 계층을 자동으로 추측하기 때문에 더 이상 레이어 그룹(grouping)에 대해 걱정할 필요가 없습니다.</p>
+<video class="getstartedvideo" loop="" autoplay="" playsinline="" poster="//framer.com/assets/static/images/getstarted/videos/auto-hierarchy-poster.png">
+    <source src="//framer.com/assets/static/images/getstarted/videos/auto-hierarchy.mp4" type="video/mp4">
+</video>
+<h3>부모와 자식 레이어</h3>
+<p>이 관계의 개념을 이해하는 것이 중요합니다. 예를 들어, 사각형 내부에 원을 배치하면 사각형이 원의 부모 레이어가됩니다. 원은 사각형 안의 다른 레이어와 함께 자식 레이어가 됩니다. 이런 방식으로 아트보드는 네비게이션 바의 부모 레이어가 됩니다. 그리고 네비게이션 바는 머리글 텍스트, 배터리 아이콘 및 메뉴 아이콘을 포함 할 수 있는 부모 레이어가 됩니다.</p>
+<p>이 부모 - 자식 레이어 관계가 설정되면 자식 계층은 항상 부모 계층의 동작을 모방합니다. 크기를 조정하거나 부모 레이어의 위치를 ​​변경하거나 이동하면 자식 레이어가 따라갑니다. 이는 여러 화면 크기에서 디자인을 확장 할 때 매우 편리합니다.</p>
+<video class="getstartedvideo" loop="" autoplay="" playsinline="" poster="//framer.com/assets/static/images/getstarted/videos/resize-parent-poster.png">
+    <source src="//framer.com/assets/static/images/getstarted/videos/resize-parent.mp4" type="video/mp4">
+</video>
+<p>자식 레이어 간의 정렬 및 간격을 확인해야되나요? 레이어 패널에서 레이어를 드래그하고 재정렬하면 언제든지 계층을 재정렬 할 수 있습니다. 또는 마우스 오른쪽 버튼을 클릭하고 'Delete from hierarchy'를 선택하세요.</p>
+<h3>자동 반응형 레이아웃</h3>
+<p>아트보드에 레이어를 배치하면 프레이머는 레이아웃 규칙을 자동으로 추측합니다. 작업은 항상 여러 장치에서 응답하고 볼 수 있습니다. 레이아웃 규칙을 설정하는 방법에 대한 자세한 내용을 보려면 <a href="/#properties">레이어 속성</a>으로 이동하세요.</p>
+<h3>레이어 목록 계층 구조</h3>
+<p>기존 그래픽 도구와 달리 프레이머 디자인의 레이어 목록은 레이어를 그룹화하지 않습니다. 오히려 부모 - 자식 레이어 관계에서 레이어를 함께 연결하는 방식으로 작동합니다. 서로 관계가 있는 레이어의 계층 구조가 계층 목록에 반영됩니다. 자식 레이어는 부모 레이어 아래에 중첩됩니다. 이는 반응형 레이아웃 설계에서 훨씬 더 직관적인 작업을 허용합니다.</p>
 
-By focusing on automatic hierarchy and relative layout positioning, Framer lives up to the demands of modern day interface design.
-
-Automatic Hierarchy
-
-When you place a layer on the canvas in Framer, it is smart enough to guess the layer’s hierarchy based on its visual position. This sequencing will also be noted in the order displayed in the layer panel.
-
-In this way, almost everything you place on the canvas will be ordered according to a parent-child relationship. Because we automatically guess hierarchy this way, you won’t have to worry about grouping any longer.

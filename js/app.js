@@ -55,7 +55,7 @@
 	// myApp.controller('MainCtrl', function ($scope, wpFactory) {
 	myApp.controller('design', ['$scope', 'wpFactory', function ($scope, wpFactory) {
 		$scope.posts = [];
-		wpFactory.getPosts('desing').then(function (succ) {
+		wpFactory.getPosts('design').then(function (succ) {
 			$scope.posts = succ;
 		}, function error(err) {
 			console.log('Errror: ', err);

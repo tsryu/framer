@@ -1,0 +1,26 @@
+<h2>프레이머는 모든 레이어 그룹(하나 이상의 레이어 포함)을 프레이머의 레이어로 그룹화합니다. 레이어는 이름으로 선택하고 스케치에서 그룹화해야합니다. 그룹화되지 않은 레이어는 포함되지 않습니다.</h2>
+<p>파일을 성공적으로 가져오면 프레이머 프로토타입 맨 위에 다음 코드 행이 삽입됩니다.</p>
+<pre>
+<code>
+# "design" 파일 가져오기
+sketch = Framer.Importer.load("imported/design@1x")
+</code>
+</pre>
+<p>이 코드로 가져온 레이어를 모두 로드하고 포함합니다. 기본적으로 파일 이름은 가져오기에 사용한 앱의 이름을 따서 지정됩니다. 나중에 레이어를 쉽게 참조할 수 있도록 파일의 이름을 바꿀 수 있습니다.</p>
+<p>이제 <strong>layerA</strong>의 이름을 바꾼 레이어 그룹을 선택하려면 다음과 같이 입력하세요.</p>
+<pre>
+<code>
+# "design" 파일 가져오기
+sketch = Framer.Importer.load ( "imported / design @ 1x")
+ 
+# layerA의 오퍼시티 설정
+sketch.layerA.opacity = 0.5	
+</code>
+</pre>
+<p>그룹에 배치된 레이어 그룹을 <a href="/docs#layer.children">자식 레이어</a>라고합니다. 아래 예에서 <strong>그룹</strong>에는 두 개의 자식 레이어가 있습니다. 직접 선택할 수 있으므로 레이어 계층 구조를 고려할 필요가 없습니다.</p>
+<p>스케치를 사용하고 프레이머에서 자식 레이어를 선택하지 않으려면 그룹을 병합할 수 있습니다. 그룹 이름의 끝에 <code>*</code>를 추가하면 자식 레이어가 없는 단일 레이어가 됩니다. 그룹을 완전히 제외하려면 이름에 <code>-</code>를 추가하십시오.</p>
+<figure><img src="/wp-content/uploads/ss-target-hierarchy.png" alt="레이어 그룹 스크린샷" /></figure>
+<h3>다중 레이어 선택</h3>
+<p>다중 레이어를 동시에 선택할 수도 있습니다. 한 번에 두 개의 레이어에 애니메이션을 적용하거나 레이어 그룹 중 하나를 숨기려면 이 기능이 유용합니다.</p>
+<p>이것은 반복문(for-loop)으로 할 수 있습니다. 가져온 레이어를 모두 선택하거나 특정 그룹 내의 레이어만 선택할 수 있습니다.</p>
+<figure><img src="/wp-content/uploads/ss-target-multiple.png" alt="다중 레이어 선택 스크린샷" /></figure>
