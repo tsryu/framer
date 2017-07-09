@@ -314,6 +314,32 @@
 			margin: 0;
 		}
 	}
+	.shortcuts{
+		.row{
+			.col-1-2{
+				padding-top: 41px;
+				position: relative;
+				h3{
+					.make-sm-column(12);
+					position: absolute;
+					top: 0;
+					left: 0;
+					&+p{
+						margin-top: 0;
+					}
+				}
+				p{
+					white-space: nowrap;
+					code{
+						margin: 0 10px 0 0;
+					}
+				}
+			}
+			&+.row{
+				margin-top: 60px;
+			}
+		}
+	}
 	
 }
 
