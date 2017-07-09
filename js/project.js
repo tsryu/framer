@@ -42,7 +42,24 @@
 
 
 	$(document).ready(function() {
-		if($('.page-template-template-document, .page-docs').length){
+		if($('.page-docs').length){
+			var $sidebar = $('.site-sidebar .anchor-link');
+			$('.page-content .section').each(function(){
+				var sectionText = $(this).children('h1').text();
+				var sectionId = $(this).attr('id');
+				$sidebar.append('<li><a href="#'+sectionId+'">'+sectionText+'</a></li>');
+				if($(this).find('h3').length){
+					$('.site-sidebar a[href="#'+sectionId+'"]').parent().addClass('accordion').append('<ul id="list-'+sectionId+'"></ul>');
+					$(this).find('h3').each(function(){
+						var h3Text = $(this).text();
+						var h3Id = $(this).attr('id');
+						$('#list-'+sectionId).append('<li><a href="#'+h3Id+'">'+h3Text+'</a></li>');
+					})
+				}
+				
+			})
+		}
+		if($('.page-template-template-document').length){
 			var $pre = $('.site-content pre');
 			$pre.children('code').addClass('language-coffeescript code-embed-code');
 			$pre.wrap('<div class="code-embed-wrapper">').addClass('line-numbers code-embed-pre');

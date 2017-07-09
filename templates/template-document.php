@@ -45,13 +45,15 @@ endwhile;
 slowalk_after_content();?>
 	<aside class="site-sidebar">
 		<ul class="anchor-link">
-			<?php 
-			if ( $query_main->have_posts() ) : 
-				while ( $query_main->have_posts() ) : $query_main->the_post();
-					$post_slug=$post->post_name; ?>
-					<li><a href="#<?php echo $post_slug; ?>" class="section-title-link scroll-animate"><?php the_title();?></a></li>
-				<?php 
-				endwhile;
+			<?php
+			if(!is_page('docs')): 
+				if ( $query_main->have_posts() ) : 
+					while ( $query_main->have_posts() ) : $query_main->the_post();
+						$post_slug=$post->post_name; ?>
+						<li><a href="#<?php echo $post_slug; ?>" class="section-title-link scroll-animate"><?php the_title();?></a></li>
+					<?php 
+					endwhile;
+				endif;
 			endif;
 			?>
 		</ul>
