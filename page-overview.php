@@ -23,9 +23,9 @@ slowalk_after_content();
 ?>
 <aside class="site-sidebar">
 	<ul class="anchor-link">
-		<li><a class="section-title-link" href="#overview">Overview</a></li>
-		<li><a class="section-title-link" href="#design">Design</a></li>
-		<li><a class="section-title-link" href="#code">Code</a></li>
+		<li><a class="section-title-link scroll-animate" href="#overview">Overview</a></li>
+		<li><a class="section-title-link scroll-animate" href="#design">Design</a></li>
+		<li><a class="section-title-link scroll-animate" href="#code">Code</a></li>
 	</ul>
 </aside>
 <?php

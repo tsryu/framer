@@ -256,21 +256,17 @@
 		}
 	}
 	.section{
+		margin-top: 50px;
+		@media (min-width: @screen-sm-min) {
+			margin-top: 92px;
+		}
 		.section-title{
-			padding-top: 50px;
-			@media (min-width: @screen-sm-min) {
-				padding-top: 92px;
-			}
+			padding-top: 0;
 			.font-weight(@light);
 		}
 		&:first-child{
+			margin-top: 0;
 			.section-title{
-				@media (max-width: @screen-sm-max) {
-					padding-top: 0;
-				}
-				@media (min-width: @screen-sm-min) {
-					margin-top: -100px;
-				}
 			}
 		}
 	}
