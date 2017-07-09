@@ -42,16 +42,23 @@
 
 
 	$(document).ready(function() {
+		if($('.page-template-template-document, .page-docs').length){
+			var $pre = $('.site-content pre');
+			$pre.children('code').addClass('language-coffeescript code-embed-code');
+			$pre.wrap('<div class="code-embed-wrapper">').addClass('line-numbers code-embed-pre');
+			$pre.each(function(){
+				// 앞 뒤로 여백 삭제하기
+				var pure_code = $(this).text().replace(/^\s+|\s+$/g, "");
+				$(this).children('code').text(pure_code);
+			})
+		}
 		//앵커 스크롤 애니메이션
 		$(".scroll-animate").live('click', function (event) {
 			event.preventDefault();
 			var elementClick = $(this).attr("href").substr(1);
-			console.log(elementClick);
 			// var destination = $(elementClick).offset().top;
 			var elementClickId = document.getElementById(elementClick);
-			console.log(elementClickId);
 			var destination = elementClickId.offsetTop;
-			console.log(destination);
 			$("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination }, 200, 'swing', function() {
 			  window.location.hash = elementClick;
 			});

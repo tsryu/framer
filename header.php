@@ -15,7 +15,7 @@
 <a class="skip-link sr-only" href="#content"><?php echo '본문으로 이동'; ?></a>
 
 <header id="masthead" class="site-header" role="banner">
-  <nav id="gnb-desktop" class="site-navigation gnb hidden-xs" role="navigation">
+  <nav id="gnb-desktop" class="site-navigation gnb-desktop" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <a id="brand" class="site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>">
@@ -44,46 +44,6 @@
       </div><!-- .navbar-collapse -->
     </div><!-- .container -->
   </nav>
-  
-  <nav id="gnb-mobile" class="site-navigation gnb visible-xs" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle">
-          <span class="sr-only">메뉴 열기</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a id="brand" class="site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" title="<?php bloginfo( 'name' ); ?>">
-          <img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/images/brand.png">
-        </a>
-      </div><!-- .navbar-header -->
-
-      <div class="navbar-collapse" id="gnb-collapse">
-        <header class="navbar-collapse-header">
-          <span class="title">menu</span>
-          <div class="navbar-toggle-close"><span class="sr-only">메뉴 닫기</span></div>
-          <!-- 
-          <button type="button" class="navbar-toggle">
-            <span class="sr-only">메뉴 토글</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          -->
-        </header>
-        <?php
-        wp_nav_menu( array(
-          'theme_location'    => 'gnb',
-          'depth'             => 3,
-          'container'         => false,
-          'menu_class'        => 'nav navbar-nav no-style'
-        ) );?>
-      </div>
-    </div><!-- .container -->
-  </nav>
-
-
 </header><!-- .site-header -->
 
 <main id="main" class="site-main" role="main">

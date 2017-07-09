@@ -1,16 +1,15 @@
 <?php
+/**
+ * Template Name: Document Angular
+ */
+global $post;
+$page_slug = str_replace('-angular','',$post->post_name);
 get_header();
 ?>
-<div ng-controller="design">
-<?php slowalk_before_content(); ?>
-
-<?php
+<div ng-controller="<?php echo $page_slug;?>">
+<?php slowalk_before_content();
 while ( have_posts() ) : the_post();
-  
-	slowalk_before_post();
-
-	slowalk_page_header(); ?>
-
+	slowalk_before_post();?>
 	<div class="page-content">
 		<section ng-repeat="post in posts | reverse" id="{{post.slug}}" class="section" ng-bind-html-unsafe="getContent(post)">
 			<h1 class="section-title">{{post.title.rendered}}</h1>
@@ -20,14 +19,9 @@ while ( have_posts() ) : the_post();
 	</div>
 	<?php 
 	slowalk_after_post();
-
 endwhile;
-?>
-
-<?php
 slowalk_after_content();
-?>
-<?php get_sidebar();?>
+get_sidebar();?>
 </div>
 <?php
 get_footer();
