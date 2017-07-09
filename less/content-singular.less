@@ -32,6 +32,19 @@
 			.font-size(19);
 			margin-bottom: 15px;
 		}
+		span{
+			color:#BBB;
+			.font-weight(@normal);
+		}
+	}
+	h4{
+		.font-size(15);
+		margin-bottom: 10px;
+		margin-top: 0;
+		@media (min-width: @screen-sm-min) {
+			.font-size(17);
+			margin-bottom: 15px;
+		}
 	}
 	h1, h2, h3, h4, h5, h6, p, ul li{
 		// color: #4e4e4e;
@@ -53,18 +66,9 @@
 		a{
 			color:#00AAFF;
 		}
-		code{
-			display: inline;
-			font-size:0.8em;
-			.font-weight(@normal);
-			font-family: @code-font-family;
-			margin: 0 3px;
-			.border-r(4px);
-			padding: 4px 8px;
-			box-shadow: 0 0 0 1px #ddd;
-			white-space: nowrap;
-		}
+		
 	}
+	
 
 	img { 
     display: block;
@@ -98,7 +102,7 @@
 			&:before {
 				content: "";
 				position: absolute;
-				top: 9px;
+				top: 11px;
 				left: 0;
 				width: 3px;
 				height: 3px;
@@ -110,10 +114,10 @@
 	}
 
 	ol {
-		margin: 18px 0;
+		margin: 0 0 24px;
     	padding-left: 0;
-		list-style-position: inside;
-
+		// list-style-position: inside;
+		list-style: none;
 		> li {
 			position: relative;
 			margin-top: 4px;
@@ -198,8 +202,8 @@
 		}
 
 		tbody {
-			th { background-color: #f7f7f4; }
 			th, td {
+				text-align: left;
 				color: @text;
 				.font-size(13);
 				padding: 7px;
@@ -210,7 +214,7 @@
 					padding: 14px;
 					.font-size(14);
 				}
-				border:1px solid #dfdfdf;
+				border: 0;
 				// word-break: keep-all;
 
 				// overflow: hidden;
@@ -229,6 +233,23 @@
 				}
 			}
 		}
+		&.compatibility{
+			max-width: 600px;
+			th,td{
+				padding: 10px 5px 0;
+				text-align: left;
+			}
+			th {
+				.font-weight(@medi);
+				.font-size(17);
+				border-bottom: 1px solid #eee;
+				padding-top: 20px;
+				padding-bottom: 10px;
+			}
+			td:first-child{
+				color:#666;
+			}
+		}
 	}
 	.table-wrap{
 		overflow-x: auto;
@@ -236,7 +257,19 @@
 			width: 594px;
 		}
 	}
-
+	p, ol, ul{
+		code{
+			display: inline;
+			font-size:0.8em;
+			.font-weight(@normal);
+			font-family: @code-font-family;
+			margin: 0 3px;
+			.border-r(4px);
+			padding: 4px 8px;
+			box-shadow: 0 0 0 1px #ddd;
+			white-space: nowrap;
+		}
+	}
 	h1, h2, h3, h4, ul, ol, p, table, blockquote {
 		&:first-child { margin-top: 0; }
 	}
