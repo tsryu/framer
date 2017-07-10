@@ -67,7 +67,7 @@ layerA = new Layer
     backgroundColor: blue   
 </code>
 </pre>
-<h3 id="color.darken">color.darken(amount)</h3>
+<h3 id="color.darken">color.darken(<span class="param">amount</span>)</h3>
 <p>검은 색을 추가하고 어두운색을 반환합니다.</p>
 <h4>인수</h4>
 <ol>
@@ -82,7 +82,7 @@ layerA = new Layer
     backgroundColor: blue
 </code>
 </pre>
-<h3 id="color.saturate">color.saturate(amount)</h3>
+<h3 id="color.saturate">color.saturate(<span class="param">amount</span>)</h3>
 <p>색상의 채도를 높일 수 있습니다.</p>
 <h4>인수</h4>
 <ol>
@@ -97,7 +97,7 @@ layerA = new Layer
     backgroundColor: blue
 </code>
 </pre>
-<h3 id="color.desaturate">color.desaturate(amount)</h3>
+<h3 id="color.desaturate">color.desaturate(<span class="param">amount</span>)</h3>
 <p>색상의 채도를 낮출 수 있습니다.</p>
 <h4>인수</h4>
 <ol>
@@ -126,7 +126,7 @@ layerA = new Layer
     backgroundColor: gray  
 </code>
 </pre>
-<h3 id="color.gray">color.gray(amount, alpha)</h3>
+<h3 id="color.gray">color.gray(<span class="param">amount, alpha</span>)</h3>
 <p>투명한 흰색 배경을 생성합니다.</p>
 <h4>인수</h4>
 <ol>
@@ -139,7 +139,7 @@ layer = new Layer
     layer.backgroundColor = Color.gray(0.5)    
 </code>
 </pre>
-<h3 id="color.alpha">color.alpha(amount)</h3>
+<h3 id="color.alpha">color.alpha(<span class="param">amount</span>)</h3>
 <p>색상의 알파(오퍼시티) 값을 늘립니다.</p>
 <h4>인수</h4>
 <ol>
@@ -154,7 +154,7 @@ layerA = new Layer
     backgroundColor: blue
 </code>
 </pre>
-<h3 id="color.mix">Color.mix(colorA, colorB, fraction, limit, model)</h3>
+<h3 id="color.mix">Color.mix(<span class="param">colorA, colorB, fraction, limit, model</span>)</h3>
 <p>사용자 가 입력한 두 가지 색상을 혼합합니다. <code>fraction</code>은 두 색상 사이의 분포를 정의하며 기본적으로 0.5로 설정됩니다.</p>
 <h4>인수</h4>
 <ol>
@@ -199,7 +199,7 @@ layerA.on Events.Move, (offset) ->
 random = Color.random()    
 </code>
 </pre>
-<h3 id="color.isColor">Color.isColor(value)</h3>
+<h3 id="color.isColor">Color.isColor(<span class="param">value</span>)</h3>
 <p>값이 유효한 색상 객체 또는 색상 문자열인지 확인합니다. true 또는 false를 반환합니다.</p>
 <h4>인수</h4>
 <ol>
@@ -211,7 +211,7 @@ print Color.isColor(new Color "red") # true 반환
 print Color.isColor("red") # true 반환    
 </code>
 </pre>
-<h3 id="color.isColorObject">Color.isColorObject(value)</h3>
+<h3 id="color.isColorObject">Color.isColorObject(<span class="param">value</span>)</h3>
 <p>값이 유효한 색상 객체인지 확인합니다. true 또는 false를 반환합니다.</p>
 <h4>인수</h4>
 <ol>
@@ -223,7 +223,7 @@ print Color.isColorObject(new Color "red") # true 반환
 print Color.isColorObject("red") # false 반환
 </code>
 </pre>
-<h3 id="color.isColorString">Color.isColorString(value)</h3>
+<h3 id="color.isColorString">Color.isColorString(<span class="param">value</span>)</h3>
 <p>값이 색상 문자열인지 확인합니다. true 또는 false를 반환합니다.</p>
 <h4>인수</h4>
 <ol>

@@ -39,7 +39,7 @@
           'menu'    => 'external',
           'depth'             => 1,
           'container'         => false,
-          'menu_class'        => 'nav navbar-nav no-style menu-external'
+          'menu_class'        => 'nav navbar-nav no-style menu-external hidden-xs'
         ) ); ?>
       </div><!-- .navbar-collapse -->
     </div><!-- .container -->

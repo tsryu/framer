@@ -11,6 +11,7 @@
 	    margin-bottom: 30px;
 	    position: relative;
 	    overflow-x: auto;
+	    overflow-y: hidden;
 	    font-family:  @code-font-family;
 	    line-height: 0;
 	    *{
@@ -43,7 +44,9 @@
 	    }
 	    figure{
 			margin: 0;
+			display: none;
 			@media (min-width: @screen-sm-min) {
+				display: block;
 				float: right;
 				width: 37.03703703703704%;
 			}

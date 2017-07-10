@@ -10,6 +10,16 @@
 		// 모바일 해상도에서 함수 실행
 	}
 
+
+	$(window).on("load hashchange", function () {
+		if (location.hash.length !== 0) {
+			var withoutHash = location.hash.substr(1);
+	    	var idOffsettop = document.getElementById(withoutHash).offsetTop;
+		    window.setTimeout(function () {
+		        window.scrollTo(0, idOffsettop + 4);
+		    }, 10);
+	    }
+	});
 	
 	var standard = 768, // 모바일 분기점
 			is_mobile = 0,  // 너비 ex)0 = 해상도 768 이상, 1 = 768 미만
@@ -51,7 +61,7 @@
 				if($(this).find('h3').length){
 					$('.site-sidebar a[href="#'+sectionId+'"]').parent().addClass('accordion').append('<ul id="list-'+sectionId+'"></ul>');
 					$(this).find('h3').each(function(){
-						var h3Text = $(this).text();
+						var h3Text = $(this).text().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 						var h3Id = $(this).attr('id');
 						$('#list-'+sectionId).append('<li><a href="#'+h3Id+'">'+h3Text+'</a></li>');
 					})
@@ -87,6 +97,17 @@
 		$('.navbar-toggle').click(function(e) {
 			e.preventDefault();
 			$('body').toggleClass('menu-open');
+		});
+
+		$('.accordion > a').live('click', function() {
+			// e.preventDefault();
+			if($(this).parent().hasClass('opened')){
+				$(this).siblings('ul').slideUp('fast');
+				$(this).parent().removeClass('opened');
+			}else{
+				$(this).siblings('ul').slideDown('fast');
+				$(this).parent().addClass('opened');
+			}
 		});
 
 		// 셀렉트박스

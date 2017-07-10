@@ -4,13 +4,13 @@
 	line-height: 1.57142857;
 
 	h1 {
-		.font-size(36);
+		.font-size(24);
     	.font-weight(@light);
 		line-height: 1;
 	    margin-top: 0;
 	    margin-bottom: 30px;
 	    @media (min-width: @screen-sm-min) {
-			.font-size(48);	
+			.font-size(32);	
 			margin-bottom: 40px;
 		} 
 	}
@@ -267,7 +267,10 @@
 			.border-r(4px);
 			padding: 4px 8px;
 			box-shadow: 0 0 0 1px #ddd;
-			white-space: nowrap;
+			white-space: normal;
+			@media (min-width: @screen-sm-min) {
+				white-space: nowrap;
+			}
 		}
 	}
 	h1, h2, h3, h4, ul, ol, p, table, blockquote {

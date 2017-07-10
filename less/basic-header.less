@@ -1,21 +1,34 @@
 @header-height: 50px;
 .site-header{
 	background-color: @white;
-	margin-bottom: 60px;
 	border-bottom: 1px solid #eee;
 	@media (min-width: @screen-sm-min) {
-		margin-bottom: 120px;
+		position: fixed;
+		width: 100%;
+		z-index: 1;
 	}
 	.gnb-desktop{
 		padding-top: 16px;
-		padding-bottom: 15px;
+		padding-bottom: 10px;
+		@media (min-width: @screen-sm-min) {
+			padding-bottom: 15px;
+		}
 		.menu-global{
 			overflow: hidden;
-			margin: 0;
-			float: left;
-			>li{
+			margin: 10px 0 0;
+			@media (min-width: @screen-sm-min) {
 				float: left;
-				margin-left: 77px;
+				margin: 0;
+			}
+			>li{
+				width: 25%;
+				float: left;
+				text-align: center;
+				@media (min-width: @screen-sm-min) {
+					margin-left: 77px;
+					width: auto;
+					text-align: left;
+				}
 				a{
 					color: @white;
 					font-weight: 400;
@@ -46,7 +59,12 @@
 		}
 		.site-title{
 			width: 12px;
-			float: left;
+			margin: 0 auto;
+			display: block;
+			@media (min-width: @screen-sm-min) {
+				margin: 0;
+				float: left;
+			}
 		}
 	}
 }

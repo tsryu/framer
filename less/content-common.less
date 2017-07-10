@@ -9,7 +9,7 @@
 		min-height: 1px;
 		@media (min-width: @screen-lg-min) {
 			float: right;
-			width: 75%;
+			width: 72%;
 		}
 		.page-header{
 			display: none;
@@ -21,10 +21,10 @@
 	display: none;
 	@media (min-width: @screen-lg-min) {
 		display: block;
-		width: 25%;
+		width: 12.6117%;
 		max-width: 270px;
-		float: left;
 		position: fixed;
+		top: 110px;
 		.anchor-link{
 			margin: 0;
 			li{
@@ -34,21 +34,88 @@
 				    .font-size(15);
 				    font-weight: 400;
 				    letter-spacing: 0.4px;
+				    word-break: break-all;
 				    &.active{
 				    	color:#bbb;
 				    }
 				}
 			}
 		}
-	}
-	.page-docs &{
-		.anchor-link{
-			li{
-				a{
-
-				}
-				ul{
-					display: none;
+		.page-docs &{
+			overflow-y: auto;
+			overflow-x: hidden;
+			bottom: 50px;
+			border: 1px solid #eee;
+			.anchor-link{
+				.border-r(4px);
+				>li{
+					margin: 0;
+					>a{
+						background-color: #fdfdfd;
+						position: relative;
+						border-top: 1px solid #eee;
+						display: block;
+						padding: 16px;
+						line-height: 1.2;
+						.transition(.15s background-color ease-out);
+					}
+					&:first-child{
+						a{
+							border: 0;
+						}
+					}
+					ul{
+						display: none;
+						border-top: 1px solid #eee;
+						margin: 0;
+						padding: 18px 0;
+						li{
+							margin: 0;
+							padding: 0;
+							a{
+								display: block;
+								.font-size(13);
+								line-height: 1.2;
+								padding: 2px 16px;
+								.transition(.15s color ease-out);
+								&:hover{
+									color:@brand;
+								}
+							}
+						}
+					}
+					&.accordion{
+						> a{
+							&:before{
+								.opacity(0);
+								content: '';
+								display: block;
+								position: absolute;
+								right: 0;
+								top: 0;
+								width: 48px;
+								height: 48px;
+								background: url('../../images/icon-caret.png') no-repeat center center;
+								background-size: 24px 24px;
+								.transition(.15s opacity ease-out);
+							}
+						}
+						
+						&.opened,
+						&:hover{
+							> a{
+								background-color: @white;
+								&:before{
+									.opacity(1);
+								}
+							}
+						}
+						&.opened{
+							> a:before{
+								.rotate(180deg);
+							}
+						}
+					}
 				}
 			}
 		}
