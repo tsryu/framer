@@ -4,11 +4,6 @@
  */
 global $post;
 $page_slug=$post->post_name;
-if($page_slug == 'docs'):
-	$order = 'DESC';
-else:
-	$order = 'ASC';
-endif;
 get_header();
 slowalk_before_content();
 while ( have_posts() ) : the_post();
@@ -19,7 +14,7 @@ while ( have_posts() ) : the_post();
 		$args_main = array (
 		'post_type'             => $page_slug,
 		'posts_per_page'        => '-1',
-		'order'                    => $order
+		'order'                    => 'ASC'
 		);
 
 		$query_main = new WP_Query( $args_main );

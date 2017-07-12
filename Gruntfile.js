@@ -157,12 +157,12 @@ module.exports = function (grunt) {
     'ftp-deploy': {
       build: {
         auth: {
-          host: 'framer.dothome.co.kr',
+          host: 'framerjs.co.kr',
           port: 21,
           authKey: 'key1'
         },
         src: './dist',
-        dest: '/html/wp-content/themes/framer/dist',
+        dest: '/home/hosting_users/framerkr/www/wp-content/themes/framer/dist',
         // exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'path/to/dist/tmp']
       }
     }
