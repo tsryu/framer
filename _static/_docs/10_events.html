@@ -560,7 +560,7 @@ layerA.onAnimationStart ->
 layerA.onAnimationStop ->
     print "Animation stopped"
  
-# Events.AnimationEnd  단축코드   
+# Events.AnimationEnd 단축코드   
 layerA.onAnimationEnd ->
     print "Animation ended"    
 </code>
@@ -862,9 +862,9 @@ Screen.onEdgeSwipeLeftEnd ->
 <h3 id="events.transition">Transition Events</h3>
 <ol>
     <li><code>Events.TransitionStart</code> — 트랜지션 시작 이벤트, 트랜지션이 시작할 때</li>
-    <li><code>Events.TransitionHalt</code> — 트랜지션이 중단되었을 때, 트랜지션 중단 이벤트가 발생합니다.</li>
-    <li><code>Events.TransitionStop</code> — 트랜지션이 완전히 끝났을 때, 트랜지션 정지 이벤트가 발생합니다.</li>
-    <li><code>Events.TransitionEnd</code> — 트랜지션이 완전히 끝났을 때, 트랜지션 종료 이벤트가 발생합니다.</li>
+    <li><code>Events.TransitionHalt</code> — 트랜지션 중단 이벤트, 트랜지션이 중단되었을 때</li>
+    <li><code>Events.TransitionStop</code> — 트랜지션 정지 이벤트, 트랜지션이 완전히 끝났을 때</li>
+    <li><code>Events.TransitionEnd</code> — 트랜지션 종료 이벤트, 트랜지션이 완전히 끝났을 때</li>
 </ol>
 <pre>
 <code>
@@ -961,7 +961,7 @@ layerA.on "change:x", ->
     print layerA.x
 </code>
 </pre>
-<p><code>"change"</code> 이벤트는 <a href="#utils.modulate">modulate</a>(프레이머 예약어)로 두 레이어를 연결해서 속성 변경할 수 있습니다. 아래 예와 같이 첫 번째 레이어를 회전시키는데요. 반환 된 값은 두 번째 레이어를 가로로 이동하는 데 사용됩니다.</p>
+<p><code>"change"</code> 이벤트는 <a href="#utils.modulate">modulate</a>(프레이머 예약어)로 두 레이어를 연결해서 속성 변경할 수 있습니다. 아래 예와 같이 첫 번째 레이어를 회전시키는데요. 반환된 값은 두 번째 레이어를 가로로 이동하는 데 사용됩니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -1041,9 +1041,6 @@ layerA.on Events.Swipe, (event) ->
 </code>
 </pre>
 <h4>Input</h4>
-<ol>
-    
-</ol>
 <ol>
     <li><code>event.fingers</code> — 스크린에 닿아있는 손가락의 수</li>
     <li><code>event.touchCenter</code> — 두 손가락 사이의 중앙 위치</li>

@@ -1,4 +1,4 @@
-<h2>PageComponent를 사용하면 여러 개의 정적 화면을 하나의 인터랙션이 가능한 프로토타입으로 만들 수 있습니다. 그것은 여러분이 인터랙션 경험에 집중할 수 있도록 모든 계산을 처리합니다.</h2>
+<h2>PageComponent를 사용하면 여러 개의 정적 화면을 하나의 인터랙션이 가능한 프로토타입으로 만들 수 있습니다. 여러분이 인터랙션 경험에 집중할 수 있도록 모든 계산을 처리합니다.</h2>
 <p>PageComponent를 사용하면 모든 방향으로 레이어간에 쉽게 스와이프 할 수 있습니다. 이것은 <a href="#scroll">ScrollComponent</a>를 기반으로합니다.</p>
 <pre>
 <figure><img src="/wp-content/uploads/pages-first.gif" alt="pages-first" /></figure>
@@ -22,30 +22,11 @@ layerB = new Layer
 <code>
 # PageComponent 만들기
 page = new PageComponent
- 
-# 레이어 만들기 
-layerA = new Layer
-layerB = new Layer
- 
+
 # layerA를 우측에 더하기
 # layerB를 하단에 더하기
 page.addPage(layerA)
 page.addPage(layerB, "bottom")
-</code>
-</pre>
-<p>여러분은 for-loop(반복문)을 사용하여 설정된 양의 페이지를 자동으로 생성할 수 있습니다. 아래 예제는 10개의 새 레이어를 만들고 각 레이어를 page.content 내에 배치합니다. 마지막으로 <code>index</code> 변수에 105를 곱하여 x 속성을 설정합니다.</p>
-<pre>
-<code>
-# PageComponent 만들기
-page = new PageComponent
-    scrollVertical: false
- 
-# 레이어 10개 만들기 
-for index in [0...10]
-    layer = new Layer
-        parent: page.content
-        size: 200
-        x: 210 * index
 </code>
 </pre>
 <h3>감싸기</h3>
@@ -75,18 +56,18 @@ page.on "change:currentPage", ->
         scale: 1
 </code>
 </pre>
-<p>꼭 첫 페이지에서 시작하고 싶지 않을 수도 있는데요. 애니메이션을 주거나, 혹은 없이 자동으로 다른 페이지로 이동할 수 있습니다.</p>
+<p>꼭 첫 페이지에서 시작하고 싶지 않을 수도 있는데요. 애니메이션을 추가하거나, 또는 애니메이션이 없이 다른 페이지로 이동할 수 있습니다.</p>
 <pre>
 <code>
 # pageThree 레이어로 이동하기
 page.snapToPage(pageThree)
  
 # 커스터마즈한 애니메이션으로 이동하기
-page.snapToPage(pageTwo, true, curve: "spring(200,25,0)")
+page.snapToPage(pageTwo, true, curve: Spring)
 </code>
 </pre>
 <h3>페이지 번호</h3>
-<p>가로 또는 세로로 측정된 페이지 인덱스를 추적할 수 있습니다. 인덱스는 페이지 번호에서 1을 뺀 것입니다. 이것은 인덱스가 항상 1 대신 0에서 시작 함을 의미합니다. 위에서 언급한 많은 속성 및 방식을 다시 짚고 넘어가려면, 페이지 인디케이터 <a href="http://share.framerjs.com/x0li6cnk4pc4/" target="_blank">예제</a>를 보십시오.</p>
+<p>가로 또는 세로로 측정된 페이지 인덱스를 추적할 수 있습니다. 인덱스는 페이지 번호에서 1을 뺀 것입니다. 인덱스는 항상 1 대신 0에서 시작합니다. 위에서 언급한 많은 속성 및 방식을 다시 짚고 넘어가려면, 페이지 인디케이터 <a href="http://share.framerjs.com/x0li6cnk4pc4/" target="_blank">예제</a>를 보십시오.</p>
 <pre>
 <figure><img src="/wp-content/uploads/pages-index.gif" alt="pages-index" /></figure>
 <code>

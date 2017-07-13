@@ -13,7 +13,7 @@ bg = new BackgroundLayer
  
 <pre>
 <code>
-# Multiple ways to define the same color: 여러 가지 방법으로 하나의 색상을 정의하는 예시
+# 여러 가지 방법으로 하나의 색상을 정의하는 예시
 blue = new Color("blue")
 blue = new Color("#28AFFA")
 blue = new Color("rgb(255, 0, 102)")
@@ -53,7 +53,7 @@ bg.animate
 </code>
 </pre>
 <h3 id="color.lighten">color.lighten(<span class="param">amount</span>)</h3>
-<p>흰색을 추가하고 밝게 된 색상을 반환합니다.</p>
+<p>흰색을 추가하고 밝게 한 색상을 반환합니다.</p>
 <h4>인수</h4>
 <ol>
     <li><code>amount</code> — 숫자 형태, 0부터 100까지 쓸 수 있습니다.  기본으로 10으로 설정됩니다.</li>
@@ -68,7 +68,7 @@ layerA = new Layer
 </code>
 </pre>
 <h3 id="color.darken">color.darken(<span class="param">amount</span>)</h3>
-<p>검은 색을 추가하고 어두운색을 반환합니다.</p>
+<p>검은색을 추가하고 어두운색을 반환합니다.</p>
 <h4>인수</h4>
 <ol>
     <li><code>amount</code> — 숫자 형태, 0부터 100까지 쓸 수 있습니다. 기본으로 10으로 설정됩니다.</li>
@@ -76,7 +76,7 @@ layerA = new Layer
 <pre>
 <code>
 # 새 색상을 만들고 어둡게 만들기
-blue = new Color("#28affa").darken(20)a
+blue = new Color("#28affa").darken(20)
  
 layerA = new Layer
     backgroundColor: blue
@@ -113,7 +113,7 @@ layerA = new Layer
 </code>
 </pre>
 <h3 id="color.grayscale">color.grayscale()</h3>
-<p>완전히 채도가 떨어지는 색을 반환합니다.</p>
+<p>완전히 채도가 없는 색을 반환합니다.</p>
 <pre>
 <code>
 # 새로운 색상 만들기
@@ -130,8 +130,8 @@ layerA = new Layer
 <p>투명한 흰색 배경을 생성합니다.</p>
 <h4>인수</h4>
 <ol>
-    <li><code>amount</code> — 흰색의 양을 나타내는 숫자</li>
-    <li><code>alpha</code> — 투명도를 나타내는 숫자 (선택)</li>
+    <li><code>amount</code> — 숫자 형태, 흰색의 양을 나타냅니다.</li>
+    <li><code>alpha</code> — 숫자 형태, 투명도를 나타냅니다. (선택)</li>
 </ol>
 <pre>
 <code>
@@ -170,7 +170,7 @@ layerA = new Layer
 orange = Color.mix("red", "yellow", 0.5)    
 </code>
 </pre>
-<p><code>limit</code>는 색상이 범위를 벗어날 수 있는지 정의합니다. 이것은 <a href="#utils.modulate">Utils.modulate</a>를 사용하여 색상 사이를 전환 할 때 적용 할 수 있습니다. 아래에서 <code>limit</code>는 <code>true</code>로 설정되어 전환을 두 번 이상 할 수 없습니다.</p>
+<p><code>limit</code>는 색상이 범위를 벗어날 수 있는지 정의합니다. 이것은 <a href="#utils.modulate">Utils.modulate</a>를 사용하여 색상 사이를 전환 할 때 적용할 수 있습니다. 아래에서 <code>limit</code>는 <code>true</code>로 설정되어 전환을 두 번 이상 할 수 없습니다.</p>
 <pre>
 <code>
 # 레이어 만들기
@@ -232,7 +232,7 @@ print Color.isColorObject("red") # false 반환
 <pre>
 <code>
 print Color.isColorString("red") # true 반환
-print Color.isColorString("#28affa") # true 반환     
+print Color.isColorString("#28affa") # true 반환
 </code>
 </pre>
 <h3 id="color.toHexString">Color.toHexString()</h3>

@@ -18,7 +18,7 @@ layerA.states =
 layerA.onTap -> layerA.stateCycle()
 </code>
 </pre>
-<p>Align은 당신이 위치시키고 싶은 위치의 x 좌표, y 좌표의 정확한 값을 동적으로 계산합니다. 따라서 오른쪽 아래에 레이어를 놓는 상태가 있다면  화면의 크기를 조정하더라도 Align은 유지됩니다.</p>
+<p>Align은 여러분이 위치시키고 싶은 위치의 x 좌표, y 좌표의 정확한 값을 동적으로 계산합니다. 따라서 오른쪽 아래에 레이어를 놓는 상태가 있다면  화면의 크기를 조정하더라도 Align은 유지됩니다.</p>
 <p>여러분은 또한 offsets를 선택으로 사용할 수 있습니다.</p>
 <pre>
 <code>
@@ -27,12 +27,12 @@ layerA = new Layer
     y: Align.top(100) # 상단으로부터 100px 위치
 </code>
 </pre>
-<p>left과 right는 x 속성에서만 작동하고, top과 bottom은 y 속성에서만 작동합니다. center는 x, y 속성 모두 사용할 수 있습니다. Align은 직접 코드를 편집하기 쉬우므로 <a href="#layer.center"></a>>layer.center()</a>보다 유연합니다.</p>
+<p>left과 right는 x 속성에서만 작동하고, top과 bottom은 y 속성에서만 작동합니다. center는 x, y 속성 모두 사용할 수 있습니다. Align은 직접 코드를 편집하기 쉬우므로 <a href="#layer.center">layer.center()</a>보다 유연합니다.</p>
 <h3 id="align.bottom">align.bottom(<span class="param">offset</span>)</h3>
 <p>레이어를 부모 레이어의 맨 아래에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Bottom은 y 레이어 속성에서만 작동합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
 <h4>인수</h4>
 <ol>
-	<li><code>offset</code> — 숫자 (선택)</li>
+	<li><code>offset</code> — 숫자 형태 (선택)</li>
 </ol>
 <pre>
 <code>
@@ -47,7 +47,7 @@ layerB = new Layer
 <p>레이어를 부모 레이어의 가운데에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
 <h4>인수</h4>
 <ol>
-	<li><code>offset</code> — 숫자 (선택)</li>
+	<li><code>offset</code> — 숫자 형태 (선택)</li>
 </ol>
 <pre>
 <code>
@@ -64,7 +64,7 @@ layerB = new Layer
 <p>레이어를 부모 레이어의 맨 왼쪽에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Left는 x 레이어 속성에서만 작동합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
 <h4>인수</h4>
 <ol>
-	<li><code>offset</code> — 숫자 (선택)</li>
+	<li><code>offset</code> — 숫자 형태 (선택)</li>
 </ol>
 <pre>
 <code>
@@ -79,7 +79,7 @@ layerB = new Layer
 <p>레이어를 부모 레이어의 맨 오른쪽에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Right는 x 레이어 속성에서만 작동합니다. 상태 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>	
 <h4>인수</h4>
 <ol>
-	<li><code>offset</code> — 숫자 (선택)</li>
+	<li><code>offset</code> — 숫자 형태 (선택)</li>
 </ol>
 <pre>
 <code>
@@ -94,7 +94,7 @@ layerB = new Layer
 <p>레이어를 부모 레이어의 맨 위에 배치합니다. 부모 레이어가 없으면 전체화면 기준으로 배치합니다. Top은 y 레이어 속성에서만 작동합니다. 스테이트 및 애니메이션에서 속성으로 사용할 수 있습니다.</p>
 <h4>인수</h4>
 <ol>
-	<li><code>offset</code> — 숫자 (선택)</li>
+	<li><code>offset</code> — 숫자 형태 (선택)</li>
 </ol>
 <pre>
 <code>

@@ -1,4 +1,4 @@
-<p>DeviceComponent는 iPhone, iPad 또는 Android와 같은 기기를 에뮬레이션합니다. 기기와 내용의 크기를 변경하고 방향(가로 보기, 세로 보기)을 조정할 수 있습니다. 기기를 설정이 끝나면 화면에 렌더링됩니다. 프레이머 미리보기는 미러 기능을 사용한 미리보기와 일치합니다. 즉, 프레이머 프리뷰로 아이폰을 보고 있다면, 미러 기능으로 실제 아이폰에서 봤을 때는 전체 화면으로 똑같이 나타납니다.</p>
+<p>DeviceComponent는 iPhone, iPad 또는 Android와 같은 기기를 에뮬레이션합니다. 기기와 내용의 크기를 변경하고 방향(가로 보기, 세로 보기)을 조정할 수 있습니다. 설정이 끝나면 기기를 화면에 렌더링됩니다. 프레이머 미리보기는 미러 기능을 사용한 미리보기와 일치합니다. 즉, 프레이머 프리뷰로 아이폰을 보고 있다면, 미러 기능으로 실제 아이폰에서 봤을 때는 전체 화면으로 똑같이 나타납니다.</p>
 <p>크기변경 및 기기방향 속성에는 Framer.Device 접두사가 붙습니다.</p>
 <pre>
 <code>
@@ -14,11 +14,11 @@ Framer.Device.background.image = "photo.jpg"
 Framer.Device.background.blur = 10
  
 # 현재 기기의 화면 크기 가져오기
-print Framer.Device.screen.width  # Output: 640 
-print Framer.Device.screen.height # Output: 480    
+print Framer.Device.screen.width  # 결과: 640 
+print Framer.Device.screen.height # 결과: 480    
 </code>
 </pre>
-<p>화면에 맞게 보기는 콘텐츠를 픽셀이 맞지 않게 렌더링하여 화면 비율을 유지할 수도 있습니다. 하지만 50%, 100% 등 기타 단위로 볼 때 콘텐츠가 항상 픽셀에 맞춰 보여집니다. 브라우저에서 지원하는 경우, 기기 이미지가 JPEG2000으로 압축되어 이미지 크기가 줄어듭니다.</p>
+<p>화면에 맞게 보기(scale-to-fit view)는 콘텐츠를 픽셀이 맞지 않게 렌더링하여 화면 비율을 유지할 수도 있습니다. 하지만 50%, 100% 등 기타 단위로 볼 때 콘텐츠가 항상 픽셀에 맞춰 보여집니다. 브라우저에서 지원하는 경우, 기기 이미지가 JPEG2000으로 압축되어 이미지 크기가 줄어듭니다.</p>
 <p>기기 위치를 변경하려면 일반 레이어와 마찬가지로 화면 및 기기의 x 및 y 값을 변경하세요.</p>
 <pre>
 <code>
@@ -290,7 +290,7 @@ Framer.Device.setOrientation(90, true)
 <p>기기 방향을 이름으로 설정하십시오. 유효한 옵션은 "portrait"와  "landscape"입니다. 세로와 가로 값은 기기 방향을 각각 0과 90으로 설정하는 것과 같습니다.</p>
 <pre>
 <code>
-# 기기 방향을 세로, 아니면 가로로 설정
+# 기기 방향을 가로, 아니면 세로로 설정
 Framer.Device.orientationName = "landscape"
 Framer.Device.orientationName = "portrait"
 </code>
