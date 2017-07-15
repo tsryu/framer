@@ -38,7 +38,8 @@ flow = new FlowComponent
 flow.showNext(layerA)
 </code>
 </pre>
-<p>애니메이트를 <code>false</code>로 설정하면 연결 애니메이션 없이 레이어간에 전환할 수 있습니다.</p>
+<p>애니메이트를 <code>false</code>로 설정하면 연결 애니메이션 없이 레이어 사이를 전
+할 수 있습니다.</p>
 <pre>
 <code>
 # 레이어 만들기
@@ -130,7 +131,7 @@ layerA.onClick ->
 </code>
 </pre>
 <h3 id="flow" class="showOverlayTop">flow.showOverlayTop(<span class="param">layer, options</span>)</h3>
-<p>알림 화면처럼 상단에서 레이어를 오버레이합니다.</p>
+<p>알림 화면처럼 위에서 레이어를 오버레이합니다.</p>
 <h4>인수</h4>
 <ol>
     <li><code>layer</code> — 레이어 객체</li>
@@ -174,7 +175,7 @@ flow.showOverlayRight(layerA)
 </code>
 </pre>
 <h3 id="flow.showOverlayBottom">flow.showOverlayBottom(layer, options)</h3>
-<p>레이어를 아래에서 오버레이합니다.</p>
+<p>아래에서 레이어를 오버레이합니다.</p>
 <h4>인수</h4>
 <ol>
     <li><code>layer</code> — 레이어 객체</li>
@@ -218,7 +219,7 @@ flow.showOverlayLeft(layerA)
 </code>
 </pre>
 <h3 id="flow.transition">flow.transition(<span class="param">layer, transition, options</span>)</h3>
-<p>트랜지션을 커스터마이즈해서 만듭니다. 트랜지션은 상태(state)를 사용하여 앞뒤로 순환합니다. 두 가지 상태 (뒤와 앞)가있는 세 개의 레이어 (현재, 다음 및 배경)가 있습니다. 특정 상태를 정의하지 않으면 FlowComponent는 해당 레이어에 애니메이션을 적용을 원하지 않는 것으로 가정합니다.</p>
+<p>트랜지션을 커스터마이즈해서 만듭니다. 트랜지션은 상태(state)를 사용하여 앞뒤로 순환합니다. 두 가지 상태 (뒤와 앞)가 있는 세 개의 레이어 (현재, 다음 및 배경)가 있습니다. 특정 상태를 정의하지 않으면 FlowComponent는 해당 레이어에 애니메이션을 적용을 원하지 않는 것으로 가정합니다.</p>
 <h4>인수</h4>
 <ol>
     <li><code>layer</code> — 레이어 객체</li>
@@ -264,7 +265,7 @@ layerA.onClick ->
     flow.transition(layerB, scaleTransition)    
 </code>
 </pre>
-<p>커스텀 트랜지션은 상태(states)가 있는 객체를 반환하는 함수입니다. 함수 내에서 현재 FlowComponent, layerA, layerB 및 overlay 인수에 액세스 할 수 있습니다. layerA, layerB 또는 overlay에 대한 상태를 전달하지 않으면 전환시 그대로있는 상태로 유지됩니다.</p>
+<p>커스텀 트랜지션은 상태(states)가 있는 객체를 반환하는 함수입니다. 함수 내에서 현재 FlowComponent, layerA, layerB 및 overlay 인수에 액세스 할 수 있습니다. layerA, layerB 또는 overlay에 대한 상태를 전달하지 않으면 전환시 그대로 있는 상태로 유지됩니다.</p>
 <h3 id="flow.header">flow.header &lt;layer&gt;</h3>
 <p>고정된 네비게이션 바처럼 스크롤 가능한 화면에 고정 헤더(sticky header)를 추가합니다.</p>
 <pre>

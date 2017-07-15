@@ -1,11 +1,11 @@
 <p>레이어 상태는 다양한 레이어 속성의 조합을 관리하고 구성합니다. <a href="#layer.animate">애니메이션</a>은 상태를 지정해서 사용할 수 있습니다. 스위치를 사용하면 즉시 다른 상태로 이동할 수 있으며, 순환(cycle)으로 상태에서 상태로 순차적으로 이동할 수 있습니다.</p>
 <p>상태에 <code>x</code> 및 <code>y</code>와 같은 레이어 속성을 추가할 수 있습니다. <code>html</code>과 같이 애니메이션 가능하지 않은 레이어 속성은 상태 애니메이션의 끝에 적용됩니다.</p>
 <p>상태는 <a href="#layer.animationOptions">애니메이션 옵션</a> 속성을 가질 수 있습니다. 레이어가 정의된 상태로 애니메이션이 적용될 때마다 사용됩니다.</p>
-<p>세 가지 사전 정의된 상태는 이미 용도가 지정되어 있어서 재정의할 수 없습니다. <code>name</code> 속성을 사용하여 <a href="#layer.states.current">현재</a> 및 <a href="#layer.states.previous">이전</a>에 대한 상태 이름을 가져올 수 있습니다.</p>
+<p>아래 세 가지 사전 정의된 상태는 이미 용도가 지정되어 있어서 사용할 수 없습니다. 여러분은 <a href="#layer.states.current">current</a>(현재) 및 <a href="#layer.states.previous">previous</a>(이전)의 <code>name</code> 속성을 사용하여 원하는 상태를 가져올 수 있습니다.</p>
 <ol>
     <li><code>default</code> — 초기 상태</li>
     <li><code>current</code> — 현재 활성 상태</li>
-    <li><code>previous</code> —이전 활성 상태</li>
+    <li><code>previous</code> — 이전 활성 상태</li>
 </ol>
 <h4>예시: 상태 생성 및 삭제</h4>
 <pre>

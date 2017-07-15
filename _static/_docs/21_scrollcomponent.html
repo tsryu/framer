@@ -1,5 +1,5 @@
 <p>스크롤 컴포넌트는 내용을 스크롤하는 데 사용됩니다. 모멘텀과 스프링 모션을 구현하고, 커스터마이즈를 허용하며, 다양한 이벤트를 가지고 있습니다.</p>
-<p>스크롤 컴포넌트는 두 개의 레이어로 구성됩니다. 스크롤 컴포넌트 자체는 내용을 마스킹하는 레이어입니다. 그것은 드래그 가능하며 드래그 제한영역이 활성화되어있는 콘텐츠 레이어를 가지고 있습니다. 이는 콘텐츠 레이어의 하위 레이어의 총 크기를 기반으로 콘텐츠 레이어의 크기를 자동으로 관리합니다.</p>
+<p>스크롤 컴포넌트는 두 개의 레이어로 구성됩니다. 스크롤 컴포넌트 자체는 내용을 마스킹하는 레이어입니다. 그것은 드래그 가능하며 드래그 제한영역이 활성화되어있는 콘텐츠 레이어를 가지고 있습니다. 콘텐츠 레이어는 자식 레이어 총 크기에 맞춰 콘텐츠 레이어 크기를 자동으로 관리합니다.</p>
 <pre>
 <code>
 # 스크롤 컴포넌트 만들기
@@ -12,7 +12,7 @@ layerA = new Layer
     parent: scroll.content    
 </code>
 </pre>
-<p>ScrollComponent.wrap()을 사용하여 스크롤 컴포넌트 내에 기존 레이어를 감쌀 수도 있습니다. 스크롤 컴포넌트는 내용과 부모 레이어 사이에 삽입됩니다. 이 기능은 스케치 또는 포토샵에서 디자인을 가져와서 레이어를 스크롤 가능하게 만들 때 유용합니다. <a href="#scroll.wrap">이곳</a>에서 감싸기에 대해 더 배울 수 있습니다.</p>
+<p>ScrollComponent.wrap()을 사용하여 스크롤 컴포넌트 내에 기존 레이어를 감쌀 수도 있습니다. 스크롤 컴포넌트는 콘텐츠와 부모 레이어 사이에 삽입됩니다. 이 기능은 스케치 또는 포토샵에서 디자인을 가져와서 레이어를 스크롤 가능하게 만들 때 유용합니다. <a href="#scroll.wrap">이곳</a>에서 감싸기에 대해 더 배울 수 있습니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -23,7 +23,7 @@ scroll = ScrollComponent.wrap(layerA)
 </code>
 </pre>
 <h3 id="scroll.content">scroll.content <span>&lt;layer&gt;</span></h3>
-<p>내용을 추가 할 레이어입니다. 내용을 추가하려면 새 레이어를 만들고 해당 부모 레이어(parent)를 scroll.content 레이어로 설정합니다. 콘텐츠가 스크롤 컴포넌트에 크기가 맞지 않은 경우, 마스킹됩니다.</p>
+<p>내용을 추가할 레이어입니다. 내용을 추가하려면 새 레이어를 만들고 해당 부모 레이어(parent)를 scroll.content 레이어로 설정합니다. 콘텐츠가 스크롤 컴포넌트에 크기가 맞지 않은 경우, 마스킹됩니다.</p>
 <pre>
 <code>
 scroll = new ScrollComponent
@@ -220,7 +220,7 @@ scroll.directionLockThreshold =
 </code>
 </pre>
 <h3 id="scroll.angle">scroll.angle <span>&lt;number&gt;</span></h3>
-<p>현재 스크롤 각도 (도 단위). 스크롤 각도는 드래그 동작의 반대 방향입니다. 아래로 드래그하면 위쪽으로 효과적으로 스크롤 됩니다. (읽기 전용)</p>
+<p>현재 스크롤 각도. 스크롤 각도는 드래그 동작의 반대 방향입니다. 아래로 드래그하면 위쪽으로 효과적으로 스크롤 됩니다. (읽기 전용)</p>
 <pre>
 <code>
 scroll = new ScrollComponent
@@ -231,7 +231,7 @@ scroll.on Events.Scroll, ->
 </code>
 </pre>
 <h3 id="scroll.isDragging">scroll.isDragging <span>&lt;boolean&gt;</span></h3>
-<p>레이어가 현재 드래그되고 있는지를 확인합니다 ( 스크롤 애니메이션 될때는 false를 반환). (읽기 전용)</p>
+<p>레이어가 현재 드래그되고 있는지를 확인합니다. 스크롤 애니메이션 될때는 false를 반환합니다. (읽기 전용)</p>
 <pre>
 <code>
 scroll = new ScrollComponent
@@ -242,7 +242,7 @@ scroll.onMove ->
 </code>
 </pre>
 <h3 id="scroll.isMoving">scroll.isMoving <span>&lt;boolean&gt;</span></h3>
-<p>드래그 또는 모멘텀 / 바운스 애니메이션으로 현재 컨텐트가 이동하는지를 확인합니다.(읽기 전용)</p>
+<p>드래그 또는 모멘텀 / 바운스 애니메이션으로 콘텐츠가 이동하는지를 확인합니다.(읽기 전용)</p>
 <pre>
 <code>
 scroll = new ScrollComponent
@@ -254,7 +254,7 @@ scroll.onMove ->
 </pre>
 <h3 id="scroll.closestContentLayer">scroll.closestContentLayer(<span class="param">originX, originY</span>)</h3>
 <p>정의된 원점 기준으로 스크롤 컴포넌트에 가장 가까운 레이어를 가져옵니다. 원점은 <code>0</code>과 <code>1</code> 사이의 숫자로 정의됩니다. 여기서 <code>(0,0)</code>은 왼쪽 위 모서리이고, <code>(0.5, 0.5)</code> 가운데는, <code>(1,1)</code>은 오른쪽 아래 모서리입니다.</p>
-<p>기본값은 <code>(0,0)</code>입니다. 즉, 스크롤 컴포넌트의 왼쪽 위부터 콘텐츠 레이어의 왼쪽 상단까지의 거리를 계산합니다.</p>
+<p>기본값은 <code>(0,0)</code>입니다. 즉, 스크롤 컴포넌트의 왼쪽 위부터 콘텐츠 레이어의 왼쪽 위까지의 거리를 계산합니다.</p>
 <pre>
 <code>
 scroll = new ScrollComponent
@@ -332,7 +332,7 @@ print scroll.closestContentLayerForScrollPoint({ x: 50, y: 25 }, 0.5, 0.5)
 </code>
 </pre>
 <h3 id="scroll.scrollToPoint">scroll.scrollToPoint(<span class="param">point, animate, animationOptions</span>)</h3>
-<p>특정 지점으로 스크롤 합니다. 선택적으로 애니메이션을 적용할 수도 있습니다.</p>
+<p>특정 지점으로 스크롤 합니다. 선택으로 애니메이션을 적용할 수도 있습니다.</p>
 <h4>인수</h4>
 <ol>
     <li><code>point</code> — x와 y 속성을 가진 객체</li>

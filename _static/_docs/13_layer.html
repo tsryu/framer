@@ -37,7 +37,7 @@ print layerA.id
 </code>
 </pre>
 <h3 id="layer.name">layer.name <span>&lt;string&gt;</span></h3>
-<p>레이어의 이름입니다. 레이어의 이름은 기본적으로 지정되지 않습니다. 가져온 레이어는 스케치 또는 포토샵에서 정의한 이름을 상속합니다.</p>
+<p>레이어의 이름입니다. 레이어의 이름은 기본으로 지정되지 않습니다. 가져온 레이어는 스케치 또는 포토샵에서 정의한 이름을 상속합니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -267,7 +267,7 @@ layerA.props =
 </code>
 </pre>
 <h3 id="layer.center">layer.center()</h3>
-<p>레이어를 부모 레이어 가운데에 놓습니다. 상위가 없으면 화면 기준으로 중심에 배치됩니다.</p>
+<p>레이어를 부모 레이어 가운데에 놓습니다. 부모 레이어가 없으면 화면 기준으로 중심에 배치됩니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -286,7 +286,7 @@ print layerB.x, layerB.y
 </code>
 </pre>
 <h3 id="layer.centerX">layer.centerX(offset)</h3>
-<p>레이어를 부모의 수평 가운데에 배치합니다. 부모가 존재하지 않는 경우, 화면 기준으로 중앙에 배치됩니다. <code>offset</code>은 중심으로부터의 픽셀 단위의 오프셋 위치이며 선택 사항입니다.</p>
+<p>레이어를 부모의 수평 가운데에 배치합니다. 부모 레이어가 존재하지 않는 경우, 화면 기준으로 중앙에 배치됩니다. <code>offset</code>은 중심으로부터의 픽셀 단위의 오프셋 위치이며 선택 사항입니다.</p>
 <h4>인수</h4>
 <ol>
     <li><code>offset</code> — 숫자 형태, 오프셋 위치로 배치합니다.</li>
@@ -412,7 +412,7 @@ print layerB.centerFrame()
 </code>
 </pre>
 <h3 id="layer.backgroundColor">layer.backgroundColor <span>&lt;string&gt;</span></h3>
-<p>레이어의 배경색을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다. 레이어는 기본적으로 하늘색 배경색을 사용합니다.</p>
+<p>레이어의 배경색을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다. 레이어는 기본으로 하늘색 배경색을 사용합니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -427,7 +427,7 @@ layerA.backgroundColor = ""
 </code>
 </pre>
 <h3 id="layer.color">layer.color <span>&lt;string&gt;</span></h3>
-<p>레이어의 텍스트 색상을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다. 레이어는 기본적으로 흰색으로 설정되어 있습니다.</p>
+<p>레이어의 텍스트 색상을 설정합니다. 색상은 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank">CSS 색상 형식의 문자열</a>로 표현됩니다. 레이어는 기본으로 흰색으로 설정되어 있습니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -442,7 +442,7 @@ layerA.color = ""
 </code>
 </pre>
 <h3 id="layer.image">layer.image <span>&lt;string&gt;</span></h3>
-<p>레이어의 배경 이미지 URL 또는 경로를 설정합니다. 로컬 경로 또는 전체 URL로 설정할 수 있습니다. 이미지는 항상 레이어에 맞춰지며, 늘리지 않습니다. 이미지는 null 또는 빈 문자열로 설정하여 제거할 수도 있습니다.</p>
+<p>레이어의 배경 이미지 URL 또는 경로를 설정합니다. 로컬 경로 또는 전체 URL로 설정할 수 있습니다. 이미지 크기는 항상 레이어에 맞춰지며, 늘리지 않습니다. 이미지는 null 또는 빈 문자열로 설정하여 제거할 수도 있습니다.</p>
 <pre>
 <code>
 # 로컬 이미지
@@ -486,7 +486,7 @@ layerA.visible = false
 </code>
 </pre>
 <h3 id="layer.opacity">layer.opacity <span>&lt;number&gt;</span></h3>
-<p>레이어의 오퍼시티를 설정합니다. 오퍼시티는 0과 1 사이의 숫자로 정의되며 0은 보이지 않으며 1은 완전히 불투명합니다.</p>
+<p>레이어의 오퍼시티(불투명도)를 설정합니다. 오퍼시티는 0과 1 사이의 숫자로 정의되며 0은 보이지 않으며 1은 완전히 불투명합니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -494,7 +494,7 @@ layerA.opacity = 0.5
 </code>
 </pre>
 <h3 id="layer.clip">layer.clip <span>&lt;boolean&gt;</span></h3>
-<p>레이어에서 자식 레이어의 클리핑(마스킹) 여부를 설정합니다. 클리핑은 기본적으로 비활성화되어 있습니다.</p>
+<p>레이어에서 자식 레이어의 클리핑(마스킹) 여부를 설정합니다. 클리핑은 기본으로 비활성화되어 있습니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -555,7 +555,7 @@ layerA = new Layer
 </code>
 </pre>
 <h3 id="layer.perspective">layer.perspective <span>&lt;number&gt;</span></h3>
-<p>자식 레이어의 원근감을 설정합니다. Perspective는 rotationX, rotationY와 같은 3D 속성에 깊이를 줍니다. 회전은 가장 큰 원근감을 주는 1부터 무한대로 설정할 수 있습니다. Perspective를 0으로 설정하면 등각 투영 효과가 제공됩니다. Perspective는 기본적으로 비활성화 되어있습니다.</p>
+<p>자식 레이어의 원근감을 설정합니다. Perspective는 rotationX, rotationY와 같은 3D 속성에 깊이를 줍니다. 회전은 가장 큰 원근감을 주는 1부터 무한대로 설정할 수 있습니다. Perspective를 0으로 설정하면 등각 투영 효과가 제공됩니다. Perspective는 기본으로 비활성화 되어있습니다.</p>
 <pre>
 <code>
 layerA = new Layer
@@ -665,7 +665,7 @@ layerB = new Layer
 layerB.parent = layerA
  
 print layerB.parent
-# 결과: <Object:Layer layerA> 
+# 결과: Object:Layer layerA 
 </code>
 </pre>
 <h3 id="layer.children">layer.children <span>&lt;Array&gt;</span></h3>
@@ -681,7 +681,7 @@ layerC = new Layer
     parent: layerA
  
 print layerA.children
-# 결과: [<Object:Layer layerB>, <Object:Layer layerC>] 
+# 결과: [Object:Layer layerB, Object:Layer layerC] 
 </code>
 </pre>
 <h3 id="layer.childrenWithName">layer.childrenWithName(<span class="param">name</span>)</h3>
@@ -703,7 +703,7 @@ layerC = new Layer
     parent: layerA
  
 print layerA.childrenWithName("button")
-# 결과: [<Object:Layer layerC>]
+# 결과: [Object:Layer layerC]
 </code>
 </pre>
 <h3 id="layer.siblings">layer.siblings <span>&lt;Array&gt;</span></h3>
@@ -741,7 +741,7 @@ layerC = new Layer
     parent: layerA
  
 print layerB.siblingsWithName("button")
-# 결과: [<Object:Layer name:button layerC>] 
+# 결과: [Object:Layer name:button layerC] 
 </code>
 </pre>
 <h3 id="layer.descendants">layer.descendants <span>&lt;Array&gt;</span></h3>
@@ -757,7 +757,7 @@ layerC = new Layer
     parent: layerB
  
 print layerA.descendants
-# 결과: [<Layer id:2 name:layerB (0,0) 200x200>, <Layer id:3 name:layerC (0,0) 200x200>] 
+# 결과: [Layer id:2 name:layerB (0,0) 200x200, Layer id:3 name:layerC (0,0) 200x200] 
 </code>
 </pre>
 <h3 id="layer.ancestors">layer.ancestors()</h3>
@@ -773,7 +773,7 @@ layerC = new Layer
     parent: layerB
  
 print layerC.ancestors()
-# 결과: [<Layer id:2 name:layerB (0,0) 200x200>, <Layer id:1 name:layerA (0,0) 200x200>] 
+# 결과: [Layer id:2 name:layerB (0,0) 200x200, Layer id:1 name:layerA (0,0) 200x200]
 </code>
 </pre>
 <h3 id="layer.addChild">layer.addChild(layer)</h3>
@@ -790,7 +790,7 @@ layerB = new Layer
 layerA.addChild(layerB)
  
 print layerB.parent
-# 결과: <Object:Layer layerA> 
+# 결과: Object:Layer layerA
 </code>
 </pre>
 <h3 id="layer.removeChild">layer.removeChild(layer)</h3>
@@ -890,13 +890,13 @@ layerA = new Layer
 layerA.html = "Hello"
  
 # 인라인 스타일의 텍스트 콘텐츠 추가
-layerA.html = "I'm <span style='color:red'>Koen</span>"
+layerA.html = "I'm &lt;span style='color:red'&gt;Koen&lt;/span&gt;"
  
 # 입력 필드 추가
-layerA.html = "<input type='text' value='Hello'>"
+layerA.html = "&lt;input type='text' value='Hello'&gt;"
  
 # canvas 요소가있는 div를 추가하고 셀렉터로 접근합니다
-layerA.html = "<div><canvas id='canvas'></canvas></div>"
+layerA.html = "&lt;div&gt;&lt;canvas id='canvas'&gt;&lt;/canvas&gt;&lt;/div&gt;"
 canvasElement = layerA.querySelectorAll("#canvas")
 </code>
 </pre>
@@ -921,7 +921,7 @@ print layerA.style["outline"]
 </code>
 </pre>
 <h3 id="layer.computedStyle">layer.computedStyle()</h3>
-<p>레이어에 현재 적용된 CSS 스타일 속성을 모두 가져옵니다. 이것은 브라우저에게 많은 부하를 줄 수도 있으니 참고해주시기 바랍니다. 입력된 스타일에 대한 전체 레퍼런스는 이 개요를 확인해보세요.</p>
+<p>레이어에 현재 적용된 CSS 스타일 속성을 모두 가져옵니다. 이것은 브라우저에게 많은 부하를 줄 수도 있으니 참고해주시기 바랍니다. 입력된 스타일에 대한 전체 레퍼런스는 이 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle" target="_blank">개요</a>를 확인해보세요.</p>
 <pre>
 <code>
 layerA = new Layer

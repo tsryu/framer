@@ -136,7 +136,7 @@ module.exports = function (grunt) {
         }
       }
     },
-
+     
     watch: {
       less: {
         files: ['less/**/*.less'],
@@ -144,36 +144,47 @@ module.exports = function (grunt) {
         options: { livereload: true }
       },
       js: {
-        files: 'js/*.js',
+        files: '<%= jshint.core.src %>',
         tasks: 'js'
       },
       deploy: {
         options: { spawn: false },
         files: ['dist/*'],
-        tasks: 'ftp-deploy:build'
+        tasks: 'rsync:dev'
       }
     },
-
-    'ftp-deploy': {
-      build: {
-        auth: {
-          host: 'framerjs.co.kr',
-          port: 21,
-          authKey: 'key1'
-        },
-        src: './dist',
-        dest: '/home/hosting_users/framerkr/www/wp-content/themes/framer/dist',
-        // exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'path/to/dist/tmp']
+    
+    rsync: {
+      options: {
+        args: ['-zvr'],
+        exclude: ['.git*', '.*', '*.less', '*.php', 'assets', 'images', 'node_modules'],
+        recursive: true
+      },
+      dev: {
+        options: {
+          src: 'dist/*',
+          dest: '/home/hosting_users/framerkr/www/wp-content/themes/framer',
+          host: 'framerkr@framerjs.co.kr',
+          delete: false
+        }
+      },
+      deploy: {
+        options: {
+          src: 'dist/*',
+          dest: '/home/hosting_users/framerkr/www/wp-content/themes/framer',
+          host: 'framerkr@framerjs.co.kr',
+          delete: false
+        }
       }
     }
 
   });
 
-  grunt.event.on('watch', function(action, filepath, target) {
-      if(target!=='deploy') return;
-      grunt.config('ftp-deploy.build.src', filepath);
-      grunt.task.run('ftp-deploy');
-   });
+  // grunt.event.on('watch', function(action, filepath, target) {
+  //     if(target!=='deploy') return;
+  //     grunt.config('rsync.deploy.options.src', filepath);
+  //     grunt.task.run('rsync:deploy');
+  //  });
 
   // Register tasks
   grunt.registerTask('test-js',   ['jshint', 'concat']);
@@ -182,15 +193,14 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-css',  ['test-css', 'autoprefixer', 'csscomb', 'csslint', 'cssmin']);
 
   // Register tasks: devlopment
-  // grunt.registerTask('js',        ['test-js', 'ftp-deploy:build']);
-  grunt.registerTask('js',        ['dist-js', 'ftp-deploy:build']);
-  // grunt.registerTask('css',       ['test-css', 'ftp-deploy:build']);
-  grunt.registerTask('css',       ['dist-css', 'ftp-deploy:build']);
-  grunt.registerTask('dev',       ['test-js', 'test-css']);
+  grunt.registerTask('js',        ['dist-js', 'rsync:dev']);
+  grunt.registerTask('css',       ['dist-css', 'rsync:dev']);
+  grunt.registerTask('dev',       ['dist-js', 'dist-css']);
   grunt.registerTask('default',   ['dev']);
 
-  // Register tasks: production
+  // Resister tasks: production
   grunt.registerTask('build-js',  ['dist-js', 'modernizr']);
   grunt.registerTask('build-css', ['dist-css']);
-  grunt.registerTask('build',     ['clean', 'dist-js', 'dist-css', 'modernizr', 'ftp-deploy:build']);
+  grunt.registerTask('build',     ['clean', 'dist-js', 'dist-css', 'modernizr', 'rsync:deploy']);
+
 };

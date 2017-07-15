@@ -10,8 +10,8 @@ function slowalk_scripts() {
     );
   else :
     $assets     = array(
-      'css'       => '/dist/css/style.min.css',
-      'js'        => '/dist/js/script.min.js',
+      'css'       => '/css/style.min.css',
+      'js'        => '/js/script.min.js',
       'modernizr' => '/js/modernizr.min.js'
     );
   endif;
