@@ -9,6 +9,7 @@
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
   <link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo( 'name' ); ?> &mdash; 피드" href="<?php echo esc_url( get_feed_link() ); ?>">
   <?php wp_head(); ?>
+  <meta name="naver-site-verification" content="9c21fe93f5182295d47ea8b721dba525e10874f1"/>
 </head>
 
 <body <?php body_class(); ?>>
