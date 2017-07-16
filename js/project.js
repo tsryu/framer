@@ -11,13 +11,11 @@
 	}
 
 
-	$(window).on("load hashchange", function () {
+	$(window).on("load", function () {
 		if (location.hash.length !== 0) {
 			var withoutHash = location.hash.substr(1);
 	    	var idOffsettop = document.getElementById(withoutHash).offsetTop;
-		    window.setTimeout(function () {
-		        window.scrollTo(0, idOffsettop + 4);
-		    }, 10);
+	        window.scrollTo(0, idOffsettop);
 	    }
 	});
 	
@@ -61,7 +59,8 @@
 				if($(this).find('h3').length){
 					$('.site-sidebar a[href="#'+sectionId+'"]').parent().addClass('accordion').append('<ul id="list-'+sectionId+'"></ul>');
 					$(this).find('h3').each(function(){
-						var h3Text = $(this).text().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+						// var h3Text = $(this).text().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+						var h3Text = $(this).text().replace(/&/g,'&amp;').replace(/(<([^>]+)>)/ig, '').replace(/ *\([^)]*\) */g, "()");
 						var h3Id = $(this).attr('id');
 						$('#list-'+sectionId).append('<li><a href="#'+h3Id+'">'+h3Text+'</a></li>');
 					})
@@ -69,6 +68,13 @@
 				
 			})
 		}
+		$('a[href^="#"]').click(function(e){
+			e.preventDefault();
+			var withoutHash = $(this).attr('href').substr(1);
+	    	var idOffsettop = document.getElementById(withoutHash).offsetTop;
+	        window.location.hash = $(this).attr('href');
+	        window.scrollTo(0, idOffsettop);
+		});
 		if($('.page-template-template-document').length){
 			var $pre = $('.site-content pre');
 			$pre.children('code').addClass('language-coffeescript code-embed-code');
