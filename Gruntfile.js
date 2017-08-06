@@ -41,9 +41,9 @@ module.exports = function (grunt) {
     concat: {
       core: {
         src: [
-          'bower_components/angular/angular.js',
-          'bower_components/angular-sanitize/angular-sanitize.js',
-          'js/app.js',
+          // 'bower_components/angular/angular.js',
+          // 'bower_components/angular-sanitize/angular-sanitize.js',
+          // 'js/app.js',
           'js/prism.js',
           '<%= jshint.core.src %>'
         ],

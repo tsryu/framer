@@ -68,13 +68,15 @@
 				
 			})
 		}
-		$('a[href^="#"]').click(function(e){
-			e.preventDefault();
-			var withoutHash = $(this).attr('href').substr(1);
-	    	var idOffsettop = document.getElementById(withoutHash).offsetTop;
-	        window.location.hash = $(this).attr('href');
-	        window.scrollTo(0, idOffsettop);
-		});
+		if($('.page-docs').length){
+			$('a[href^="#"]').click(function(e){
+				e.preventDefault();
+				var withoutHash = $(this).attr('href').substr(1);
+		    	var idOffsettop = document.getElementById(withoutHash).offsetTop;
+		        window.location.hash = $(this).attr('href');
+		        window.scrollTo(0, idOffsettop);
+			});
+		}
 		if($('.page-template-template-document').length){
 			var $pre = $('.site-content pre');
 			$pre.children('code').addClass('language-coffeescript code-embed-code');

@@ -49,20 +49,20 @@ function slowalk_head() {
 
   <?php elseif ( is_archive() ) : ?>
     <meta name="robots" content="noindex,follow">
-    <meta name="description" content="<?php echo get_field('site_description', 'option');?>">
+    <meta name="description" content="<?php slowalk_meta( 'description' ); ?>">
     <link rel="canonical" href="<?php slowalk_meta( 'url' ); ?>">
     <meta property="og:title" content="<?php slowalk_meta( 'title' ); ?>">
     <meta property="og:url" content="<?php slowalk_meta( 'url' ); ?>">
     <meta property="og:type" content="object">
-    <meta property="og:description" content="<?php echo get_field('og_description', 'option');?>">
+    <meta property="og:description" content="<?php slowalk_meta( 'description' ); ?>">
 
   <?php elseif ( is_singular() ) : ?>
     <meta property="og:title" content="<?php slowalk_meta( 'title' ); ?>">
     <meta property="og:url" content="<?php slowalk_meta( 'url' ); ?>">
     <meta property="og:type" content="article">
-    <meta name="description" content="<?php echo get_field('site_description', 'option');?>">
-    <meta property="og:description" content="<?php echo get_field('og_description', 'option');?>">
-      <?php if ( is_single() ) : ?>
+    <?php if ( is_single() ) : ?>
+      <meta name="description" content="<?php slowalk_meta( 'description' ); ?>">
+      <meta property="og:description" content="<?php slowalk_meta( 'description' ); ?>">
       <meta property="article:section" content="<?php slowalk_meta( 'section' ); ?>">
       <?php foreach ( slowalk_meta( 'tags' ) as $tag ) : ?>
         <meta property="article:tag" content="<?php echo $tag->name; ?>">
@@ -73,8 +73,8 @@ function slowalk_head() {
 
   <?php else : ?>
     <link rel="canonical" href="<?php slowalk_meta( 'url' ); ?>">
-    <meta name="description" content="<?php echo get_field('site_description', 'option');?>">
-    <meta property="og:description" content="<?php echo get_field('og_description', 'option');?>">
+    <meta name="description" content="<?php bloginfo( 'description' ); ?>">
+    <meta property="og:description" content="<?php bloginfo( 'description' ); ?>">
     <meta property="og:type" content="website">
 
   <?php endif; ?>
@@ -87,7 +87,6 @@ function slowalk_head() {
     <?php endforeach; ?>
   <?php endif; ?>
   <meta property="og:locale" content="<?php bloginfo( 'language' ); ?>">
-  <meta name="keywords" content="<?php echo get_field('site_keywords', 'option');?>">
   <!-- / 검색엔진최적화 -->
 
   <!-- 파비콘 -->
